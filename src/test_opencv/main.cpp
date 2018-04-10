@@ -15,6 +15,7 @@ using namespace cv;
 
 using namespace std;
 
+
 int main(int argc, char const *argv[]) {
   String imageName("src/test_opencv/textures/test.jpg");
   Mat screen = Mat(H_SCREEN, W_SCREEN, CV_8UC3);

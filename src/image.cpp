@@ -36,7 +36,9 @@ int Image::getSizeY(void)
 
 Color Image::getPixel(int _x, int _y)
 {
-    Vec4b color = screen.at<uchar>(_x, _y);       // Fonction à terminer
+    Vec4b getColors = screen.at<uchar>(_x, _y);
+    Color colors(getColors[0], getColors[1], getColors[2], getColors[3]);
+    return colors;
 }
 
 Mat Image::getMat()
@@ -47,4 +49,6 @@ Mat Image::getMat()
 void Image::resize(int _sizeX, int _sizeY)
 {
   resize(screen, screen, Size(_sizeX, _sizeY));
+  sizeX = _sizeX;
+  sizeY = _sizeY;
 }
