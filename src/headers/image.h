@@ -12,12 +12,13 @@ public:
   Image();
   ~Image();
 
-  void fillColor(Color);
-  void blit(Image, int x, int y, int sizeX, int sizeY);
+  void fillColor(Color _color);
+  void blit(Image _image, int _x, int _y, int _sizeX, int _sizeY);
   int getSizeX(void);
   int getSizeY(void);
-  Color getPixel(int x, int y);
-  bool resize(int sizeX, int sizeY);
+  Color getPixel(int _x, int _y);
+  Mat getMat();
+  void resize(int _sizeX, int _sizeY);
 
 private:
 
