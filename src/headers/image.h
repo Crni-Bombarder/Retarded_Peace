@@ -1,10 +1,8 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#include <cv.h>
-#include <highgui.h>
+#include <cv.hpp>
 #include "color.h"
-#include "mat.h"
 
 class Image{
 public:

@@ -1,4 +1,4 @@
-#include "headers/color.h"
+#include "color.h"
 
 Color::Color()
 {
