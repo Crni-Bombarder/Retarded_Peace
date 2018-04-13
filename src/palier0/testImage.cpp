@@ -1,0 +1,18 @@
+#include <../headers/image.h>
+
+
+int main (int argc, char* argv[])
+{
+    Image background;
+    background.print();
+    background.resizeImg(3, 2);
+    background.print();
+    Image object;
+    Color color(255, 0, 0, 255);
+    object.fillColor(color);
+    object.print();
+    background.blit(object, 1, 1, 2, 2);
+    background.print();
+    return 0;
+}
+
