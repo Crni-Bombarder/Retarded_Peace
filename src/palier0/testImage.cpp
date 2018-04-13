@@ -3,7 +3,7 @@
 
 int main (int argc, char* argv[])
 {
-    Image background;
+    Image background(2, 2);
     background.print();
     background.resizeImg(3, 2);
     background.print();

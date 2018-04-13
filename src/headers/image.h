@@ -3,6 +3,9 @@
 
 #include <cv.hpp>
 #include "color.h"
+#include <string.h>
+
+using namespace cv;
 
 class Image{
 public:
@@ -17,7 +20,9 @@ public:
   int getSizeX(void);
   int getSizeY(void);
   Color getPixel(int _x, int _y);
-  void resize(int _sizeX, int _sizeY);
+  void resizeImg(int _sizeX, int _sizeY);
+
+  void print(void);
 
 private:
 

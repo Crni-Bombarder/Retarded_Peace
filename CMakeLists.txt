@@ -29,8 +29,14 @@ add_executable(
     src/palier0/testColor.cpp
 )
 
-add_library(SOURCES src/color.cpp)
+add_executable(
+    test_imagePalier0
+    src/palier0/testImage.cpp
+)
+
+add_library(SOURCES src/color.cpp src/image.cpp)
 
 target_link_libraries(SOURCES ${OpenCV_LIBS})
 target_link_libraries(test_opencv ${OpenCV_LIBS})
 target_link_libraries(test_colorPalier0 ${OpenCV_LIBS} SOURCES)
+target_link_libraries(test_imagePalier0 ${OpenCV_LIBS} SOURCES)

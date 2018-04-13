@@ -1,13 +1,23 @@
 #include "headers/image.h"
 
+
 #define MAT_TYPE CV_8UC4
 
 Image::Image()
 {
-  sizeX = 0;
-  sizeY = 0;
-  screen = Mat(0, 0, MAT_TYPE);
+  sizeX = 1;
+  sizeY = 1;
+  screen = Mat(1, 1, MAT_TYPE);
 }
+
+Image::Image(int _x, int _y)
+{
+    sizeX = _x;
+    sizeY = _y;
+    screen = Mat(_x, _y, MAT_TYPE);
+}
+
+
 
 Image::~Image(){}
 
@@ -18,10 +28,10 @@ void Image::fillColor(Color _color)
 
 void Image::blit(Image _image, int _x, int _y, int _sizeX, int _sizeY)
 {
-  Mat* blitMat = new Mat(_sizeX, _sizeY, MAT_TYPE);       // A vérifier pour l'allocation dynamique
-  *blitMat = _image.getMat();
-  blitMat->copyTo(screen(Rect(_sizeX, _sizeY, _x, _y)));
-  delete blitMat;
+  Mat* blitMat;
+  blitMat = _image.getMat();
+  resize(*blitMat, *blitMat, Size(_sizeX, _sizeY));
+  blitMat->copyTo(screen(Rect(_x - 1, _y - 1, _sizeX, _sizeY)));
 }
 
 int Image::getSizeX(void)
@@ -41,14 +51,21 @@ Color Image::getPixel(int _x, int _y)
     return colors;
 }
 
-Mat Image::getMat()
+Mat* Image::getMat()
 {
-  return screen;
+  return &screen;
 }
 
-void Image::resize(int _sizeX, int _sizeY)
+void Image::resizeImg(int _sizeX, int _sizeY)
 {
   resize(screen, screen, Size(_sizeX, _sizeY));
   sizeX = _sizeX;
   sizeY = _sizeY;
+}
+
+void Image::print(void)
+{
+    std::cout << "Size X : " << sizeX << std::endl;
+    std::cout << "Size Y : " << sizeY << std::endl;
+    std::cout << "Mat : " << screen << std::endl;
 }
