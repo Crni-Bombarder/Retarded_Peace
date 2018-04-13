@@ -46,7 +46,7 @@ int Image::getSizeY(void)
 
 Color Image::getPixel(int _x, int _y)
 {
-    Vec4b getColors = screen.at<uchar>(_x, _y);
+    Vec4b getColors = screen.at<Vec4b>(_x - 1, _y - 1);
     Color colors(getColors[0], getColors[1], getColors[2], getColors[3]);
     return colors;
 }

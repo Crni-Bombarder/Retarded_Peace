@@ -13,6 +13,8 @@ int main (int argc, char* argv[])
     object.print();
     background.blit(object, 1, 1, 2, 2);
     background.print();
+    Color pixel = background.getPixel(1, 2);
+    pixel.print();
     return 0;
 }
 
