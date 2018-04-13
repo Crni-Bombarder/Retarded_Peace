@@ -17,7 +17,12 @@ Image::Image(int _x, int _y)
     screen = Mat(_x, _y, MAT_TYPE);
 }
 
-
+Image::Image(String _namefile)
+{
+    screen = imread(_namefile, IMREAD_UNCHANGED);
+    sizeX = screen.rows;
+    sizeY = screen.cols;
+}
 
 Image::~Image(){}
 

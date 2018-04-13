@@ -1,0 +1,25 @@
+@startuml
+
+class Image {
++ Image();
++ Image(int _x, int _y);
++ Image(String _namefile);
++ ~Image();
+
++ void fillColor(Color _color);
++ void blit(Image _image, int _x, int _y, int _sizeX, int _sizeY);
++ int getSizeX(void);
++ int getSizeY(void);
++ Color getPixel(int _x, int _y);
++ void resizeImg(int _sizeX, int _sizeY);
++ void print(void);
+
+- Mat screen;
+- int sizeX;
+- int sizeY;
+
+- Mat* getMat();
+}
+
+
+@enduml
