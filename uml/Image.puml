@@ -14,12 +14,11 @@ class Image {
 + void resizeImg(int _sizeX, int _sizeY);
 + void print(void);
 
+- Mat* getMat(void);
+
 - Mat screen;
 - int sizeX;
 - int sizeY;
-
-- Mat* getMat();
 }
-
 
 @enduml
