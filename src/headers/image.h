@@ -21,6 +21,7 @@ public:
   int getSizeY(void);
   Color getPixel(int _x, int _y);
   void resizeImg(int _sizeX, int _sizeY);
+  Mat* getMat();   //Return the pointer to the Mat
 
   void print(void);
 
@@ -29,8 +30,6 @@ private:
   Mat screen;
   int sizeX;
   int sizeY;
-
-  Mat* getMat(); //Return the pointer to the Mat (Better)
 
 };
 

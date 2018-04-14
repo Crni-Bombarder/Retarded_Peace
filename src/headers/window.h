@@ -1,12 +1,14 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <cv.h>
+#include <cv.hpp>
 #include <highgui.h>
 #include <string>
 #include <mutex>
 
 #include "image.h"
+
+using namespace cv;
 
 class Window{
 public:
@@ -14,9 +16,9 @@ public:
   Window();
   ~Window();
 
-  bool createWindow();
-  bool destroyWindow();
-  void updateWindow();
+  bool createWin();
+  bool destroyWin();
+  void updateWin();
 
   Image* getScreen();
 
