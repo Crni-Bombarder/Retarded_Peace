@@ -32,6 +32,6 @@ void Window::updateWin()
 
 Image* Window::getScreen()
 {
-    return
+    return &screen;
 }
 

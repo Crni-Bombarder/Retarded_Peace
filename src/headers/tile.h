@@ -1,18 +1,16 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include <string>
-#include <vector>
+#include <string.h>
+#include <vector.h>
 
 #include "image.h"
-#include "tile.h"
 
 class Tile{
-
 public:
 
   Tile();
-  Tile(String imageName);
+  Tile(String _imageName);
   ~Tile();
 
   int getId(void);
