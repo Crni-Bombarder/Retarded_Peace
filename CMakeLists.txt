@@ -5,7 +5,11 @@ cmake_minimum_required(VERSION 2.6)
 project(Retarded_Peace)
 
 set(EXECUTABLE_OUTPUT_PATH bin)
+<<<<<<< HEAD
 add_compile_options(-std=c++11)
+=======
+add_compile_options(-std=c++11)     #C++11 standars
+>>>>>>> 22ce12931eefb6b70e10a4d5eff1d0abfc6eb1af
 
 find_package(OpenCV REQUIRED)
 
@@ -36,6 +40,7 @@ add_executable(
 )
 
 add_executable(
+<<<<<<< HEAD
         test_tilePalier0
         src/palier0/testTile.cpp
 )
@@ -46,10 +51,21 @@ add_executable(
 )
 
 add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp src/map.cpp)
+=======
+    test_vectorimagePalier0
+    src/palier0/testVectorimage.cpp
+)
+
+add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp)
+>>>>>>> 22ce12931eefb6b70e10a4d5eff1d0abfc6eb1af
 
 target_link_libraries(SOURCES ${OpenCV_LIBS})
 target_link_libraries(test_opencv ${OpenCV_LIBS})
 target_link_libraries(test_colorPalier0 ${OpenCV_LIBS} SOURCES)
 target_link_libraries(test_imagePalier0 ${OpenCV_LIBS} SOURCES)
+<<<<<<< HEAD
 target_link_libraries(test_tilePalier0 ${OpenCV_LIBS} SOURCES)
 target_link_libraries(test_mapPalier0 ${OpenCV_LIBS} SOURCES)
+=======
+target_link_libraries(test_vectorimagePalier0 ${OpenCV_LIBS} SOURCES)
+>>>>>>> 22ce12931eefb6b70e10a4d5eff1d0abfc6eb1af

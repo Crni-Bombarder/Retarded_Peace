@@ -125,6 +125,19 @@ test_colorPalier0/fast:
 .PHONY : test_colorPalier0/fast
 
 #=============================================================================
+# Target rules for targets named test_imagePalier0
+
+# Build rule for target.
+test_imagePalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_imagePalier0
+.PHONY : test_imagePalier0
+
+# fast build rule for target.
+test_imagePalier0/fast:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/build
+.PHONY : test_imagePalier0/fast
+
+#=============================================================================
 # Target rules for targets named test_opencv
 
 # Build rule for target.
@@ -136,6 +149,19 @@ test_opencv: cmake_check_build_system
 test_opencv/fast:
 	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/build
 .PHONY : test_opencv/fast
+
+#=============================================================================
+# Target rules for targets named test_vectorimagePalier0
+
+# Build rule for target.
+test_vectorimagePalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_vectorimagePalier0
+.PHONY : test_vectorimagePalier0
+
+# fast build rule for target.
+test_vectorimagePalier0/fast:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/build
+.PHONY : test_vectorimagePalier0/fast
 
 src/color.o: src/color.cpp.o
 .PHONY : src/color.o
@@ -161,6 +187,30 @@ src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
 
+src/image.o: src/image.cpp.o
+.PHONY : src/image.o
+
+# target to build an object file
+src/image.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/image.cpp.o
+.PHONY : src/image.cpp.o
+
+src/image.i: src/image.cpp.i
+.PHONY : src/image.i
+
+# target to preprocess a source file
+src/image.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/image.cpp.i
+.PHONY : src/image.cpp.i
+
+src/image.s: src/image.cpp.s
+.PHONY : src/image.s
+
+# target to generate assembly for a file
+src/image.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/image.cpp.s
+.PHONY : src/image.cpp.s
+
 src/palier0/testColor.o: src/palier0/testColor.cpp.o
 .PHONY : src/palier0/testColor.o
 
@@ -184,6 +234,54 @@ src/palier0/testColor.s: src/palier0/testColor.cpp.s
 src/palier0/testColor.cpp.s:
 	$(MAKE) -f CMakeFiles/test_colorPalier0.dir/build.make CMakeFiles/test_colorPalier0.dir/src/palier0/testColor.cpp.s
 .PHONY : src/palier0/testColor.cpp.s
+
+src/palier0/testImage.o: src/palier0/testImage.cpp.o
+.PHONY : src/palier0/testImage.o
+
+# target to build an object file
+src/palier0/testImage.cpp.o:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.o
+.PHONY : src/palier0/testImage.cpp.o
+
+src/palier0/testImage.i: src/palier0/testImage.cpp.i
+.PHONY : src/palier0/testImage.i
+
+# target to preprocess a source file
+src/palier0/testImage.cpp.i:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.i
+.PHONY : src/palier0/testImage.cpp.i
+
+src/palier0/testImage.s: src/palier0/testImage.cpp.s
+.PHONY : src/palier0/testImage.s
+
+# target to generate assembly for a file
+src/palier0/testImage.cpp.s:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.s
+.PHONY : src/palier0/testImage.cpp.s
+
+src/palier0/testVectorimage.o: src/palier0/testVectorimage.cpp.o
+.PHONY : src/palier0/testVectorimage.o
+
+# target to build an object file
+src/palier0/testVectorimage.cpp.o:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/src/palier0/testVectorimage.cpp.o
+.PHONY : src/palier0/testVectorimage.cpp.o
+
+src/palier0/testVectorimage.i: src/palier0/testVectorimage.cpp.i
+.PHONY : src/palier0/testVectorimage.i
+
+# target to preprocess a source file
+src/palier0/testVectorimage.cpp.i:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/src/palier0/testVectorimage.cpp.i
+.PHONY : src/palier0/testVectorimage.cpp.i
+
+src/palier0/testVectorimage.s: src/palier0/testVectorimage.cpp.s
+.PHONY : src/palier0/testVectorimage.s
+
+# target to generate assembly for a file
+src/palier0/testVectorimage.cpp.s:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/src/palier0/testVectorimage.cpp.s
+.PHONY : src/palier0/testVectorimage.cpp.s
 
 src/test_opencv/main.o: src/test_opencv/main.cpp.o
 .PHONY : src/test_opencv/main.o
@@ -209,6 +307,54 @@ src/test_opencv/main.cpp.s:
 	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/src/test_opencv/main.cpp.s
 .PHONY : src/test_opencv/main.cpp.s
 
+src/tile.o: src/tile.cpp.o
+.PHONY : src/tile.o
+
+# target to build an object file
+src/tile.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/tile.cpp.o
+.PHONY : src/tile.cpp.o
+
+src/tile.i: src/tile.cpp.i
+.PHONY : src/tile.i
+
+# target to preprocess a source file
+src/tile.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/tile.cpp.i
+.PHONY : src/tile.cpp.i
+
+src/tile.s: src/tile.cpp.s
+.PHONY : src/tile.s
+
+# target to generate assembly for a file
+src/tile.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/tile.cpp.s
+.PHONY : src/tile.cpp.s
+
+src/window.o: src/window.cpp.o
+.PHONY : src/window.o
+
+# target to build an object file
+src/window.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/window.cpp.o
+.PHONY : src/window.cpp.o
+
+src/window.i: src/window.cpp.i
+.PHONY : src/window.i
+
+# target to preprocess a source file
+src/window.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/window.cpp.i
+.PHONY : src/window.cpp.i
+
+src/window.s: src/window.cpp.s
+.PHONY : src/window.s
+
+# target to generate assembly for a file
+src/window.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/window.cpp.s
+.PHONY : src/window.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,16 +365,33 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test_colorPalier0"
+	@echo "... test_imagePalier0"
 	@echo "... test_opencv"
+	@echo "... test_vectorimagePalier0"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/image.o"
+	@echo "... src/image.i"
+	@echo "... src/image.s"
 	@echo "... src/palier0/testColor.o"
 	@echo "... src/palier0/testColor.i"
 	@echo "... src/palier0/testColor.s"
+	@echo "... src/palier0/testImage.o"
+	@echo "... src/palier0/testImage.i"
+	@echo "... src/palier0/testImage.s"
+	@echo "... src/palier0/testVectorimage.o"
+	@echo "... src/palier0/testVectorimage.i"
+	@echo "... src/palier0/testVectorimage.s"
 	@echo "... src/test_opencv/main.o"
 	@echo "... src/test_opencv/main.i"
 	@echo "... src/test_opencv/main.s"
+	@echo "... src/tile.o"
+	@echo "... src/tile.i"
+	@echo "... src/tile.s"
+	@echo "... src/window.o"
+	@echo "... src/window.i"
+	@echo "... src/window.s"
 .PHONY : help
 
 
