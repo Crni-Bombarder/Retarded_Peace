@@ -138,6 +138,19 @@ test_imagePalier0/fast:
 .PHONY : test_imagePalier0/fast
 
 #=============================================================================
+# Target rules for targets named test_mapPalier0
+
+# Build rule for target.
+test_mapPalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_mapPalier0
+.PHONY : test_mapPalier0
+
+# fast build rule for target.
+test_mapPalier0/fast:
+	$(MAKE) -f CMakeFiles/test_mapPalier0.dir/build.make CMakeFiles/test_mapPalier0.dir/build
+.PHONY : test_mapPalier0/fast
+
+#=============================================================================
 # Target rules for targets named test_opencv
 
 # Build rule for target.
@@ -149,6 +162,19 @@ test_opencv: cmake_check_build_system
 test_opencv/fast:
 	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/build
 .PHONY : test_opencv/fast
+
+#=============================================================================
+# Target rules for targets named test_tilePalier0
+
+# Build rule for target.
+test_tilePalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_tilePalier0
+.PHONY : test_tilePalier0
+
+# fast build rule for target.
+test_tilePalier0/fast:
+	$(MAKE) -f CMakeFiles/test_tilePalier0.dir/build.make CMakeFiles/test_tilePalier0.dir/build
+.PHONY : test_tilePalier0/fast
 
 #=============================================================================
 # Target rules for targets named test_vectorimagePalier0
@@ -211,6 +237,30 @@ src/image.cpp.s:
 	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/image.cpp.s
 .PHONY : src/image.cpp.s
 
+src/map.o: src/map.cpp.o
+.PHONY : src/map.o
+
+# target to build an object file
+src/map.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/map.cpp.o
+.PHONY : src/map.cpp.o
+
+src/map.i: src/map.cpp.i
+.PHONY : src/map.i
+
+# target to preprocess a source file
+src/map.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/map.cpp.i
+.PHONY : src/map.cpp.i
+
+src/map.s: src/map.cpp.s
+.PHONY : src/map.s
+
+# target to generate assembly for a file
+src/map.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/map.cpp.s
+.PHONY : src/map.cpp.s
+
 src/palier0/testColor.o: src/palier0/testColor.cpp.o
 .PHONY : src/palier0/testColor.o
 
@@ -258,6 +308,54 @@ src/palier0/testImage.s: src/palier0/testImage.cpp.s
 src/palier0/testImage.cpp.s:
 	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.s
 .PHONY : src/palier0/testImage.cpp.s
+
+src/palier0/testMap.o: src/palier0/testMap.cpp.o
+.PHONY : src/palier0/testMap.o
+
+# target to build an object file
+src/palier0/testMap.cpp.o:
+	$(MAKE) -f CMakeFiles/test_mapPalier0.dir/build.make CMakeFiles/test_mapPalier0.dir/src/palier0/testMap.cpp.o
+.PHONY : src/palier0/testMap.cpp.o
+
+src/palier0/testMap.i: src/palier0/testMap.cpp.i
+.PHONY : src/palier0/testMap.i
+
+# target to preprocess a source file
+src/palier0/testMap.cpp.i:
+	$(MAKE) -f CMakeFiles/test_mapPalier0.dir/build.make CMakeFiles/test_mapPalier0.dir/src/palier0/testMap.cpp.i
+.PHONY : src/palier0/testMap.cpp.i
+
+src/palier0/testMap.s: src/palier0/testMap.cpp.s
+.PHONY : src/palier0/testMap.s
+
+# target to generate assembly for a file
+src/palier0/testMap.cpp.s:
+	$(MAKE) -f CMakeFiles/test_mapPalier0.dir/build.make CMakeFiles/test_mapPalier0.dir/src/palier0/testMap.cpp.s
+.PHONY : src/palier0/testMap.cpp.s
+
+src/palier0/testTile.o: src/palier0/testTile.cpp.o
+.PHONY : src/palier0/testTile.o
+
+# target to build an object file
+src/palier0/testTile.cpp.o:
+	$(MAKE) -f CMakeFiles/test_tilePalier0.dir/build.make CMakeFiles/test_tilePalier0.dir/src/palier0/testTile.cpp.o
+.PHONY : src/palier0/testTile.cpp.o
+
+src/palier0/testTile.i: src/palier0/testTile.cpp.i
+.PHONY : src/palier0/testTile.i
+
+# target to preprocess a source file
+src/palier0/testTile.cpp.i:
+	$(MAKE) -f CMakeFiles/test_tilePalier0.dir/build.make CMakeFiles/test_tilePalier0.dir/src/palier0/testTile.cpp.i
+.PHONY : src/palier0/testTile.cpp.i
+
+src/palier0/testTile.s: src/palier0/testTile.cpp.s
+.PHONY : src/palier0/testTile.s
+
+# target to generate assembly for a file
+src/palier0/testTile.cpp.s:
+	$(MAKE) -f CMakeFiles/test_tilePalier0.dir/build.make CMakeFiles/test_tilePalier0.dir/src/palier0/testTile.cpp.s
+.PHONY : src/palier0/testTile.cpp.s
 
 src/palier0/testVectorimage.o: src/palier0/testVectorimage.cpp.o
 .PHONY : src/palier0/testVectorimage.o
@@ -331,6 +429,30 @@ src/tile.cpp.s:
 	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/tile.cpp.s
 .PHONY : src/tile.cpp.s
 
+src/vector_image.o: src/vector_image.cpp.o
+.PHONY : src/vector_image.o
+
+# target to build an object file
+src/vector_image.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/vector_image.cpp.o
+.PHONY : src/vector_image.cpp.o
+
+src/vector_image.i: src/vector_image.cpp.i
+.PHONY : src/vector_image.i
+
+# target to preprocess a source file
+src/vector_image.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/vector_image.cpp.i
+.PHONY : src/vector_image.cpp.i
+
+src/vector_image.s: src/vector_image.cpp.s
+.PHONY : src/vector_image.s
+
+# target to generate assembly for a file
+src/vector_image.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/vector_image.cpp.s
+.PHONY : src/vector_image.cpp.s
+
 src/window.o: src/window.cpp.o
 .PHONY : src/window.o
 
@@ -366,7 +488,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test_colorPalier0"
 	@echo "... test_imagePalier0"
+	@echo "... test_mapPalier0"
 	@echo "... test_opencv"
+	@echo "... test_tilePalier0"
 	@echo "... test_vectorimagePalier0"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
@@ -374,12 +498,21 @@ help:
 	@echo "... src/image.o"
 	@echo "... src/image.i"
 	@echo "... src/image.s"
+	@echo "... src/map.o"
+	@echo "... src/map.i"
+	@echo "... src/map.s"
 	@echo "... src/palier0/testColor.o"
 	@echo "... src/palier0/testColor.i"
 	@echo "... src/palier0/testColor.s"
 	@echo "... src/palier0/testImage.o"
 	@echo "... src/palier0/testImage.i"
 	@echo "... src/palier0/testImage.s"
+	@echo "... src/palier0/testMap.o"
+	@echo "... src/palier0/testMap.i"
+	@echo "... src/palier0/testMap.s"
+	@echo "... src/palier0/testTile.o"
+	@echo "... src/palier0/testTile.i"
+	@echo "... src/palier0/testTile.s"
 	@echo "... src/palier0/testVectorimage.o"
 	@echo "... src/palier0/testVectorimage.i"
 	@echo "... src/palier0/testVectorimage.s"
@@ -389,6 +522,9 @@ help:
 	@echo "... src/tile.o"
 	@echo "... src/tile.i"
 	@echo "... src/tile.s"
+	@echo "... src/vector_image.o"
+	@echo "... src/vector_image.i"
+	@echo "... src/vector_image.s"
 	@echo "... src/window.o"
 	@echo "... src/window.i"
 	@echo "... src/window.s"
