@@ -1,20 +1,19 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <cv.hpp>
-#include <highgui.h>
 #include <string>
 
+#include "SDL.h"
 #include "image.h"
 
-using namespace cv;
+using namespace std;
 
 class Window{
 public:
 
   Window();
   Window(unsigned int _screenX, unsigned int _screenY);
-  Window(unsigned int _screenX, unsigned int _screenY, String _windowName);
+  Window(unsigned int _screenX, unsigned int _screenY, string _windowName);
   ~Window();
 
   bool createWin();
@@ -25,8 +24,8 @@ public:
 
 private:
 
-  String windowName;
-  Image screen;
+  string windowName;
+  Image* screen;
   int screenX;
   int screenY;
 

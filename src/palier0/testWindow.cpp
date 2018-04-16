@@ -1,8 +1,8 @@
 #include "window.h"
 #include "image.h"
 
-#include <cv.hpp>
 #include <iostream>
+#include <unistd.h>
 
 using namespace std;
 
@@ -16,15 +16,15 @@ int main(void)
 
     test0.print();
 
-    win.getScreen()->blit(&test0, 1, 1, test0.getSizeX(), test0.getSizeY());
-        win.createWin();
+    win.getScreen()->blit(&test0, 0, 0, 0, 0, test0.getSizeX(), test0.getSizeY());
+    win.createWin();
     //win.updateWin();
-    waitKey(0);
+    sleep(10);
     win.getScreen()->fillColor(red);
     //win.updateWin();
-    waitKey(0);
-    win.getScreen()->blit(&test0, 50, 50, test0.getSizeX(), test0.getSizeY());
-    waitKey(0);
+    sleep(5);
+    win.getScreen()->blit(&test0, 50, 50, 0, 0, test0.getSizeX(), test0.getSizeY());
+    sleep(5);
 
     return 0;
 }

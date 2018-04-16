@@ -1,42 +1,60 @@
 #include "headers/image.h"
 
-
-#define MAT_TYPE CV_8UC4
-
-Image::Image()
-{
-  sizeX = 1;
-  sizeY = 1;
-  screen = Mat(1, 1, MAT_TYPE);
-}
+Image::Image(){}
 
 Image::Image(int _x, int _y)
 {
     sizeX = _x;
     sizeY = _y;
-    screen = Mat(_x, _y, MAT_TYPE);
+    screen = SDL_CreateRGBSurface(0, _x, _y, 32, 0, 0, 0, 0);
+    if (screen == NULL)
+    {
+        SDL_Log("SDL_CreateRGBSurface() failed: %s", SDL_GetError());
+        exit(1);
+    }
 }
 
-Image::Image(String _namefile)
+Image::Image(string _namefile)
 {
-    screen = imread(_namefile, IMREAD_UNCHANGED);
-    sizeX = screen.rows;
-    sizeY = screen.cols;
+    screen = NULL;
+    SDL_Surface* loadedSurface = IMG_Load(_namefile.c_str());
+    if(loadedSurface == NULL)
+    {
+        cout << "Unable to load image" << _namefile.c_str() << " ! SDL_image Error : " << IMG_GetError() << endl;
+        exit(1);
+    } else {
+        screen = SDL_ConvertSurface(loadedSurface, format, NULL);
+        if(screen == NULL)
+        {
+            cout << "Unable to optimize image" << _namefile.c_str() << " ! SDL Error : " << SDL_GetError() << endl;
+            exit(1);
+        }
+        SDL_FreeSurface(loadedSurface);
+        sizeX = screen->w;
+        sizeY = screen->h;
+    }
+}
+
+Image::Image(SDL_Surface* _surface)
+{
+    screen = _surface;
+    sizeX = screen->w;
+    sizeY = screen->h;
+    initImageLoad(screen->format);
 }
 
 Image::~Image(){}
 
 void Image::fillColor(Color _color)
 {
-  screen.setTo(Scalar(_color.getR(), _color.getG(), _color.getB(), _color.getA()));
+  SDL_FillRect(screen, 0, _color.getRGBA());
 }
 
-void Image::blit(Image* _image, int _x, int _y, int _sizeX, int _sizeY)
+void Image::blit(Image* _image, int _dstX, int _dstY, int _srcX, int _srcY, int _sizeX, int _sizeY)
 {
-  Mat* blitMat;
-  blitMat = _image->getMat();
-  resize(*blitMat, *blitMat, Size(_sizeX, _sizeY));
-  blitMat->copyTo(screen(Rect(_x - 1, _y - 1, _sizeX, _sizeY)));
+    SDL_Rect dstRect = {_dstX, _dstY, 0, 0};
+    SDL_Rect srcRect = {_srcX, _srcY, _sizeX, _sizeY};
+    SDL_BlitSurface(_image->getSurface(), &srcRect, screen, &dstRect);
 }
 
 int Image::getSizeX()
@@ -51,26 +69,37 @@ int Image::getSizeY()
 
 Color Image::getPixel(int _x, int _y)
 {
-    Vec4b getColors = screen.at<Vec4b>(_x - 1, _y - 1);
-    Color colors(getColors[0], getColors[1], getColors[2], getColors[3]);
-    return colors;
+    SDL_LockSurface(screen);
+    Uint8* tabPixel = (Uint8*)(screen->pixels);
+    int index = (_y*getSizeY() + _x)*format->BytesPerPixel;
+    Color color = Color((unsigned int)(tabPixel[index] & format->Rmask >> format->Rshift << format->Rloss),
+                        (unsigned int)(tabPixel[index] & format->Gmask >> format->Gshift << format->Gloss),
+                        (unsigned int)(tabPixel[index] & format->Bmask >> format->Bshift << format->Bloss),
+                        (unsigned int)(tabPixel[index] & format->Amask >> format->Ashift << format->Aloss));
+    SDL_UnlockSurface(screen);
+    return color;
 }
 
-Mat* Image::getMat()
+SDL_Surface* Image::getSurface()
 {
-  return &screen;
+  return screen;
 }
 
-void Image::resizeImg(int _sizeX, int _sizeY)
+/*void Image::resizeImg(int _sizeX, int _sizeY)
 {
-  resize(screen, screen, Size(_sizeX, _sizeY));
+
   sizeX = _sizeX;
   sizeY = _sizeY;
-}
+}*/
 
 void Image::print()
 {
     std::cout << "Size X : " << sizeX << std::endl;
     std::cout << "Size Y : " << sizeY << std::endl;
-    std::cout << "Mat : " << screen << std::endl;
+    std::cout << "Surface : " << screen << std::endl;
+}
+
+void Image::initImageLoad(SDL_PixelFormat* _format)
+{
+    format = _format;
 }
