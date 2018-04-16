@@ -1,13 +1,28 @@
 #include "headers/window.h"
 
 
-Window::Window()
+Window::Window(){}
+
+Window::Window(unsigned int _screenX, unsigned int _screenY)
 {
-    screenX = 0;
-    screenY = 0;
+    screenX = _screenX;
+    screenY = _screenY;
+    screen = Image(_screenX, _screenY);
+    windowName = "Retarded Peace";
 }
 
-Window::~Window(){}
+Window::Window(unsigned int _screenX, unsigned int _screenY, String _windowName)
+{
+    screenX = _screenX;
+    screenY = _screenY;
+    screen = Image(_screenX, _screenY);
+    windowName = _windowName;
+}
+
+Window::~Window()
+{
+    destroyWin();
+}
 
 bool Window::createWin()
 {
@@ -23,7 +38,7 @@ bool Window::destroyWin()
 
 void Window::updateWin()
 {
-
+    updateWindow(windowName);
 }
 
 Image* Window::getScreen()
