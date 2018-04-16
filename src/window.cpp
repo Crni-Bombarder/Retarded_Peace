@@ -30,4 +30,3 @@ Image* Window::getScreen()
 {
     return &screen;
 }
-
