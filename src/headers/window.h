@@ -14,7 +14,7 @@ public:
 
   Window();
   Window(unsigned int _screenX, unsigned int _screenY);
-  Window(unsigned int _screenX, unsigned int _screenY, string _windowName);
+  Window(unsigned int _screenX, unsigned int _screenY, String _windowName);
   ~Window();
 
   bool createWin();

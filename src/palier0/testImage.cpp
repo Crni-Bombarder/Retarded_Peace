@@ -11,7 +11,7 @@ int main (int argc, char* argv[])
     Color color(255, 0, 0, 255);
     object.fillColor(color);
     object.print();
-    background.blit(object, 1, 1, 2, 2);
+    background.blit(&object, 1, 1, 2, 2);
     background.print();
     Color pixel = background.getPixel(1, 2);
     pixel.print();
