@@ -4,6 +4,6 @@ int main(void)
 {
     VectorImage vi = VectorImage();
     vi.initVector();
-    vi.loadDirectory("textures");
+    vi.loadImage("textures/test0.png");
     return 0;
 }

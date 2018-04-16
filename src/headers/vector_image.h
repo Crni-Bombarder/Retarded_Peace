@@ -3,10 +3,10 @@
 
 #include <string>
 #include <vector>
-#include <iostream>
-#include <filesystem>
 
 #include "image.h"
+
+using namespace std;
 
 class VectorImage{
 
@@ -16,8 +16,7 @@ public:
   ~VectorImage();
 
   void initVector(void);
-  bool loadImage(String _imageName);
-  int loadDirectory(String _directory);
+  bool loadImage(string _imageName);
   int getSize(void);
   Image* getImageFromIndex(int _index);
 
