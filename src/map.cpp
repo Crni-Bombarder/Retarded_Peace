@@ -15,15 +15,14 @@ bool Map::loadMapFromFile(string mapName)
 {
     char buf[128];
     ifstream mapFile;
-    string mapPath = "../src/data/maps/" + mapName + ".map";
+    string mapPath = "data/maps/" + mapName + ".map";    //Be careful of mapPath (relative to Makefile)
     mapFile.open(mapPath);
-    if(mapFile.bad())
+    if(mapFile.bad() == true)
     {
         cout << "Erreur de chargement de la carte (fichier non ouvert)" << endl;
         return false;
     }
     mapFile.getline(buf, 128);
-    cout << buf << endl;
     sscanf(buf, "# %d %d\n", &nmbTilesX, &nmbTilesY);
     mapTiles.resize(nmbTilesX*nmbTilesY);
     for(int cmp = 0; cmp < nmbTilesY*nmbTilesY; cmp++)
@@ -34,7 +33,6 @@ bool Map::loadMapFromFile(string mapName)
             return false;
         }
         mapFile.getline(buf,128);
-        cout << buf << endl;
         sscanf(buf, "%d\n", &mapTiles[cmp]);
     }
     return true;
@@ -42,9 +40,11 @@ bool Map::loadMapFromFile(string mapName)
 
 void Map::printMap()
 {
+    cout << nmbTilesX << endl;
+    cout << nmbTilesY << endl;
     for(int i = 0; i < nmbTilesY; i++)
     {
-        for(int j = 0; i < nmbTilesX; j++)
+        for(int j = 0; j < nmbTilesX; j++)
         {
             cout << mapTiles[i*nmbTilesX + j] << " ";
         }
