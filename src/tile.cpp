@@ -1,31 +1,50 @@
 #include "headers/tile.h"
 
+using namespace std;
+
+vector<Tile*> Tile::listTiles = vector<Tile*>();
+
 Tile::Tile()
 {
-    id = 0;
-    tileImage = NULL;
-    // TO DO : init vector listTiles
+    idTile = listTiles.size();
+    idImage = 0;
+    listTiles.push_back(this);
 }
 
-Tile::Tile(String _imageName)
+Tile::Tile(int _idImage)
 {
-
+    idTile = listTiles.size();
+    idImage = _idImage;
+    listTiles.push_back(this);
 }
 
 Tile::~Tile(){}
 
-int Tile::getId(void)
+int Tile::getIdTile()
 {
-    return id;
+    return idTile;
 }
 
-Image* Tile::getImage(void)
+int Tile::getIdImage()
 {
-    return tileImage;
+    return idImage;
 }
 
-static Tile* Tile::getTileFromId(int _id)
+void Tile::printVectorTile()
 {
-    return listTiles.at(_id);
+    for(int i = 0; i < listTiles.size(); i++)
+    {
+        getTileFromId(i)->printTile();
+    }
+}
+
+void Tile::printTile()
+{
+    cout << "Tile : idTile : " << idTile << ", idImage : " << idImage << endl;
+}
+
+Tile* Tile::getTileFromId(int _id)
+{
+    return listTiles[_id];
 }
 

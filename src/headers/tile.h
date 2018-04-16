@@ -1,26 +1,28 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include <string.h>
-#include <vector.h>
+#include <vector>
+#include <iostream>
 
-#include "image.h"
+using namespace std;
 
 class Tile{
 public:
 
   Tile();
-  Tile(String _imageName);
+  Tile(int _idImage);
   ~Tile();
 
-  int getId(void);
-  Image* getImage(void);
+  int getIdTile(void);
+  int getIdImage(void);
   static Tile* getTileFromId(int _id);
+  static void printVectorTile(void);
+  void printTile(void);
 
 private:
 
-  int id;
-  Image* tileImage;
+  int idTile;
+  int idImage;
   static vector<Tile*> listTiles;
 
 };
