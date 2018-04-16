@@ -39,12 +39,12 @@ void Image::blit(Image _image, int _x, int _y, int _sizeX, int _sizeY)
   blitMat->copyTo(screen(Rect(_x - 1, _y - 1, _sizeX, _sizeY)));
 }
 
-int Image::getSizeX(void)
+int Image::getSizeX()
 {
   return sizeX;
 }
 
-int Image::getSizeY(void)
+int Image::getSizeY()
 {
   return sizeY;
 }
@@ -68,7 +68,7 @@ void Image::resizeImg(int _sizeX, int _sizeY)
   sizeY = _sizeY;
 }
 
-void Image::print(void)
+void Image::print()
 {
     std::cout << "Size X : " << sizeX << std::endl;
     std::cout << "Size Y : " << sizeY << std::endl;

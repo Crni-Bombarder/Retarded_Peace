@@ -3,25 +3,30 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
+#include <fstream>
 
 #include "tile.h"
+
+using namespace std;
 
 class Map{
 
 public:
 
   Map();
-  Map(String nameMap);
+  Map(string nameMap);
   ~Map();
 
-  bool loadMapFromFile(String mapFile);
+  bool loadMapFromFile(string mapName);
+
+  void printMap(void);
 
 private:
 
-  vector<Tile> mapTiles;
+  vector<int> mapTiles;
   int nmbTilesX;
   int nmbTilesY;
-
 
 };
 

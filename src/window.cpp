@@ -5,13 +5,9 @@ Window::Window()
 {
     screenX = 0;
     screenY = 0;
-    winMutex = NULL;
 }
 
-Window::~Window()
-{
-    winMutex = NULL;
-}
+Window::~Window(){}
 
 bool Window::createWin()
 {

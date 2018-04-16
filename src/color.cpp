@@ -37,7 +37,7 @@ void Color::setG(unsigned int _g){ g = _g%256; }
 void Color::setB(unsigned int _b){ b = _b%256; }
 void Color::setA(unsigned int _a){ a = _a%256; }
 
-void Color::print(void)
+void Color::print()
 {
   std::cout << r << " " << g << " " << b << " " << a << std::endl;
 }

@@ -4,7 +4,6 @@
 #include <cv.hpp>
 #include <highgui.h>
 #include <string>
-#include <mutex>
 
 #include "image.h"
 
@@ -28,7 +27,6 @@ private:
   Image screen;
   int screenX;
   int screenY;
-  mutex* winMutex;
 
 };
 
