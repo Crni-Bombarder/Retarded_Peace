@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <filesystem>
 
 #include "image.h"
 
@@ -14,7 +16,8 @@ public:
   ~VectorImage();
 
   void initVector(void);
-  int loadDirectory(String directory);
+  bool loadImage(String _imageName);
+  int loadDirectory(String _directory);
   int getSize(void);
   Image* getImageFromIndex(int _index);
 

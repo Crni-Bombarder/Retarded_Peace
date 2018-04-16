@@ -150,6 +150,19 @@ test_opencv/fast:
 	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/build
 .PHONY : test_opencv/fast
 
+#=============================================================================
+# Target rules for targets named test_vectorimagePalier0
+
+# Build rule for target.
+test_vectorimagePalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_vectorimagePalier0
+.PHONY : test_vectorimagePalier0
+
+# fast build rule for target.
+test_vectorimagePalier0/fast:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/build
+.PHONY : test_vectorimagePalier0/fast
+
 src/color.o: src/color.cpp.o
 .PHONY : src/color.o
 
@@ -246,6 +259,30 @@ src/palier0/testImage.cpp.s:
 	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.s
 .PHONY : src/palier0/testImage.cpp.s
 
+src/palier0/testVectorimage.o: src/palier0/testVectorimage.cpp.o
+.PHONY : src/palier0/testVectorimage.o
+
+# target to build an object file
+src/palier0/testVectorimage.cpp.o:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/src/palier0/testVectorimage.cpp.o
+.PHONY : src/palier0/testVectorimage.cpp.o
+
+src/palier0/testVectorimage.i: src/palier0/testVectorimage.cpp.i
+.PHONY : src/palier0/testVectorimage.i
+
+# target to preprocess a source file
+src/palier0/testVectorimage.cpp.i:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/src/palier0/testVectorimage.cpp.i
+.PHONY : src/palier0/testVectorimage.cpp.i
+
+src/palier0/testVectorimage.s: src/palier0/testVectorimage.cpp.s
+.PHONY : src/palier0/testVectorimage.s
+
+# target to generate assembly for a file
+src/palier0/testVectorimage.cpp.s:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/src/palier0/testVectorimage.cpp.s
+.PHONY : src/palier0/testVectorimage.cpp.s
+
 src/test_opencv/main.o: src/test_opencv/main.cpp.o
 .PHONY : src/test_opencv/main.o
 
@@ -269,6 +306,30 @@ src/test_opencv/main.s: src/test_opencv/main.cpp.s
 src/test_opencv/main.cpp.s:
 	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/src/test_opencv/main.cpp.s
 .PHONY : src/test_opencv/main.cpp.s
+
+src/tile.o: src/tile.cpp.o
+.PHONY : src/tile.o
+
+# target to build an object file
+src/tile.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/tile.cpp.o
+.PHONY : src/tile.cpp.o
+
+src/tile.i: src/tile.cpp.i
+.PHONY : src/tile.i
+
+# target to preprocess a source file
+src/tile.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/tile.cpp.i
+.PHONY : src/tile.cpp.i
+
+src/tile.s: src/tile.cpp.s
+.PHONY : src/tile.s
+
+# target to generate assembly for a file
+src/tile.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/tile.cpp.s
+.PHONY : src/tile.cpp.s
 
 src/window.o: src/window.cpp.o
 .PHONY : src/window.o
@@ -306,6 +367,7 @@ help:
 	@echo "... test_colorPalier0"
 	@echo "... test_imagePalier0"
 	@echo "... test_opencv"
+	@echo "... test_vectorimagePalier0"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
@@ -318,9 +380,15 @@ help:
 	@echo "... src/palier0/testImage.o"
 	@echo "... src/palier0/testImage.i"
 	@echo "... src/palier0/testImage.s"
+	@echo "... src/palier0/testVectorimage.o"
+	@echo "... src/palier0/testVectorimage.i"
+	@echo "... src/palier0/testVectorimage.s"
 	@echo "... src/test_opencv/main.o"
 	@echo "... src/test_opencv/main.i"
 	@echo "... src/test_opencv/main.s"
+	@echo "... src/tile.o"
+	@echo "... src/tile.i"
+	@echo "... src/tile.s"
 	@echo "... src/window.o"
 	@echo "... src/window.i"
 	@echo "... src/window.s"
