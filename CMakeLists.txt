@@ -4,10 +4,15 @@ cmake_minimum_required(VERSION 2.6)
 
 project(Retarded_Peace)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+
 set(EXECUTABLE_OUTPUT_PATH bin)
 add_compile_options(-std=c++11)
 
-find_package(OpenCV REQUIRED)
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
+
 
 include_directories(src/headers)
 
@@ -50,12 +55,18 @@ add_executable(
         src/palier0/testVectorimage.cpp
 )
 
+add_executable(
+        test_windowPalier0
+        src/palier0/testWindow.cpp
+)
+
 add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp src/map.cpp src/vector_image.cpp)
 
-target_link_libraries(SOURCES ${OpenCV_LIBS})
-target_link_libraries(test_opencv ${OpenCV_LIBS})
-target_link_libraries(test_colorPalier0 ${OpenCV_LIBS} SOURCES)
-target_link_libraries(test_imagePalier0 ${OpenCV_LIBS} SOURCES)
-target_link_libraries(test_tilePalier0 ${OpenCV_LIBS} SOURCES)
-target_link_libraries(test_mapPalier0 ${OpenCV_LIBS} SOURCES)
-target_link_libraries(test_vectorimagePalier0 ${OpenCV_LIBS} SOURCES)
+target_link_libraries(SOURCES ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(test_opencv ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(test_colorPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+target_link_libraries(test_imagePalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+target_link_libraries(test_tilePalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+target_link_libraries(test_mapPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+target_link_libraries(test_vectorimagePalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+target_link_libraries(test_windowPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)

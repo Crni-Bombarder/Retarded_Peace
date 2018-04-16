@@ -16,7 +16,7 @@ public:
   ~Image();
 
   void fillColor(Color _color);
-  void blit(Image _image, int _x, int _y, int _sizeX, int _sizeY);
+  void blit(Image* _image, int _x, int _y, int _sizeX, int _sizeY);
   int getSizeX(void);
   int getSizeY(void);
   Color getPixel(int _x, int _y);

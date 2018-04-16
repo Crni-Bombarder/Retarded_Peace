@@ -31,10 +31,10 @@ void Image::fillColor(Color _color)
   screen.setTo(Scalar(_color.getR(), _color.getG(), _color.getB(), _color.getA()));
 }
 
-void Image::blit(Image _image, int _x, int _y, int _sizeX, int _sizeY)
+void Image::blit(Image* _image, int _x, int _y, int _sizeX, int _sizeY)
 {
   Mat* blitMat;
-  blitMat = _image.getMat();
+  blitMat = _image->getMat();
   resize(*blitMat, *blitMat, Size(_sizeX, _sizeY));
   blitMat->copyTo(screen(Rect(_x - 1, _y - 1, _sizeX, _sizeY)));
 }
