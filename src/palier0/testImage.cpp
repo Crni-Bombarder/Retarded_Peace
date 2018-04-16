@@ -1,4 +1,4 @@
-#include <../headers/image.h>
+#include "../headers/image.h"
 
 
 int main (int argc, char* argv[])
@@ -17,4 +17,3 @@ int main (int argc, char* argv[])
     pixel.print();
     return 0;
 }
-

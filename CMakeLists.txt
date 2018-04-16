@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 2.6)
 project(Retarded_Peace)
 
 set(EXECUTABLE_OUTPUT_PATH bin)
+add_compile_options(-std=c++11)     #C++11 standars
 
 find_package(OpenCV REQUIRED)
 

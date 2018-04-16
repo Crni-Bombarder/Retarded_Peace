@@ -125,6 +125,19 @@ test_colorPalier0/fast:
 .PHONY : test_colorPalier0/fast
 
 #=============================================================================
+# Target rules for targets named test_imagePalier0
+
+# Build rule for target.
+test_imagePalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_imagePalier0
+.PHONY : test_imagePalier0
+
+# fast build rule for target.
+test_imagePalier0/fast:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/build
+.PHONY : test_imagePalier0/fast
+
+#=============================================================================
 # Target rules for targets named test_opencv
 
 # Build rule for target.
@@ -161,6 +174,30 @@ src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
 
+src/image.o: src/image.cpp.o
+.PHONY : src/image.o
+
+# target to build an object file
+src/image.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/image.cpp.o
+.PHONY : src/image.cpp.o
+
+src/image.i: src/image.cpp.i
+.PHONY : src/image.i
+
+# target to preprocess a source file
+src/image.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/image.cpp.i
+.PHONY : src/image.cpp.i
+
+src/image.s: src/image.cpp.s
+.PHONY : src/image.s
+
+# target to generate assembly for a file
+src/image.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/image.cpp.s
+.PHONY : src/image.cpp.s
+
 src/palier0/testColor.o: src/palier0/testColor.cpp.o
 .PHONY : src/palier0/testColor.o
 
@@ -184,6 +221,30 @@ src/palier0/testColor.s: src/palier0/testColor.cpp.s
 src/palier0/testColor.cpp.s:
 	$(MAKE) -f CMakeFiles/test_colorPalier0.dir/build.make CMakeFiles/test_colorPalier0.dir/src/palier0/testColor.cpp.s
 .PHONY : src/palier0/testColor.cpp.s
+
+src/palier0/testImage.o: src/palier0/testImage.cpp.o
+.PHONY : src/palier0/testImage.o
+
+# target to build an object file
+src/palier0/testImage.cpp.o:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.o
+.PHONY : src/palier0/testImage.cpp.o
+
+src/palier0/testImage.i: src/palier0/testImage.cpp.i
+.PHONY : src/palier0/testImage.i
+
+# target to preprocess a source file
+src/palier0/testImage.cpp.i:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.i
+.PHONY : src/palier0/testImage.cpp.i
+
+src/palier0/testImage.s: src/palier0/testImage.cpp.s
+.PHONY : src/palier0/testImage.s
+
+# target to generate assembly for a file
+src/palier0/testImage.cpp.s:
+	$(MAKE) -f CMakeFiles/test_imagePalier0.dir/build.make CMakeFiles/test_imagePalier0.dir/src/palier0/testImage.cpp.s
+.PHONY : src/palier0/testImage.cpp.s
 
 src/test_opencv/main.o: src/test_opencv/main.cpp.o
 .PHONY : src/test_opencv/main.o
@@ -209,6 +270,30 @@ src/test_opencv/main.cpp.s:
 	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/src/test_opencv/main.cpp.s
 .PHONY : src/test_opencv/main.cpp.s
 
+src/window.o: src/window.cpp.o
+.PHONY : src/window.o
+
+# target to build an object file
+src/window.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/window.cpp.o
+.PHONY : src/window.cpp.o
+
+src/window.i: src/window.cpp.i
+.PHONY : src/window.i
+
+# target to preprocess a source file
+src/window.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/window.cpp.i
+.PHONY : src/window.cpp.i
+
+src/window.s: src/window.cpp.s
+.PHONY : src/window.s
+
+# target to generate assembly for a file
+src/window.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/window.cpp.s
+.PHONY : src/window.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,16 +304,26 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test_colorPalier0"
+	@echo "... test_imagePalier0"
 	@echo "... test_opencv"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/image.o"
+	@echo "... src/image.i"
+	@echo "... src/image.s"
 	@echo "... src/palier0/testColor.o"
 	@echo "... src/palier0/testColor.i"
 	@echo "... src/palier0/testColor.s"
+	@echo "... src/palier0/testImage.o"
+	@echo "... src/palier0/testImage.i"
+	@echo "... src/palier0/testImage.s"
 	@echo "... src/test_opencv/main.o"
 	@echo "... src/test_opencv/main.i"
 	@echo "... src/test_opencv/main.s"
+	@echo "... src/window.o"
+	@echo "... src/window.i"
+	@echo "... src/window.s"
 .PHONY : help
 
 
