@@ -11,8 +11,8 @@ int main (int argc, char* argv[])
     win.createWin();
     Image background("data/textures/test0.png");
     background.print();
-    //Color pixel = background.getPixel(1, 2);
-    //pixel.print();
+    Color pixel = background.getPixel(10, 10);
+    pixel.print();
 
     win.destroyWin();
     Window::quitVideoDriver();

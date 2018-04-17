@@ -48,18 +48,22 @@ int Image::getSizeY()
 
 Color Image::getPixel(int _x, int _y)
 {
-    if (surface = NULL)
+    if (surface == NULL)
     {
         cout << "Cannot read the pixel of this Texture, because optimisation ! x : " << sizeX << ", y : " << sizeY << endl;
         exit(1);
     }
+    SDL_LockSurface(surface);
     SDL_PixelFormat* format = surface->format;
-    Uint8* tabPixel = (Uint8*)(surface->pixels);
-    int index = (_y*getSizeY() + _x)*format->BytesPerPixel;
-    Color color = Color((unsigned int)(tabPixel[index] & format->Rmask >> format->Rshift << format->Rloss),
-                        (unsigned int)(tabPixel[index] & format->Gmask >> format->Gshift << format->Gloss),
-                        (unsigned int)(tabPixel[index] & format->Bmask >> format->Bshift << format->Bloss),
-                        (unsigned int)(tabPixel[index] & format->Amask >> format->Ashift << format->Aloss));
+    Uint32* tabPixel = (Uint32*)(surface->pixels);
+    int index = (_y*surface->w + _x);
+    unsigned int valPixel = (unsigned int)tabPixel[index];
+    cout << valPixel << endl;
+    Color color = Color(valPixel & 0xFF000000 >> 24,
+                        valPixel & 0x00FF0000 >> 16,
+                        valPixel & 0x0000FF00 >> 8,
+                        valPixel & 0x000000FF);
+    SDL_UnlockSurface(surface);
     return color;
 }
 
