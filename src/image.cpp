@@ -1,61 +1,40 @@
 #include "headers/image.h"
 
+SDL_Renderer* Image::renderer = NULL;
+
 Image::Image(){}
 
 Image::Image(int _x, int _y)
 {
     sizeX = _x;
     sizeY = _y;
-    screen = SDL_CreateRGBSurface(0, _x, _y, 32, 0, 0, 0, 0);
-    if (screen == NULL)
-    {
-        SDL_Log("SDL_CreateRGBSurface() failed: %s", SDL_GetError());
-        exit(1);
-    }
+    texture = SDL_CreateTexture(renderer ,SDL_PIXELFORMAT_ARGB8888,
+                                SDL_TEXTUREACCESS_STATIC, _x, _y);
+    surface = NULL;
 }
 
 Image::Image(string _namefile)
 {
-    screen = NULL;
+    texture = NULL;
     SDL_Surface* loadedSurface = IMG_Load(_namefile.c_str());
     if(loadedSurface == NULL)
     {
         cout << "Unable to load image" << _namefile.c_str() << " ! SDL_image Error : " << IMG_GetError() << endl;
         exit(1);
     } else {
-        screen = SDL_ConvertSurface(loadedSurface, format, NULL);
-        if(screen == NULL)
+        texture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+        if(texture == NULL)
         {
-            cout << "Unable to optimize image" << _namefile.c_str() << " ! SDL Error : " << SDL_GetError() << endl;
+            cout << "Unable to convert the surface" << _namefile.c_str() << " ! SDL_image Error : " << IMG_GetError() << endl;
             exit(1);
         }
-        SDL_FreeSurface(loadedSurface);
-        sizeX = screen->w;
-        sizeY = screen->h;
+        sizeX   = loadedSurface->w;
+        sizeY   = loadedSurface->h;
+        surface = loadedSurface;
     }
 }
 
-Image::Image(SDL_Surface* _surface)
-{
-    screen = _surface;
-    sizeX = screen->w;
-    sizeY = screen->h;
-    initImageLoad(screen->format);
-}
-
 Image::~Image(){}
-
-void Image::fillColor(Color _color)
-{
-  SDL_FillRect(screen, 0, _color.getRGBA());
-}
-
-void Image::blit(Image* _image, int _dstX, int _dstY, int _srcX, int _srcY, int _sizeX, int _sizeY)
-{
-    SDL_Rect dstRect = {_dstX, _dstY, 0, 0};
-    SDL_Rect srcRect = {_srcX, _srcY, _sizeX, _sizeY};
-    SDL_BlitSurface(_image->getSurface(), &srcRect, screen, &dstRect);
-}
 
 int Image::getSizeX()
 {
@@ -69,37 +48,39 @@ int Image::getSizeY()
 
 Color Image::getPixel(int _x, int _y)
 {
-    SDL_LockSurface(screen);
-    Uint8* tabPixel = (Uint8*)(screen->pixels);
+    if (surface = NULL)
+    {
+        cout << "Cannot read the pixel of this Texture, because optimisation ! x : " << sizeX << ", y : " << sizeY << endl;
+        exit(1);
+    }
+    SDL_PixelFormat* format = surface->format;
+    Uint8* tabPixel = (Uint8*)(surface->pixels);
     int index = (_y*getSizeY() + _x)*format->BytesPerPixel;
     Color color = Color((unsigned int)(tabPixel[index] & format->Rmask >> format->Rshift << format->Rloss),
                         (unsigned int)(tabPixel[index] & format->Gmask >> format->Gshift << format->Gloss),
                         (unsigned int)(tabPixel[index] & format->Bmask >> format->Bshift << format->Bloss),
                         (unsigned int)(tabPixel[index] & format->Amask >> format->Ashift << format->Aloss));
-    SDL_UnlockSurface(screen);
     return color;
 }
 
-SDL_Surface* Image::getSurface()
+SDL_Texture* Image::getTexture()
 {
-  return screen;
+  return texture;
 }
-
-/*void Image::resizeImg(int _sizeX, int _sizeY)
-{
-
-  sizeX = _sizeX;
-  sizeY = _sizeY;
-}*/
 
 void Image::print()
 {
     std::cout << "Size X : " << sizeX << std::endl;
     std::cout << "Size Y : " << sizeY << std::endl;
-    std::cout << "Surface : " << screen << std::endl;
 }
 
-void Image::initImageLoad(SDL_PixelFormat* _format)
+void Image::initLoadingLibrary(SDL_Renderer* _renderer)
 {
-    format = _format;
+    IMG_Init(IMG_INIT_PNG);
+    renderer = _renderer;
+}
+
+void Image::quitLoadingLibrary(void)
+{
+    IMG_Quit();
 }

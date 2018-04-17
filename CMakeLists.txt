@@ -60,7 +60,7 @@ add_executable(
         src/palier0/testWindow.cpp
 )
 
-add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp src/map.cpp src/vector_image.cpp)
+add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp src/map.cpp src/vector_image.cpp src/rect.cpp)
 
 target_link_libraries(SOURCES ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_link_libraries(test_opencv ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

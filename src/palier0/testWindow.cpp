@@ -1,5 +1,6 @@
 #include "window.h"
 #include "image.h"
+#include "rect.h"
 
 #include <iostream>
 #include <unistd.h>
@@ -8,23 +9,24 @@ using namespace std;
 
 int main(void)
 {
-    Image test0 = Image("data/textures/test0.png");
-    Color red = Color(255, 0, 0);
-    Window win = Window(100, 100, "Test de Window");
-
-    cout << "Initialisation termine" << endl;
-
-    test0.print();
-
-    win.getScreen()->blit(&test0, 0, 0, 0, 0, test0.getSizeX(), test0.getSizeY());
+    Window::initVideoDriver();
+    Window win = Window(800, 600, "Test Window");
     win.createWin();
-    //win.updateWin();
+
+    Image test0 = Image("data/textures/test0.png");
+
+    Rect dst = Rect(0,0, test0.getSizeX(), test0.getSizeY());
+    Color black = Color(0, 0, 0);
+
+    win.clearWin(black);
+    win.blitImage(&test0, NULL, NULL);
+    win.updateWin();
+
     sleep(10);
-    win.getScreen()->fillColor(red);
-    //win.updateWin();
-    sleep(5);
-    win.getScreen()->blit(&test0, 50, 50, 0, 0, test0.getSizeX(), test0.getSizeY());
-    sleep(5);
+
+    win.destroyWin();
+
+    Window::quitVideoDriver();
 
     return 0;
 }
