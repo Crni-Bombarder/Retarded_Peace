@@ -5,12 +5,13 @@
 
 int main(int argc, char* argv[])
 {
-  Game game(FICHIER_MAP_0);
+  Game game("map0");
+  game.initGame();
   game.StartGame();
   sleep(10);
   game.StopGame();
 
-  game.setMapFile(FICHIER_MAP_1);
+  game.setMapFile("map1");
   game.StartGame();
   sleep(10);
   game.StopGame();

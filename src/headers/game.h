@@ -3,6 +3,7 @@
 
 #include <thread>
 #include <string>
+#include <ctime>
 
 #include "map.h"
 #include "display.h"
@@ -21,6 +22,7 @@ public:
   void setMapFile(string _mapFile);
 
   bool StartGame(void);
+  void initGame(void);
   bool StopGame(void);
 
 private:
