@@ -14,6 +14,7 @@ public:
 
   Display();
   Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screenY, int _tileX, int _tileY);
+  Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY);
   ~Display();
 
   bool startDisplay();

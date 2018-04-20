@@ -9,7 +9,7 @@ int main (int argc, char* argv[])
     Terrain plaine = Terrain(1);
     Terrain eau = Terrain(2);
     Map map = Map("map0");
-    Display display = Display(&map, &vectorImage, 800, 600, 32, 32);
+    Display display = Display(&map, &vectorImage, 48, 48);
     display.startDisplay();
     vectorImage.loadImage("data/textures/test0.png");
     vectorImage.loadImage("data/textures/test0.png");

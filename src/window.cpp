@@ -50,6 +50,8 @@ bool Window::destroyWin()
 {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    renderer = NULL;
+    window = NULL;
 
     Image::quitLoadingLibrary();
 }

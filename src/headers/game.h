@@ -2,31 +2,32 @@
 #define GAME_H
 
 #include <thread>
-#include <mutex>
 #include <string>
 
 #include "map.h"
 #include "display.h"
 #include "vector_image.h"
 
+using namespace std;
+
 class Game{
 
 public:
 
   Game();
-  Game(String mapFile);
+  Game(string _mapFile);
   ~Game();
 
-  void setMapFile(String mapFile);
+  void setMapFile(string _mapFile);
 
   bool StartGame(void);
   bool StopGame(void);
 
 private:
 
-  String mapFile;
+  string mapFile;
   VectorImage libImages;
-  thread gameThread;
+  thread* gameThread;
   Map gameMap;
   Display gameDisplay;
   bool gameRunning;

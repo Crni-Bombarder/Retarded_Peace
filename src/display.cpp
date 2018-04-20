@@ -23,9 +23,19 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screen
     vectorImage = _vectorImage;
 }
 
+Display::Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY)
+{
+    gameMap = _map;
+    tileX = _tileX;
+    tileY = _tileY;
+    screenX = tileX*gameMap->getNmbTilesX();
+    screenY = tileY*gameMap->getNmbTilesY();
+    dispWindow = nullptr;
+    vectorImage = _vectorImage;
+}
+
 Display::~Display()
 {
-    stopDisplay();
 }
 
 bool Display::startDisplay()
@@ -38,8 +48,11 @@ bool Display::startDisplay()
 bool Display::stopDisplay()
 {
     dispWindow->destroyWin();
+    cout << "Window closed" << endl;
     delete dispWindow;
+    cout << "Window deleted" << endl;
     Window::quitVideoDriver();
+    cout << "Video Driver quit" << endl;
 }
 
 bool Display::updateDisplay()
