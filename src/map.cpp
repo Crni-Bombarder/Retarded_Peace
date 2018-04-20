@@ -38,6 +38,15 @@ bool Map::loadMapFromFile(string mapName)
     return true;
 }
 
+int Map::getNmbTilesX(void)
+{
+    return nmbTilesX;
+}
+int Map::getNmbTilesY(void)
+{
+    return nmbTilesY;
+}
+
 void Map::printMap()
 {
     cout << nmbTilesX << endl;

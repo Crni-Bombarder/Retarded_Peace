@@ -16,7 +16,7 @@ int main(void)
     Image test0 = Image("data/textures/test0.png");
 
     Rect dst = Rect(0,0, test0.getSizeX(), test0.getSizeY());
-    Color black = Color(0, 0, 0);
+    Color black = Color(255, 0, 0);
 
     win.clearWin(black);
     win.blitImage(&test0, NULL, NULL);

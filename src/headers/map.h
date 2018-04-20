@@ -6,8 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-#include "tile.h"
-
 using namespace std;
 
 class Map{
@@ -20,6 +18,8 @@ public:
 
   bool loadMapFromFile(string mapName);
 
+  int getNmbTilesX(void);
+  int getNmbTilesY(void);
   void printMap(void);
 
 private:
