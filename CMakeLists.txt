@@ -60,7 +60,12 @@ add_executable(
         src/palier0/testWindow.cpp
 )
 
-add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp src/map.cpp src/vector_image.cpp src/rect.cpp src/terrain.cpp)
+add_executable(
+        test_displayPalier0
+        src/palier0/testDisplay.cpp
+)
+
+add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp src/map.cpp src/vector_image.cpp src/rect.cpp src/terrain.cpp src/display.cpp)
 
 target_link_libraries(SOURCES ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_link_libraries(test_opencv ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
@@ -70,3 +75,4 @@ target_link_libraries(test_tilePalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES}
 target_link_libraries(test_mapPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
 target_link_libraries(test_vectorimagePalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
 target_link_libraries(test_windowPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+target_link_libraries(test_displayPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)

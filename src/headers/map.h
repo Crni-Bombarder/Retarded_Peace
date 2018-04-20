@@ -6,6 +6,9 @@
 #include <iostream>
 #include <fstream>
 
+#include "tile.h"
+#include "terrain.h"
+
 using namespace std;
 
 class Map{
@@ -21,6 +24,7 @@ public:
   int getNmbTilesX(void);
   int getNmbTilesY(void);
   void printMap(void);
+  Terrain* getTerrainFromTiles(int _x, int _y);
 
 private:
 

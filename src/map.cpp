@@ -62,3 +62,9 @@ void Map::printMap()
         cout << endl;
     }
 }
+
+Terrain* Map::getTerrainFromTiles(int _x, int _y)
+{
+    int idTerrain = mapTiles[_y*nmbTilesX + _x].getIdTerrain();
+    return Terrain::getTerrainFromId(idTerrain);
+}

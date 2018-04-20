@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /mnt/c/Users/hpoup/Desktop/Github/Retarded_Peace
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,56 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_vectorimagePalier0
+# Target rules for targets named test_tilePalier0
 
 # Build rule for target.
-test_vectorimagePalier0: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_vectorimagePalier0
-.PHONY : test_vectorimagePalier0
+test_tilePalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_tilePalier0
+.PHONY : test_tilePalier0
 
 # fast build rule for target.
-test_vectorimagePalier0/fast:
-	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/build
-.PHONY : test_vectorimagePalier0/fast
-
-#=============================================================================
-# Target rules for targets named test_mapPalier0
-
-# Build rule for target.
-test_mapPalier0: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_mapPalier0
-.PHONY : test_mapPalier0
-
-# fast build rule for target.
-test_mapPalier0/fast:
-	$(MAKE) -f CMakeFiles/test_mapPalier0.dir/build.make CMakeFiles/test_mapPalier0.dir/build
-.PHONY : test_mapPalier0/fast
-
-#=============================================================================
-# Target rules for targets named test_opencv
-
-# Build rule for target.
-test_opencv: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_opencv
-.PHONY : test_opencv
-
-# fast build rule for target.
-test_opencv/fast:
-	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/build
-.PHONY : test_opencv/fast
-
-#=============================================================================
-# Target rules for targets named test_windowPalier0
-
-# Build rule for target.
-test_windowPalier0: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_windowPalier0
-.PHONY : test_windowPalier0
-
-# fast build rule for target.
-test_windowPalier0/fast:
-	$(MAKE) -f CMakeFiles/test_windowPalier0.dir/build.make CMakeFiles/test_windowPalier0.dir/build
-.PHONY : test_windowPalier0/fast
+test_tilePalier0/fast:
+	$(MAKE) -f CMakeFiles/test_tilePalier0.dir/build.make CMakeFiles/test_tilePalier0.dir/build
+.PHONY : test_tilePalier0/fast
 
 #=============================================================================
 # Target rules for targets named test_colorPalier0
@@ -176,17 +137,17 @@ test_colorPalier0/fast:
 .PHONY : test_colorPalier0/fast
 
 #=============================================================================
-# Target rules for targets named SOURCES
+# Target rules for targets named test_windowPalier0
 
 # Build rule for target.
-SOURCES: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SOURCES
-.PHONY : SOURCES
+test_windowPalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_windowPalier0
+.PHONY : test_windowPalier0
 
 # fast build rule for target.
-SOURCES/fast:
-	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/build
-.PHONY : SOURCES/fast
+test_windowPalier0/fast:
+	$(MAKE) -f CMakeFiles/test_windowPalier0.dir/build.make CMakeFiles/test_windowPalier0.dir/build
+.PHONY : test_windowPalier0/fast
 
 #=============================================================================
 # Target rules for targets named test_imagePalier0
@@ -202,17 +163,69 @@ test_imagePalier0/fast:
 .PHONY : test_imagePalier0/fast
 
 #=============================================================================
-# Target rules for targets named test_tilePalier0
+# Target rules for targets named test_mapPalier0
 
 # Build rule for target.
-test_tilePalier0: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_tilePalier0
-.PHONY : test_tilePalier0
+test_mapPalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_mapPalier0
+.PHONY : test_mapPalier0
 
 # fast build rule for target.
-test_tilePalier0/fast:
-	$(MAKE) -f CMakeFiles/test_tilePalier0.dir/build.make CMakeFiles/test_tilePalier0.dir/build
-.PHONY : test_tilePalier0/fast
+test_mapPalier0/fast:
+	$(MAKE) -f CMakeFiles/test_mapPalier0.dir/build.make CMakeFiles/test_mapPalier0.dir/build
+.PHONY : test_mapPalier0/fast
+
+#=============================================================================
+# Target rules for targets named SOURCES
+
+# Build rule for target.
+SOURCES: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SOURCES
+.PHONY : SOURCES
+
+# fast build rule for target.
+SOURCES/fast:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/build
+.PHONY : SOURCES/fast
+
+#=============================================================================
+# Target rules for targets named test_vectorimagePalier0
+
+# Build rule for target.
+test_vectorimagePalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_vectorimagePalier0
+.PHONY : test_vectorimagePalier0
+
+# fast build rule for target.
+test_vectorimagePalier0/fast:
+	$(MAKE) -f CMakeFiles/test_vectorimagePalier0.dir/build.make CMakeFiles/test_vectorimagePalier0.dir/build
+.PHONY : test_vectorimagePalier0/fast
+
+#=============================================================================
+# Target rules for targets named test_displayPalier0
+
+# Build rule for target.
+test_displayPalier0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_displayPalier0
+.PHONY : test_displayPalier0
+
+# fast build rule for target.
+test_displayPalier0/fast:
+	$(MAKE) -f CMakeFiles/test_displayPalier0.dir/build.make CMakeFiles/test_displayPalier0.dir/build
+.PHONY : test_displayPalier0/fast
+
+#=============================================================================
+# Target rules for targets named test_opencv
+
+# Build rule for target.
+test_opencv: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_opencv
+.PHONY : test_opencv
+
+# fast build rule for target.
+test_opencv/fast:
+	$(MAKE) -f CMakeFiles/test_opencv.dir/build.make CMakeFiles/test_opencv.dir/build
+.PHONY : test_opencv/fast
 
 src/color.o: src/color.cpp.o
 
@@ -240,6 +253,33 @@ src/color.s: src/color.cpp.s
 src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
+
+src/display.o: src/display.cpp.o
+
+.PHONY : src/display.o
+
+# target to build an object file
+src/display.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/display.cpp.o
+.PHONY : src/display.cpp.o
+
+src/display.i: src/display.cpp.i
+
+.PHONY : src/display.i
+
+# target to preprocess a source file
+src/display.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/display.cpp.i
+.PHONY : src/display.cpp.i
+
+src/display.s: src/display.cpp.s
+
+.PHONY : src/display.s
+
+# target to generate assembly for a file
+src/display.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/display.cpp.s
+.PHONY : src/display.cpp.s
 
 src/image.o: src/image.cpp.o
 
@@ -321,6 +361,33 @@ src/palier0/testColor.s: src/palier0/testColor.cpp.s
 src/palier0/testColor.cpp.s:
 	$(MAKE) -f CMakeFiles/test_colorPalier0.dir/build.make CMakeFiles/test_colorPalier0.dir/src/palier0/testColor.cpp.s
 .PHONY : src/palier0/testColor.cpp.s
+
+src/palier0/testDisplay.o: src/palier0/testDisplay.cpp.o
+
+.PHONY : src/palier0/testDisplay.o
+
+# target to build an object file
+src/palier0/testDisplay.cpp.o:
+	$(MAKE) -f CMakeFiles/test_displayPalier0.dir/build.make CMakeFiles/test_displayPalier0.dir/src/palier0/testDisplay.cpp.o
+.PHONY : src/palier0/testDisplay.cpp.o
+
+src/palier0/testDisplay.i: src/palier0/testDisplay.cpp.i
+
+.PHONY : src/palier0/testDisplay.i
+
+# target to preprocess a source file
+src/palier0/testDisplay.cpp.i:
+	$(MAKE) -f CMakeFiles/test_displayPalier0.dir/build.make CMakeFiles/test_displayPalier0.dir/src/palier0/testDisplay.cpp.i
+.PHONY : src/palier0/testDisplay.cpp.i
+
+src/palier0/testDisplay.s: src/palier0/testDisplay.cpp.s
+
+.PHONY : src/palier0/testDisplay.s
+
+# target to generate assembly for a file
+src/palier0/testDisplay.cpp.s:
+	$(MAKE) -f CMakeFiles/test_displayPalier0.dir/build.make CMakeFiles/test_displayPalier0.dir/src/palier0/testDisplay.cpp.s
+.PHONY : src/palier0/testDisplay.cpp.s
 
 src/palier0/testImage.o: src/palier0/testImage.cpp.o
 
@@ -484,6 +551,33 @@ src/rect.cpp.s:
 	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/rect.cpp.s
 .PHONY : src/rect.cpp.s
 
+src/terrain.o: src/terrain.cpp.o
+
+.PHONY : src/terrain.o
+
+# target to build an object file
+src/terrain.cpp.o:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/terrain.cpp.o
+.PHONY : src/terrain.cpp.o
+
+src/terrain.i: src/terrain.cpp.i
+
+.PHONY : src/terrain.i
+
+# target to preprocess a source file
+src/terrain.cpp.i:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/terrain.cpp.i
+.PHONY : src/terrain.cpp.i
+
+src/terrain.s: src/terrain.cpp.s
+
+.PHONY : src/terrain.s
+
+# target to generate assembly for a file
+src/terrain.cpp.s:
+	$(MAKE) -f CMakeFiles/SOURCES.dir/build.make CMakeFiles/SOURCES.dir/src/terrain.cpp.s
+.PHONY : src/terrain.cpp.s
+
 src/test_opencv/main.o: src/test_opencv/main.cpp.o
 
 .PHONY : src/test_opencv/main.o
@@ -598,19 +692,23 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... test_vectorimagePalier0"
-	@echo "... test_mapPalier0"
-	@echo "... test_opencv"
-	@echo "... test_windowPalier0"
-	@echo "... test_colorPalier0"
-	@echo "... SOURCES"
-	@echo "... test_imagePalier0"
 	@echo "... edit_cache"
 	@echo "... test_tilePalier0"
+	@echo "... test_colorPalier0"
+	@echo "... test_windowPalier0"
+	@echo "... test_imagePalier0"
+	@echo "... test_mapPalier0"
+	@echo "... SOURCES"
+	@echo "... test_vectorimagePalier0"
+	@echo "... test_displayPalier0"
+	@echo "... test_opencv"
+	@echo "... rebuild_cache"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/display.o"
+	@echo "... src/display.i"
+	@echo "... src/display.s"
 	@echo "... src/image.o"
 	@echo "... src/image.i"
 	@echo "... src/image.s"
@@ -620,6 +718,9 @@ help:
 	@echo "... src/palier0/testColor.o"
 	@echo "... src/palier0/testColor.i"
 	@echo "... src/palier0/testColor.s"
+	@echo "... src/palier0/testDisplay.o"
+	@echo "... src/palier0/testDisplay.i"
+	@echo "... src/palier0/testDisplay.s"
 	@echo "... src/palier0/testImage.o"
 	@echo "... src/palier0/testImage.i"
 	@echo "... src/palier0/testImage.s"
@@ -638,6 +739,9 @@ help:
 	@echo "... src/rect.o"
 	@echo "... src/rect.i"
 	@echo "... src/rect.s"
+	@echo "... src/terrain.o"
+	@echo "... src/terrain.i"
+	@echo "... src/terrain.s"
 	@echo "... src/test_opencv/main.o"
 	@echo "... src/test_opencv/main.i"
 	@echo "... src/test_opencv/main.s"
