@@ -8,7 +8,6 @@ int main(int argc, char* argv[])
     Tile fourthTile;
 
     firstTile.printTile();
-    secondTile.printVectorTile();
     return 0;
 }
 

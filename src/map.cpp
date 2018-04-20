@@ -48,7 +48,7 @@ void Map::printMap()
     {
         for(int j = 0; j < nmbTilesX; j++)
         {
-            cout << mapTiles[i*nmbTilesX + j] << " ";
+            cout << mapTiles[i*nmbTilesX + j].getIdTerrain() << " ";
         }
         cout << endl;
     }
