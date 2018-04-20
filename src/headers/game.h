@@ -4,10 +4,14 @@
 #include <thread>
 #include <string>
 #include <ctime>
+#include <iostream>
+#include <unistd.h>
 
 #include "map.h"
 #include "display.h"
 #include "vector_image.h"
+
+#define FRAMERATE 60
 
 using namespace std;
 

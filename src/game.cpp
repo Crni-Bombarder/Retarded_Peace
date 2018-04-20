@@ -10,7 +10,7 @@ Game::Game(string _mapFile)
     gameMap = Map(_mapFile);
     mapFile = _mapFile;
     libImages = VectorImage();
-    gameDisplay = Display(&mapFile, &libImages, 32, 32);
+    gameDisplay = Display(&gameMap, &libImages, 32, 32);
     gameRunning = false;
 }
 
@@ -41,7 +41,7 @@ void Game::initGame(void)
 bool Game::StartGame(void)
 {
     gameRunning = true;
-    gameThread = new thread(loop);
+    gameThread = new thread(&Game::loop, this);
 }
 
 bool Game::StopGame(void)
@@ -54,13 +54,14 @@ bool Game::StopGame(void)
 void Game::loop()
 {
     clock_t t;
-    if (gameRunning == true)
+    while (gameRunning == true)
     {
         t = clock();
 
-        updateDisplay();
+        gameDisplay.updateDisplay();
 
         t = clock() - t;
-        sleep(1/FRAMERATE-t);
+        
+        usleep((unsigned int)((1.0/FRAMERATE-(double)t/CLOCKS_PER_SEC)*1000000));
     }
 }

@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
-#include "../headers/game.h"
+#include "game.h"
 
 int main(int argc, char* argv[])
 {
