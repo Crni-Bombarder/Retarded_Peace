@@ -24,7 +24,7 @@ public:
 
 private:
 
-  vector<int> mapTiles;
+  vector<Tile> mapTiles;
   int nmbTilesX;
   int nmbTilesY;
 

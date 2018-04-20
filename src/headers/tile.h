@@ -10,20 +10,16 @@ class Tile{
 public:
 
   Tile();
-  Tile(int _idImage);
+  Tile(int _idTerrain);
   ~Tile();
 
-  int getIdTile(void);
-  int getIdImage(void);
-  static Tile* getTileFromId(int _id);
-  static void printVectorTile(void);
+  int getIdTerrain(void);
+  void setIdTerrain(int _idTerrain);
   void printTile(void);
 
 private:
 
-  int idTile;
-  int idImage;
-  static vector<Tile*> listTiles;
+  int idTerrain;
 
 };
 

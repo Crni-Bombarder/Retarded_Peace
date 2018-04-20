@@ -14,6 +14,7 @@ Map::~Map(){}
 bool Map::loadMapFromFile(string mapName)
 {
     char buf[128];
+    int idTerrain;
     ifstream mapFile;
     string mapPath = "data/maps/" + mapName + ".map";    //Be careful of mapPath (relative to Makefile)
     mapFile.open(mapPath);
@@ -33,7 +34,8 @@ bool Map::loadMapFromFile(string mapName)
             return false;
         }
         mapFile.getline(buf,128);
-        sscanf(buf, "%d\n", &mapTiles[cmp]);
+        sscanf(buf, "%d\n", &idTerrain);
+        mapTiles[cmp].setIdTerrain(idTerrain);
     }
     return true;
 }
