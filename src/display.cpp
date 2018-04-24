@@ -73,3 +73,8 @@ bool Display::updateDisplay()
     }
     dispWindow->updateWin();
 }
+
+bool Display::resizeWindow()
+{
+    return dispWindow->resizeWindow(tileX*gameMap->getNmbTilesX(), tileY*gameMap->getNmbTilesY());
+}

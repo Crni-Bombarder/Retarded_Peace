@@ -23,6 +23,10 @@ public:
   bool destroyWin();
   void updateWin();
 
+  int getSizeX(void);
+  int getSizeY(void);
+  bool resizeWindow(int _x, int _y);
+
   void blitImage(Image* _image, Rect* src, Rect* dst);
   void clearWin(Color);
 

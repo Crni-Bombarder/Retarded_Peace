@@ -21,6 +21,8 @@ public:
   bool stopDisplay();
   bool updateDisplay();
 
+  bool resizeWindow();
+
 private:
 
   int screenX;

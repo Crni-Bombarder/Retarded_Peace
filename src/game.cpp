@@ -23,6 +23,7 @@ void Game::setMapFile(string _mapFile)
 {
     mapFile = _mapFile;
     gameMap = Map(mapFile);
+    gameDisplay.resizeWindow();
 }
 
 void Game::initGame(void)

@@ -1,0 +1,47 @@
+@startuml
+
+abstract class Unit {
++ Unit()
++ Unit(int _PV, int _movePoints, int _idImage, int _idType)
++ ~Unit()
+
++ bool move(Tect _dst)
++ int getPV()
++ int getIdImage()
++ int getIdType()
++ void setPV(int _PV)
+
+# virtual void initUnit() = 0
+
+- int PV
+- Rect position
+
+# int movePoints
+# int idImage
+# int idType
+
+}
+
+abstract class Infantry {
+# void initUnit()
+}
+
+abstract class Vehicule {
+# void initUnit()
+}
+
+class BasicInfantry {
+#void initUnit()
+}
+
+class BasicVehicule {
+#void initUnit()
+}
+
+Unit <|-- Infantry
+Unit <|-- Vehicule
+
+Infantry <|-- BasicInfantry
+Vehicule <|-- BasicVehicule
+
+@enduml
