@@ -11,7 +11,7 @@
 #include "display.h"
 #include "vector_image.h"
 
-#define FRAMERATE 60
+#define FRAMERATE 25
 
 using namespace std;
 

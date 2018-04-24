@@ -8,6 +8,7 @@ class Unit{
 public:
 
     Unit();
+    Unit(int _PV, int _movePoints, int _idImage, int _idType);
     ~Unit();
 
     bool move(Rect _dst);

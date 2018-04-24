@@ -29,3 +29,12 @@ void Tile::printTile()
     cout << "Tile : idTerrain : " << idTerrain << endl;
 }
 
+Unit* Tile::getUnit()
+{
+  return unit;
+}
+
+void Unit::setUnit(Unit* _unit)
+{
+  unit = _unit;
+}

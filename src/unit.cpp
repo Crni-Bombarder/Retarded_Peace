@@ -4,6 +4,14 @@ Map* Unit::gameMap = nullptr;
 
 Unit::Unit(){}
 
+Unit::Unit(int _PV, int _movePoints, int _idImage, int _idType)
+{
+  PV = _PV;
+  movePoints = _movePoints;
+  idImage = _idImage;
+  idType = _idType;
+}
+
 Unit::~Unit(){}
 
 bool Unit::move(Rect _dst)
@@ -36,4 +44,3 @@ void Unit::setPV(int _PV)
 {
     PV = _PV;
 }
-

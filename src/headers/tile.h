@@ -16,10 +16,13 @@ public:
   int getIdTerrain(void);
   void setIdTerrain(int _idTerrain);
   void printTile(void);
+  Unit* getUnit();
+  void setUnit(Unit* _unit);
 
 private:
 
   int idTerrain;
+  Unit* unit;
 
 };
 

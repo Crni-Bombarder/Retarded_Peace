@@ -32,6 +32,7 @@ void Game::initGame(void)
     libImages.initVector();
     libImages.loadImage("data/textures/test0.png");
     libImages.loadImage("data/textures/test1.png");
+    libImages.loadImage("data/units/infantery.png");
     //libImages.loadImage("data/textures/test1.png");
 
     new Terrain(0);
@@ -61,7 +62,7 @@ void Game::loop()
         gameDisplay.updateDisplay();
 
         t = clock() - t;
-        
+        //cout << t << endl;
         usleep((unsigned int)((1.0/FRAMERATE-(double)t/CLOCKS_PER_SEC)*1000000));
     }
 }
