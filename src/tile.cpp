@@ -34,7 +34,7 @@ Unit* Tile::getUnit()
   return unit;
 }
 
-void Unit::setUnit(Unit* _unit)
+void Tile::setUnit(Unit* _unit)
 {
   unit = _unit;
 }

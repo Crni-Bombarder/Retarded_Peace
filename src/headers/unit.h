@@ -2,7 +2,6 @@
 #define UNIT_H
 
 #include "rect.h"
-#include "map.h"
 
 class Unit{
 public:
@@ -12,7 +11,6 @@ public:
     ~Unit();
 
     bool move(Rect _dst);
-    static void setGameMap(Map* _map);
 
     int getPV();
     int getIdType();
@@ -27,8 +25,6 @@ private:
     int idType;
 
     Rect position;
-
-    static Map* gameMap;
 
 };
 

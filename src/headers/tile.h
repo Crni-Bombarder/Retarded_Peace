@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 
+#include "unit.h"
+
 using namespace std;
 
 class Tile{
