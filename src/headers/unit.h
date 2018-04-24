@@ -23,7 +23,7 @@ private:
 
 protected:
 
-    void initUnit() = 0;
+    virtual void initUnit() = 0;
 
     int movePoints;
     int idImage;
