@@ -10,6 +10,7 @@
 #include "map.h"
 #include "display.h"
 #include "vector_image.h"
+#include "SDL.h"
 
 #define FRAMERATE 60
 
