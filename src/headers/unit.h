@@ -7,7 +7,6 @@ class Unit{
 public:
 
     Unit();
-    Unit(int _PV, int _movePoints, int _idImage, int _idType);
     ~Unit();
 
     bool move(Rect _dst);
@@ -20,11 +19,15 @@ public:
 private:
 
     int PV;
+    Rect position;
+
+protected:
+
+    void initUnit() = 0;
+
     int movePoints;
     int idImage;
     int idType;
-
-    Rect position;
 
 };
 
