@@ -1,7 +1,5 @@
 #include "unit.h"
 
-Map* Unit::gameMap = nullptr;
-
 Unit::Unit(){}
 
 Unit::Unit(int _PV, int _movePoints, int _idImage, int _idType)
@@ -18,11 +16,6 @@ bool Unit::move(Rect _dst)
 {
     position.setX(_dst.getX());
     position.setY(_dst.getY());
-}
-
-static void Unit::setGameMap(Map* _map)
-{
-    gameMap = _map;
 }
 
 int Unit::getPV()
