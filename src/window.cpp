@@ -61,6 +61,24 @@ void Window::updateWin()
     SDL_RenderPresent(renderer);
 }
 
+int Window::getSizeX(void)
+{
+    return screenX;
+}
+
+int Window::getSizeY(void)
+{
+    return screenY;
+}
+
+bool Window::resizeWindow(int _x, int _y)
+{
+    if (_x <=0 || _y <= 0)
+        return false;
+    SDL_SetWindowSize(window, _x, _y);
+    return true;
+}
+
 void Window::blitImage(Image* _image, Rect* src, Rect* dst)
 {
     SDL_Rect* psrcrect;
