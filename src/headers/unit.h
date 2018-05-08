@@ -6,18 +6,21 @@
 #include "rect.h"
 #include "typeunit.h"
 
+using namespace std;
+
 class Unit{
 public:
 
     Unit();
+    Unit(string _strType, int _owner=0);
     ~Unit();
 
     void move(Rect _dst);
 
     int getPV();
-    String getStrType();
+    string getStrType();
     int getIdImage();
-    int getMoveMalus(String strTerrain);
+    int getMoveMalus(string strTerrain);
     int getMovePoint();
     Rect getPosition();
     int getOwner();
@@ -31,7 +34,7 @@ private:
     int owner;
 
     bool moved;
-    String strType;
+    string strType;
 
 };
 

@@ -1,6 +1,17 @@
 #include "unit.h"
 
+using namespace std;
+
 Unit::Unit(){}
+
+Unit::Unit(string _strType, int _owner)
+{
+    strType = _strType;
+    position = Rect(0, 0);
+    moved = false;
+    owner = _owner;
+    PV = 10;
+}
 
 Unit::~Unit(){}
 
@@ -15,7 +26,7 @@ int Unit::getPV()
     return PV;
 }
 
-int Unit::getStrType()
+string Unit::getStrType()
 {
     return strType;
 }
@@ -25,7 +36,7 @@ int Unit::getIdImage()
     return TypeUnit::getTypeUnit(strType)->getIdImage();
 }
 
-int Unit::getMoveMalus(String _strTerrain)
+int Unit::getMoveMalus(string _strTerrain)
 {
     return TypeUnit::getTypeUnit(strType)->getMoveMalus(_strTerrain);
 }

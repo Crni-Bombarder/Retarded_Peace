@@ -1,14 +1,16 @@
 #include "headers/typeunit.h"
 
-TypeUnit::mapTypeUnit = std::map<String, TypeUnit*>();
+using namespace std;
+
+TypeUnit::mapTypeUnit = std::map<string, TypeUnit*>();
 
 TypeUnit::TypeUnit(){}
 
-~TypeUnit::TypeUnit(){}
+TypeUnit::~TypeUnit(){}
 
-TypeUnit::TypeUnit(String _typeName)
+TypeUnit::TypeUnit(string _typeName)
 {
-    moveMalus = std::map<String, int>();
+    moveMalus = std::map<string, int>();
     mapTypeUnit[_typeName] = this;
 }
 
@@ -17,9 +19,12 @@ int TypeUnit::getIdImage()
     return idImage;
 }
 
-int TypeUnit::getMoveMalus()
+int TypeUnit::getMoveMalus(string _terrainName)
+{
+    return moveMalus[_terrainName];
+}
 
-TypeUnit* TypeUnit::getTypeUnit(String _name)
+TypeUnit* TypeUnit::getTypeUnit(string _typeName)
 {
     return mapTypeUnit[_typeName];
 }

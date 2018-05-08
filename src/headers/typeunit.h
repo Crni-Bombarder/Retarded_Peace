@@ -4,23 +4,25 @@
 #include <map>
 #include <string>
 
+using namespace std;
+
 class TypeUnit{
 public:
     TypeUnit();
     ~TypeUnit();
 
-    TypeUnit(String _typeName);
+    TypeUnit(string _typeName);
 
     int getIdImage();
-    int getMoveMalus(String _terrainName);
+    int getMoveMalus(string _terrainName);
 
-    static TypeUnit* getTypeUnit(String _typeName);
+    static TypeUnit* getTypeUnit(string _typeName);
 private:
-    String name;
+    string name;
     int idImage;
-    std::map<String, int> moveMalus;
+    std::map<string, int> moveMalus;
 
-    static std::map<String, TypeUnit*> mapTypeUnit;
+    static std::map<string, TypeUnit*> mapTypeUnit;
 };
 
 #endif
