@@ -68,3 +68,8 @@ Terrain* Map::getTerrainFromTiles(int _x, int _y)
     int idTerrain = mapTiles[_y*nmbTilesX + _x].getIdTerrain();
     return Terrain::getTerrainFromId(idTerrain);
 }
+
+Unit* Map::getUnitFromTiles(int _x, int _y)
+{
+    return mapTiles[_y*nmbTilesX + _x].getUnit();
+}

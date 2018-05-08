@@ -5,11 +5,13 @@ using namespace std;
 Tile::Tile()
 {
     idTerrain = 0;
+    unit = nullptr;
 }
 
 Tile::Tile(int _idTerrain)
 {
     idTerrain = _idTerrain;
+    unit = nullptr;
 }
 
 Tile::~Tile(){}

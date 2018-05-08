@@ -8,6 +8,7 @@
 
 #include "tile.h"
 #include "terrain.h"
+#include "unit.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
   int getNmbTilesY(void);
   void printMap(void);
   Terrain* getTerrainFromTiles(int _x, int _y);
+  Unit* getUnitFromTiles(int _x, int _y);
 
 private:
 
