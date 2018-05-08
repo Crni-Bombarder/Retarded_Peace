@@ -17,7 +17,7 @@ public:
     int getMoveMalus(string _terrainName);
 
     static TypeUnit* getTypeUnit(string _typeName);
-private:
+protected:
     string name;
     int idImage;
     std::map<string, int> moveMalus;

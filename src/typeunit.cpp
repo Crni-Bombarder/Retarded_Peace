@@ -2,7 +2,7 @@
 
 using namespace std;
 
-TypeUnit::mapTypeUnit = std::map<string, TypeUnit*>();
+std::map<string, TypeUnit*> TypeUnit::mapTypeUnit = std::map<string, TypeUnit*>();
 
 TypeUnit::TypeUnit(){}
 

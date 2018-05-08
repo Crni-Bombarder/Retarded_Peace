@@ -1,18 +1,19 @@
 #ifndef GENERICINFANTRY_H
 #define GENERICINFANTRY_H
 
+#include "typeunit.h"
+
 #include <string>
 
 using namespace std;
 
-class GenericInfantry : public TypeUnit{
+class GenericInfantry: public TypeUnit
+{
 public:
     GenericInfantry();
     ~GenericInfantry();
 
     GenericInfantry(string _typeName);
 };
-
-GenericInfantry genericinfantery =  GenericInfantry("infanterie");
 
 #endif
