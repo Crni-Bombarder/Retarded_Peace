@@ -71,7 +71,7 @@ bool Display::updateDisplay()
             unit = gameMap->getUnitFromTiles(i, j);
             if (unit != nullptr)
             {
-                image = vectorImage->getImageFromIndex(unit->getIdType());
+                image = vectorImage->getImageFromIndex(unit->getIdImage());
                 dispWindow->blitImage(image, NULL, &dst);
             }
             dst.setX(dst.getX() + tileX);
