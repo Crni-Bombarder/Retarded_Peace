@@ -4,29 +4,29 @@ using namespace std;
 
 Tile::Tile()
 {
-    idTerrain = 0;
+    nameTerrain = "void";
 }
 
-Tile::Tile(int _idTerrain)
+Tile::Tile(string _nameTerrain)
 {
-    idTerrain = _idTerrain;
+    nameTerrain = _nameTerrain;
 }
 
 Tile::~Tile(){}
 
-int Tile::getIdTerrain(void)
+string Tile::getNameTerrain(void)
 {
-    return idTerrain;
+    return nameTerrain;
 }
 
-void Tile::setIdTerrain(int _idTerrain)
+void Tile::setNameTerrain(string _nameTerrain)
 {
-    idTerrain = _idTerrain;
+    nameTerrain = _nameTerrain;
 }
 
 void Tile::printTile()
 {
-    cout << "Tile : idTerrain : " << idTerrain << endl;
+    cout << "Tile : nameTerrain : " << nameTerrain << endl;
 }
 
 Unit* Tile::getUnit()

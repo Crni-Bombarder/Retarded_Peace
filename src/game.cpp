@@ -36,8 +36,8 @@ void Game::initGame(void)
     libImages.loadImage("data/units/infantery.png");
     //libImages.loadImage("data/textures/test1.png");
 
-    new Terrain(0);
-    new Terrain(1);
+    new Terrain(0, "plaine");
+    new Terrain(1, "mer");
 }
 
 bool Game::StartGame(void)

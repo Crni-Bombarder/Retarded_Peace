@@ -21,6 +21,7 @@ public:
 
   bool loadMapFromFile(string mapName);
 
+  void addNameTerrain(string _nameTerrain);
   int getNmbTilesX(void);
   int getNmbTilesY(void);
   void printMap(void);
@@ -28,6 +29,7 @@ public:
 
 private:
 
+  vector<string> terrainName;
   vector<Tile> mapTiles;
   int nmbTilesX;
   int nmbTilesY;
