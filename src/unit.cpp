@@ -4,7 +4,7 @@ Unit::Unit(){}
 
 Unit::~Unit(){}
 
-bool Unit::move(Rect _dst)
+void Unit::move(Rect _dst)
 {
     position.setX(_dst.getX());
     position.setY(_dst.getY());
@@ -15,14 +15,34 @@ int Unit::getPV()
     return PV;
 }
 
-int Unit::getIdType()
+int Unit::getStrType()
 {
-    return idType;
+    return strType;
 }
 
 int Unit::getIdImage()
 {
-    return idImage;
+    return TypeUnit::getTypeUnit(strType)->getIdImage();
+}
+
+int Unit::getMoveMalus(String _strTerrain)
+{
+    return TypeUnit::getTypeUnit(strType)->getMoveMalus(_strTerrain);
+}
+
+Rect Unit::getPosition()
+{
+    return position;
+}
+
+int Unit::getOwner()
+{
+    return owner;
+}
+
+bool Unit::hasMoved()
+{
+    return moved;
 }
 
 void Unit::setPV(int _PV)
