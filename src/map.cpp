@@ -70,6 +70,11 @@ void Map::printMap()
     }
 }
 
+Tile* Map::getTile(int _x, int _y)
+{
+  return &mapTiles[_y*nmbTilesX + _x];
+}
+
 Terrain* Map::getTerrainFromTiles(int _x, int _y)
 {
     string nameTerrain = mapTiles[_y*nmbTilesX + _x].getNameTerrain();

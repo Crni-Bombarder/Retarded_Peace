@@ -26,6 +26,7 @@ public:
   int getNmbTilesX(void);
   int getNmbTilesY(void);
   void printMap(void);
+  Tile* getTile(int _x, int _y);
   Terrain* getTerrainFromTiles(int _x, int _y);
   Unit* getUnitFromTiles(int _x, int _y);
 
