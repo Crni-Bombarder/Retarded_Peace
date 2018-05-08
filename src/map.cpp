@@ -80,3 +80,8 @@ void Map::addNameTerrain(string _nameTerrain)
 {
     terrainName.push_back(_nameTerrain);
 }
+
+Unit* Map::getUnitFromTiles(int _x, int _y)
+{
+    return mapTiles[_y*nmbTilesX + _x].getUnit();
+}

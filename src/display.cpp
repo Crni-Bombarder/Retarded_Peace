@@ -58,14 +58,22 @@ bool Display::stopDisplay()
 bool Display::updateDisplay()
 {
     Image* image;
+    Unit* unit;
     int nmbTilesX = gameMap->getNmbTilesX();
     int nmbTilesY = gameMap->getNmbTilesY();
     Rect dst = Rect(0, 0, tileX, tileY);
     dispWindow->clearWin(black);
+
     for (int i = 0; i < nmbTilesY; i++) {
         for (int j = 0; j < nmbTilesX; j++) {
             image = vectorImage->getImageFromIndex(gameMap->getTerrainFromTiles(i, j)->getIdImage());
             dispWindow->blitImage(image, NULL, &dst);
+            unit = gameMap->getUnitFromTiles(i, j);
+            if (unit != nullptr)
+            {
+                image = vectorImage->getImageFromIndex(unit->getIdType());
+                dispWindow->blitImage(image, NULL, &dst);
+            }
             dst.setX(dst.getX() + tileX);
         }
         dst.setX(0);

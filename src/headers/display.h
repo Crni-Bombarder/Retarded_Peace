@@ -7,6 +7,7 @@
 #include "window.h"
 #include "color.h"
 #include "rect.h"
+#include "unit.h"
 #include "vector_image.h"
 
 class Display{
