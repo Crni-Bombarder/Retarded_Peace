@@ -10,6 +10,8 @@
 #include "unit.h"
 #include "vector_image.h"
 
+#define CURSOR_IMAGE_ID 3
+
 class Display{
 public:
 
@@ -17,6 +19,12 @@ public:
   Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screenY, int _tileX, int _tileY);
   Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY);
   ~Display();
+
+  void enableCursor();
+  void disableCursor();
+  bool getCursorStatut();
+  void setCursorPosition(Rect _position);
+  Rect getCursorPosition();
 
   bool startDisplay();
   bool stopDisplay();
@@ -30,6 +38,9 @@ private:
   int screenY;
   int tileX;
   int tileY;
+
+  Rect posCursor;
+  bool dispCursor;
 
   Map* gameMap;
   Window* dispWindow;

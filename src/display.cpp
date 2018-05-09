@@ -8,8 +8,13 @@ Display::Display()
     screenY = 0;
     tileX = 0;
     tileY = 0;
+
+    posCursor = Rect(0,0);
+    dispCursor = false;
+
     gameMap = nullptr;
     dispWindow = nullptr;
+    vectorImage = nullptr;
 }
 
 Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screenY, int _tileX, int _tileY)
@@ -18,6 +23,10 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screen
     screenY = _screenY;
     tileX = _tileX;
     tileY = _tileY;
+
+    posCursor = Rect(0,0);
+    dispCursor = false;
+
     gameMap = _map;
     dispWindow = nullptr;
     vectorImage = _vectorImage;
@@ -30,12 +39,41 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY)
     tileY = _tileY;
     screenX = tileX*gameMap->getNmbTilesX();
     screenY = tileY*gameMap->getNmbTilesY();
+
+    posCursor = Rect(0,0);
+    dispCursor = false;
+
     dispWindow = nullptr;
     vectorImage = _vectorImage;
 }
 
 Display::~Display()
 {
+}
+
+void Display::enableCursor()
+{
+    dispCursor = true;
+}
+
+void Display::disableCursor()
+{
+    dispCursor = false;
+}
+
+bool Display::getCursorStatut()
+{
+    return dispCursor;
+}
+
+void Display::setCursorPosition(Rect _position)
+{
+    posCursor = _position;
+}
+
+Rect Display::getCursorPosition()
+{
+    return posCursor;
 }
 
 bool Display::startDisplay()
@@ -64,6 +102,7 @@ bool Display::updateDisplay()
     Rect dst = Rect(0, 0, tileX, tileY);
     dispWindow->clearWin(black);
 
+    //Map display
     for (int i = 0; i < nmbTilesY; i++) {
         for (int j = 0; j < nmbTilesX; j++) {
             image = vectorImage->getImageFromIndex(gameMap->getTerrainFromTiles(i, j)->getIdImage());
@@ -79,6 +118,16 @@ bool Display::updateDisplay()
         dst.setX(0);
         dst.setY(dst.getY() + tileY);
     }
+
+    //Cursor display
+    if (dispCursor)
+    {
+        image = vectorImage->getImageFromIndex(CURSOR_IMAGE_ID);
+        dst.setX(posCursor.getX()*tileX);
+        dst.setY(posCursor.getY()*tileY);
+    }
+
+    dispWindow->blitImage(image, NULL, &dst);
     dispWindow->updateWin();
 }
 

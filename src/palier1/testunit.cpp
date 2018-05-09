@@ -4,6 +4,7 @@
 #include "unit.h"
 #include "genericinfantry.h"
 #include "display.h"
+#include "rect.h"
 
 int main()
 {
@@ -26,6 +27,9 @@ int main()
     vectorImage.loadImage("data/textures/test0.png");
     vectorImage.loadImage("data/textures/test1.png");
     vectorImage.loadImage("data/units/infantery.png");
+    vectorImage.loadImage("data/textures/cursor.png");
+    display.enableCursor();
+    display.setCursorPosition(Rect(5, 5));
     map.getTile(5, 5)->setUnit(&test);
     display.updateDisplay();
     sleep(10);
