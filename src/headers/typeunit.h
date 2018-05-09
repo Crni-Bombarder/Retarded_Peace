@@ -15,11 +15,13 @@ public:
 
     int getIdImage();
     int getMoveMalus(string _terrainName);
+    int getMovePoints();
 
     static TypeUnit* getTypeUnit(string _typeName);
 protected:
     string name;
     int idImage;
+    int movePoints;
     std::map<string, int> moveMalus;
 
     static std::map<string, TypeUnit*> mapTypeUnit;

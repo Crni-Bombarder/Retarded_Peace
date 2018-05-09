@@ -9,6 +9,7 @@
 #include "tile.h"
 #include "terrain.h"
 #include "unit.h"
+#include "rect.h"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
   Tile* getTile(int _x, int _y);
   Terrain* getTerrainFromTiles(int _x, int _y);
   Unit* getUnitFromTiles(int _x, int _y);
+  void moveUnit(Rect src, Rect dst);
 
 private:
 

@@ -46,6 +46,11 @@ Rect Unit::getPosition()
     return position;
 }
 
+void Unit::setPosition(Rect dst)
+{
+  position = dst;
+}
+
 int Unit::getOwner()
 {
     return owner;

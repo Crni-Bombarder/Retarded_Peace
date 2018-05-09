@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 #include "map.h"
+#include "unit.h"
 #include "display.h"
 #include "vector_image.h"
 #include "SDL.h"
@@ -29,6 +30,8 @@ public:
   bool StartGame(void);
   void initGame(void);
   bool StopGame(void);
+
+  void getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves);
 
 private:
 

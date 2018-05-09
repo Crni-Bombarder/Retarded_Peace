@@ -1,5 +1,7 @@
 #include "game.h"
 
+using namespace std;
+
 Game::Game()
 {
 
@@ -52,6 +54,21 @@ bool Game::StopGame(void)
     gameRunning = false;
     //gameThread->join();
     //delete gameThread;
+}
+
+void Game::getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves)
+{
+  int nmbMovePoints = getTypeUnit(unit->getStrType())->getMovePoints();
+  int tabSize = (nmbMovePoints*2 + 1);
+  vector<vector<int>> moves = vector<vector<int>>(tabSize, vector<int>(tabSize));
+  for(int i = 0; i < tabSize - 1; i++)
+  {
+    for(int j = 0; j < tabSize - 1; i++)
+    {
+          moves[i][j] = 0;
+    }
+  }
+
 }
 
 void Game::loop()

@@ -23,6 +23,7 @@ public:
     int getMoveMalus(string strTerrain);
     int getMovePoint();
     Rect getPosition();
+    void setPosition(Rect dst);
     int getOwner();
     bool hasMoved();
     void setPV(int _PV);

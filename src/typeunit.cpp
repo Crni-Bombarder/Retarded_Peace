@@ -24,6 +24,11 @@ int TypeUnit::getMoveMalus(string _terrainName)
     return moveMalus[_terrainName];
 }
 
+int TypeUnit::getMovePoints()
+{
+  return movePoints;
+}
+
 TypeUnit* TypeUnit::getTypeUnit(string _typeName)
 {
     return mapTypeUnit[_typeName];
