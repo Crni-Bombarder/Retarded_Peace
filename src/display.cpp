@@ -12,6 +12,8 @@ Display::Display()
     posCursor = Rect(0,0);
     dispCursor = false;
 
+    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>();
+
     gameMap = nullptr;
     dispWindow = nullptr;
     vectorImage = nullptr;
@@ -26,6 +28,9 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screen
 
     posCursor = Rect(0,0);
     dispCursor = false;
+
+    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>();
+    clearVectorHighlight();
 
     gameMap = _map;
     dispWindow = nullptr;
@@ -42,6 +47,9 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY)
 
     posCursor = Rect(0,0);
     dispCursor = false;
+
+    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>();
+    clearVectorHighlight();
 
     dispWindow = nullptr;
     vectorImage = _vectorImage;
@@ -76,10 +84,27 @@ Rect Display::getCursorPosition()
     return posCursor;
 }
 
+void Display::updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val)
+{
+    for(int i = 0; i<_listPos.size(); i++)
+    {
+        vectorHighlight[_listPos[i].getY()*gameMap->getNmbTilesX() + _listPos[i].getX()] = _val;
+    }
+}
+
+void Display::clearVectorHighlight()
+{
+    for(int i = 0; i<vectorHighlight.size(); i++)
+    {
+        vectorHighlight[i] = NONE;
+    }
+}
+
 bool Display::startDisplay()
 {
     Window::initVideoDriver();
     dispWindow = new Window(screenX, screenY, "Retarded Peace");
+    vectorHighlight.resize(gameMap->getNmbTilesX()*gameMap->getNmbTilesY());
     dispWindow->createWin();
 }
 
@@ -103,16 +128,28 @@ bool Display::updateDisplay()
     dispWindow->clearWin(black);
 
     //Map display
-    for (int i = 0; i < nmbTilesY; i++) {
-        for (int j = 0; j < nmbTilesX; j++) {
-            image = vectorImage->getImageFromIndex(gameMap->getTerrainFromTiles(i, j)->getIdImage());
+    for (int y = 0; y < nmbTilesY; y++) {
+        for (int x = 0; x < nmbTilesX; x++) {
+
+            //Terrain display
+            image = vectorImage->getImageFromIndex(gameMap->getTerrainFromTiles(x, y)->getIdImage());
             dispWindow->blitImage(image, NULL, &dst);
-            unit = gameMap->getUnitFromTiles(i, j);
+            unit = gameMap->getUnitFromTiles(x, y);
+
+            //Unit display
             if (unit != nullptr)
             {
                 image = vectorImage->getImageFromIndex(unit->getIdImage());
                 dispWindow->blitImage(image, NULL, &dst);
             }
+
+            //Highlight display
+            if (vectorHighlight[y*nmbTilesX + x] == BLUE)
+            {
+                image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
+                dispWindow->blitImage(image, NULL, &dst);
+            }
+
             dst.setX(dst.getX() + tileX);
         }
         dst.setX(0);
