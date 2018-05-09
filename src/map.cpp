@@ -96,7 +96,7 @@ void Map::moveUnit(Rect _src, Rect _dst)
     Tile* tileSrc = getTile(_src.getX(), _src.getY());
     Tile* tileDst = getTile(_dst.getX(), _dst.getY());
     Unit* unit = tileSrc->getUnit();
-    unit->setPosition(dst);
-    TileSrc->setUnit(NULL);
-    TileDst->setUnit(unit);
+    unit->setPosition(_dst);
+    tileSrc->setUnit(NULL);
+    tileDst->setUnit(unit);
 }

@@ -9,6 +9,7 @@
 
 #include "map.h"
 #include "unit.h"
+#include "typeunit.h"
 #include "display.h"
 #include "vector_image.h"
 #include "SDL.h"
@@ -43,6 +44,7 @@ private:
   bool gameRunning;
 
   void loop();
+  int verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints, int remainingMoves, Unit* unit, vector<vector<int>>* moves);
 
 };
 
