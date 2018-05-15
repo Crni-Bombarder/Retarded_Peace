@@ -60,6 +60,7 @@ void Game::getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves)
 {
   int i, j;
   int nmbMovePoints = TypeUnit::getTypeUnit(unit->getStrType())->getMovePoints();
+  allowedMoves->resize(0);
   int tabSize = (nmbMovePoints*2 + 1);
   vector<vector<int>> moves = vector<vector<int>>(tabSize, vector<int>(tabSize));
   for(i = 0; i < tabSize - 1; i++)
