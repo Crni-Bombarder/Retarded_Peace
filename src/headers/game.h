@@ -47,7 +47,7 @@ private:
   bool gameRunning;
 
   void loop();
-  int verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints, int remainingMoves, Unit* unit, vector<vector<int>>* moves);
+  int verifMoves(Rect src, int posTabX, int posTabY, int remainingMoves, Unit* unit, vector<vector<int>>* moves);
 
 };
 
