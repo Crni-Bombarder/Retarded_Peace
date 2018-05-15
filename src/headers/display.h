@@ -12,7 +12,7 @@
 #include "vector_image.h"
 
 #define CURSOR_IMAGE_ID 3
-#define BLUE_IMAGE_ID   4
+#define BLUE_IMAGE_ID   3
 
 typedef enum caseHighlight {
     NONE, BLUE

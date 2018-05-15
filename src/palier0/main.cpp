@@ -15,8 +15,8 @@ int main(int argc, char* argv[])
   game.initGame();
   game.StartGame();
 
-  game.setMapFile("map1");
-  game.StartGame();
+  // game.setMapFile("map1");
+  // game.StartGame();
 
   return EXIT_SUCCESS;
 }

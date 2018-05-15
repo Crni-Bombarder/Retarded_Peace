@@ -29,7 +29,7 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screen
     posCursor = Rect(0,0);
     dispCursor = false;
 
-    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>();
+    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>(gameMap->getNmbTilesX()*gameMap->getNmbTilesY());
     clearVectorHighlight();
 
     gameMap = _map;
@@ -48,7 +48,7 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY)
     posCursor = Rect(0,0);
     dispCursor = false;
 
-    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>();
+    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>(gameMap->getNmbTilesX()*gameMap->getNmbTilesY());
     clearVectorHighlight();
 
     dispWindow = nullptr;
@@ -147,7 +147,6 @@ bool Display::updateDisplay()
             //Highlight display
             if (vectorHighlight[y*nmbTilesX + x] == BLUE)
             {
-              cout << "HL !" << endl;
                 image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
                 dispWindow->blitImage(image, NULL, &dst);
             }

@@ -36,7 +36,7 @@ void Game::initGame(void)
     libImages.loadImage("data/textures/test0.png");
     libImages.loadImage("data/textures/test1.png");
     libImages.loadImage("data/units/infantery.png");
-    //libImages.loadImage("data/textures/test1.png");
+    libImages.loadImage("data/textures/highlight.png");
 
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
@@ -101,12 +101,15 @@ void Game::loop()
     clock_t t;
 
     Unit unit0("infanterie");
-    Rect position(5, 5);
+    Rect position(5, 2);
     unit0.setPosition(position);
     gameMap.getTile(position.getX(), position.getY())->setUnit(&unit0);
     getAllowedMoves(&unit0, &moves);
+
+    gameDisplay.clearVectorHighlight();
     gameDisplay.updateVectorHighlight(moves, BLUE);
     printAllowedMoves(&moves);
+    gameDisplay.updateDisplay();
 
     cout << "Game running !" << endl;
 
@@ -125,8 +128,6 @@ void Game::loop()
         }
 
         getAllowedMoves(&unit0, &moves);
-
-        gameDisplay.clearVectorHighlight();
 
 
         gameDisplay.updateDisplay();
