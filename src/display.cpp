@@ -86,6 +86,7 @@ Rect Display::getCursorPosition()
 
 void Display::updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val)
 {
+  cout << "Size of the Rect : " << _listPos.size() << endl;
     for(int i = 0; i<_listPos.size(); i++)
     {
         vectorHighlight[_listPos[i].getY()*gameMap->getNmbTilesX() + _listPos[i].getX()] = _val;
@@ -146,6 +147,7 @@ bool Display::updateDisplay()
             //Highlight display
             if (vectorHighlight[y*nmbTilesX + x] == BLUE)
             {
+              cout << "HL !" << endl;
                 image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
                 dispWindow->blitImage(image, NULL, &dst);
             }

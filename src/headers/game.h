@@ -35,6 +35,7 @@ public:
   bool StopGame(void);
 
   void getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves);
+  void printAllowedMoves(vector<Rect>* allowedMoves);
 
 private:
 

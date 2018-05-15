@@ -65,7 +65,7 @@ void Game::getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves)
   vector<vector<int>> moves = vector<vector<int>>(tabSize, vector<int>(tabSize));
   for(i = 0; i < tabSize - 1; i++)
   {
-    for(j = 0; j < tabSize - 1; i++)
+    for(j = 0; j < tabSize - 1; j++)
     {
           moves[i][j] = 0;
     }
@@ -84,6 +84,14 @@ void Game::getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves)
   }
 }
 
+void Game::printAllowedMoves(vector<Rect>* allowedMoves)
+{
+  for(int i = 0; i < allowedMoves->size(); i++)
+  {
+    cout << "Move " << i << " -> X : " << (*allowedMoves)[i].getX() << " Y : " << (*allowedMoves)[i].getY() << endl;
+  }
+}
+
 void Game::loop()
 {
     cout << "Create dummy unit" << endl;
@@ -96,6 +104,9 @@ void Game::loop()
     Rect position(5, 5);
     unit0.setPosition(position);
     gameMap.getTile(position.getX(), position.getY())->setUnit(&unit0);
+    getAllowedMoves(&unit0, &moves);
+    gameDisplay.updateVectorHighlight(moves, BLUE);
+    printAllowedMoves(&moves);
 
     cout << "Game running !" << endl;
 
@@ -116,7 +127,7 @@ void Game::loop()
         getAllowedMoves(&unit0, &moves);
 
         gameDisplay.clearVectorHighlight();
-        gameDisplay.updateVectorHighlight(moves, BLUE);
+
 
         gameDisplay.updateDisplay();
 
