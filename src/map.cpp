@@ -33,7 +33,7 @@ bool Map::loadMapFromFile(string mapName)
     }
     sscanf(buf, "$ %d %d\n", &nmbTilesX, &nmbTilesY);
     mapTiles.resize(nmbTilesX*nmbTilesY);
-    for(int cmp = 0; cmp < nmbTilesY*nmbTilesY; cmp++)
+    for(int cmp = 0; cmp < nmbTilesY*nmbTilesX; cmp++)
     {
         if(mapFile.eof())
         {

@@ -6,7 +6,7 @@ map<string, Terrain*> Terrain::vectorTerrain = map<string, Terrain*>();
 
 Terrain::Terrain()
 {
-    idImage =0;
+    idImage = 0;
     addTerrainToVector(this);
 }
 Terrain::Terrain(int _idImage, string _terrainName)

@@ -85,8 +85,19 @@ void Game::getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves)
 
 void Game::loop()
 {
+    cout << "Create dummy unit" << endl;
+    vector<Rect> moves = vector<Rect>();
+
     SDL_Event event;
     clock_t t;
+
+    Unit unit0("infanterie");
+    Rect position(5, 5);
+    unit0.setPosition(position);
+    gameMap.getTile(position.getX(), position.getY())->setUnit(&unit0);
+
+    cout << "Game running !" << endl;
+
     while (gameRunning == true)
     {
         t = clock();
@@ -100,6 +111,11 @@ void Game::loop()
                 }
             }
         }
+
+        getAllowedMoves(&unit0, &moves);
+
+        gameDisplay.clearVectorHighlight();
+        gameDisplay.updateVectorHighlight(moves, BLUE);
 
         gameDisplay.updateDisplay();
 

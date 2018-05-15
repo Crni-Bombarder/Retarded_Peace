@@ -14,6 +14,8 @@
 #include "vector_image.h"
 #include "SDL.h"
 
+#include "genericinfantry.h"
+
 #define FRAMERATE 25
 
 using namespace std;
