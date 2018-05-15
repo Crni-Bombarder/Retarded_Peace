@@ -109,7 +109,7 @@ void Game::loop()
     }
 }
 
-int verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints, int remainingMoves, Unit* unit, vector<vector<int>>* moves)
+int Game::verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints, int remainingMoves, Unit* unit, vector<vector<int>>* moves)
 {
   if((count <= *nmbMovePoints) && (remainingMoves > 0))
   {
@@ -118,7 +118,7 @@ int verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints
       {
           (*moves)[posTabX - 1][posTabY] = count;
           Rect new_src = Rect(src.getX() - 1, src.getY(), src.getW(), src.getH());
-          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX() - 1, src.getY())->getNameTerrain()));
+          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX() - 1, src.getY())->getNameTerrain());
           verifMoves(new_src, count + 1, posTabX - 1, posTabY, nmbMovePoints, remainingMoves, unit, moves);
       }
     if(((*moves)[posTabX][posTabY - 1] < count) &&
@@ -126,7 +126,7 @@ int verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints
       {
           (*moves)[posTabX][posTabY - 1] = count;
           Rect new_src = Rect(src.getX(), src.getY() - 1, src.getW(), src.getH());
-          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX(), src.getY() - 1)->getNameTerrain()));
+          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX(), src.getY() - 1)->getNameTerrain());
           verifMoves(new_src, count + 1, posTabX, posTabY - 1, nmbMovePoints, remainingMoves, unit, moves);
       }
     if(((*moves)[posTabX + 1][posTabY] < count) &&
@@ -134,7 +134,7 @@ int verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints
       {
           (*moves)[posTabX + 1][posTabY] = count;
           Rect new_src = Rect(src.getX() + 1, src.getY(), src.getW(), src.getH());
-          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX() + 1, src.getY())->getNameTerrain()));
+          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX() + 1, src.getY())->getNameTerrain());
           verifMoves(new_src, count + 1, posTabX + 1, posTabY, nmbMovePoints, remainingMoves, unit, moves);
       }
     if(((*moves)[posTabX][posTabY + 1] < count) &&
@@ -142,7 +142,7 @@ int verifMoves(Rect src, int count, int posTabX, int posTabY, int* nmbMovePoints
       {
           (*moves)[posTabX][posTabY + 1] = count;
           Rect new_src = Rect(src.getX(), src.getY() + 1, src.getW(), src.getH());
-          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX(), src.getY() + 1)->getNameTerrain()));
+          remainingMoves -= unit->getMoveMalus(gameMap.getTile(src.getX(), src.getY() + 1)->getNameTerrain());
           verifMoves(new_src, count + 1, posTabX, posTabY + 1, nmbMovePoints, remainingMoves, unit, moves);
       }
   } else { return 1;}
