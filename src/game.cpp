@@ -110,8 +110,8 @@ void Game::loop()
     clock_t t;
 
     Unit unit0("infanterie", 0);
-    Unit unit1("infanterie", 0);
-    Rect position1(5, 4);
+    Unit unit1("infanterie", 1);
+    Rect position1(5, 3);
     Rect position0(5, 5);
     unit0.setPosition(position0);
     unit1.setPosition(position1);
