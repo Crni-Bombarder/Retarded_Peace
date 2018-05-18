@@ -12,8 +12,6 @@ Display::Display()
     posCursor = Rect(0,0);
     dispCursor = false;
 
-    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>();
-
     gameMap = nullptr;
     dispWindow = nullptr;
     vectorImage = nullptr;
@@ -28,9 +26,6 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screen
 
     posCursor = Rect(0,0);
     dispCursor = false;
-
-    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>(gameMap->getNmbTilesX()*gameMap->getNmbTilesY());
-    clearVectorHighlight();
 
     gameMap = _map;
     dispWindow = nullptr;
@@ -47,9 +42,6 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY)
 
     posCursor = Rect(0,0);
     dispCursor = false;
-
-    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>(gameMap->getNmbTilesX()*gameMap->getNmbTilesY());
-    clearVectorHighlight();
 
     dispWindow = nullptr;
     vectorImage = _vectorImage;
@@ -84,28 +76,10 @@ Rect Display::getCursorPosition()
     return posCursor;
 }
 
-void Display::updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val)
-{
-  cout << "Size of the Rect : " << _listPos.size() << endl;
-    for(int i = 0; i<_listPos.size(); i++)
-    {
-        vectorHighlight[_listPos[i].getY()*gameMap->getNmbTilesX() + _listPos[i].getX()] = _val;
-    }
-}
-
-void Display::clearVectorHighlight()
-{
-    for(int i = 0; i<vectorHighlight.size(); i++)
-    {
-        vectorHighlight[i] = NONE;
-    }
-}
-
 bool Display::startDisplay()
 {
     Window::initVideoDriver();
     dispWindow = new Window(screenX, screenY, "Retarded Peace");
-    vectorHighlight.resize(gameMap->getNmbTilesX()*gameMap->getNmbTilesY());
     dispWindow->createWin();
 }
 
@@ -145,7 +119,7 @@ bool Display::updateDisplay()
             }
 
             //Highlight display
-            if (vectorHighlight[y*nmbTilesX + x] == BLUE)
+            if (gameMap->getVectorHighlight()[y*nmbTilesX + x] == BLUE)
             {
                 image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
                 dispWindow->blitImage(image, NULL, &dst);
