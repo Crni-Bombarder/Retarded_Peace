@@ -36,8 +36,8 @@ void Game::initGame(void)
     gameDisplay.startDisplay();
 
     libImages.initVector();
-    libImages.loadImage("data/textures/test0.png");
-    libImages.loadImage("data/textures/test1.png");
+    libImages.loadImage("data/textures/land.png");
+    libImages.loadImage("data/textures/sea.png");
     libImages.loadImage("data/units/infantery.png");
     libImages.loadImage("data/textures/highlight.png");
     libImages.loadImage("data/textures/cursor.png");
