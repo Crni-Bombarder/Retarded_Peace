@@ -41,6 +41,7 @@ void Game::initGame(void)
     libImages.loadImage("data/units/infantery.png");
     libImages.loadImage("data/textures/highlight.png");
     libImages.loadImage("data/textures/cursor.png");
+    libImages.loadImage("data/textures/grey.png");
 
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
