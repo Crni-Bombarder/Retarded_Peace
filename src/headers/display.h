@@ -14,6 +14,7 @@
 #define CURSOR_IMAGE_ID 4
 #define BLUE_IMAGE_ID   3
 #define GREY_IMAGE_ID   5
+#define RED_IMAGE_ID    6
 
 class Display{
 public:

@@ -97,6 +97,7 @@ bool Display::updateDisplay()
 {
     Image* image;
     Unit* unit;
+    CaseHighlight valHighlight;
     int nmbTilesX = gameMap->getNmbTilesX();
     int nmbTilesY = gameMap->getNmbTilesY();
     Rect dst = Rect(0, 0, tileX, tileY);
@@ -123,9 +124,14 @@ bool Display::updateDisplay()
             }
 
             //Highlight display
-            if (gameMap->getVectorHighlight()[y*nmbTilesX + x] == BLUE)
+            valHighlight = gameMap->getVectorHighlight()[y*nmbTilesX + x] == BLUE;
+            if (valHighlight)
             {
                 image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
+                dispWindow->blitImage(image, NULL, &dst);
+            } else if
+            {
+                image = vectorImage->getImageFromIndex(RED_IMAGE_ID);
                 dispWindow->blitImage(image, NULL, &dst);
             }
 
