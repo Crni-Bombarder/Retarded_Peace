@@ -116,6 +116,10 @@ bool Display::updateDisplay()
             {
                 image = vectorImage->getImageFromIndex(unit->getIdImage());
                 dispWindow->blitImage(image, NULL, &dst);
+                if (unit->hasMoved())
+                {
+                    dispWindow->blitImage(vectorImage->getImageFromIndex(GREY_IMAGE_ID), NULL, &dst);
+                }
             }
 
             //Highlight display
