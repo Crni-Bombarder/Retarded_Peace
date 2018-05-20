@@ -87,7 +87,8 @@ add_library(SOURCES src/color.cpp
                     src/game.cpp
                     src/unit.cpp
                     src/typeunit.cpp
-                    src/genericinfantry.cpp)
+                    src/genericinfantry.cpp
+                    src/player.cpp)
 
 target_link_libraries(SOURCES ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_link_libraries(test_opencv ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

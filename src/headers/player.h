@@ -17,8 +17,10 @@ public:
 
     Unit* creatUnit(Rect _pos, string _type);
     void deleteUnit(Unit* _unit);
+    void refreshUnit();
 
     static Player* getPlayerFromId(int _id);
+
 private:
     int id;
     vector<Unit*> units;

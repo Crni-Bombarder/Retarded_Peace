@@ -13,6 +13,7 @@
 #include "display.h"
 #include "vector_image.h"
 #include "SDL.h"
+#include "player.h"
 
 #include "genericinfantry.h"
 

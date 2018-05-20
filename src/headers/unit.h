@@ -13,6 +13,7 @@ public:
 
     Unit();
     Unit(string _strType, int _owner=0);
+    Unit(Rect _pos, string _strType, int _owner=0);
     ~Unit();
 
     void move(Rect _dst);
@@ -26,6 +27,7 @@ public:
     void setPosition(Rect dst);
     int getOwner();
     bool hasMoved();
+    void setMoved(bool _moved);
     void setPV(int _PV);
 
 private:

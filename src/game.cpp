@@ -44,6 +44,14 @@ void Game::initGame(void)
 
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
+
+    Player* playerZero = new Player();
+    Player* playerOne = new Player();
+    Player* playerTwo = new Player();
+
+    gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infanterie"));
+    gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infanterie"));
+
 }
 
 bool Game::StartGame(void)
@@ -151,15 +159,6 @@ void Game::loop()
     Unit* currentUnit;
     Rect cursorPosition = Rect(4, 4);
 
-    Unit macedoine("infanterie", 1);
-    macedoine.setPosition(cursorPosition);
-    gameMap.getTile(cursorPosition.getX(), cursorPosition.getY())->setUnit(&macedoine);
-
-    cursorPosition = Rect(2, 2);
-    Unit macedoine1("infanterie", 0);
-    macedoine1.setPosition(cursorPosition);
-    gameMap.getTile(cursorPosition.getX(), cursorPosition.getY())->setUnit(&macedoine1);
-
     SDL_Event event;
     clock_t t;
 
@@ -206,6 +205,17 @@ void Game::loop()
                         {
                             cursorDown();
                             movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if(event.key.keysym.sym == SDLK_ESCAPE)
+                        {
+                            Player::getPlayerFromId(currentPlayer)->refreshUnit();
+                            if (currentPlayer == 2)
+                            {
+                                currentPlayer = 1;
+                            } else
+                            {
+                                currentPlayer += 1;
+                            }
                         }
                     }
 
@@ -290,6 +300,7 @@ void Game::loop()
             {
                 gameMap.clearVectorHighlight();
                 gameMap.moveUnit(currentUnit->getPosition(), cursorPosition);
+                currentUnit->setMoved(true);
                 state = SELECTION;
             }
         }

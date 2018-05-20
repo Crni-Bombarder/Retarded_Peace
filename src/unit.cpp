@@ -13,6 +13,15 @@ Unit::Unit(string _strType, int _owner)
     PV = 10;
 }
 
+Unit::Unit(Rect _pos, string _strType, int _owner)
+{
+    strType = _strType;
+    position = _pos;
+    moved = false;
+    owner = _owner;
+    PV = 10;
+}
+
 Unit::~Unit(){}
 
 void Unit::move(Rect _dst)
@@ -59,6 +68,11 @@ int Unit::getOwner()
 bool Unit::hasMoved()
 {
     return moved;
+}
+
+void Unit::setMoved(bool _moved)
+{
+    moved = _moved;
 }
 
 void Unit::setPV(int _PV)

@@ -1,13 +1,13 @@
 #include "player.h"
 
 vector<Player*> Player::vectPlayer = vector<Player*>();
-Player::nmbPlayer = 0;
+int Player::nmbPlayer = 0;
 
 Player::Player()
 {
     id = nmbPlayer;
     nmbPlayer++;
-    units = vector<Units*>();
+    units = vector<Unit*>();
     vectPlayer.push_back(this);
 }
 
@@ -31,8 +31,9 @@ int Player::getNmbPlayer()
 
 Unit* Player::creatUnit(Rect _pos, string _type)
 {
-    Unit* newUnit = new Unit(_pos, _type);
+    Unit* newUnit = new Unit(_pos, _type, id);
     units.push_back(newUnit);
+    return newUnit;
 }
 
 void Player::deleteUnit(Unit* _unit)
@@ -45,7 +46,15 @@ void Player::deleteUnit(Unit* _unit)
         value = units[i];
     }
     delete _unit;
-    units.delete(i);
+    units.erase(units.begin() + i);
+}
+
+void Player::refreshUnit()
+{
+    for(int i = 0; i <units.size(); i++)
+    {
+        units[i]->setMoved(false);
+    }
 }
 
 Player* Player::getPlayerFromId(int _id)
