@@ -114,17 +114,22 @@ void Game::printAllowedMoves(vector<Rect>* allowedMoves)
     }
 }
 
-void Game::attack(Unit* aggressor, Unit* defender)
+void Game::attack(Unit* aggressor, Unit* defender, bool counterattack)
 {
     string aggressorType = aggressor->getStrType();
     string defenderType = defender->getStrType();
     TypeUnit* aggressorTypeUnit = TypeUnit::getTypeUnit(aggressorType);
     TypeUnit* defenderTypeUnit = TypeUnit::getTypeUnit(defenderType);
-    bool counterattack = 0;
     int basicAttackValue = aggressorTypeUnit->getAttackValue(defenderType);
     int defenseValue = gameMap.getTerrainFromTiles(defender->getPosition().getX(), defender->getPosition().getY())->getDefenseValue();
     int attackValue = basicAttackValue*(10 - defenseValue)*(aggressor->getPV())/1000;
-    defender->setPV(defender->getPV() - attackValue);
+    if(defender->getPV() - attackValue <= 0)
+    {
+        gameMap.getTile(defender->getPosition().getX(), defender->getPosition().getY())->setUnit(nullptr);
+        Player::getPlayerFromId(defender->getOwner())->deleteUnit(defender);
+    } else {
+        defender->setPV(defender->getPV() - attackValue);
+    }
 }
 
 void Game::cursorLeft(void)

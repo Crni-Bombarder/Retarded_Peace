@@ -48,7 +48,7 @@ public:
   void getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves);
   void printAllowedMoves(vector<Rect>* allowedMoves);
 
-  void attack(Unit* aggressor, Unit* defender);
+  void attack(Unit* aggressor, Unit* defender, bool counterattack);
 
 private:
 
