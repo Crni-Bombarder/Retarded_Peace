@@ -12,7 +12,7 @@
 #include "rect.h"
 
 enum CaseHighlight {
-    NONE, BLUE
+    NONE, BLUE, RED
 };
 
 using namespace std;
