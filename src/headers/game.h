@@ -16,7 +16,8 @@
 
 #include "genericinfantry.h"
 
-#define FRAMERATE 25
+#define FRAMERATE 60
+#define MOVE_SPEED_CURSOR 2
 
 using namespace std;
 
@@ -33,6 +34,11 @@ public:
   bool StartGame(void);
   void initGame(void);
   bool StopGame(void);
+
+  void cursorLeft(void);
+  void cursorRight(void);
+  void cursorUp(void);
+  void cursorDown(void);
 
   void getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves);
   void printAllowedMoves(vector<Rect>* allowedMoves);

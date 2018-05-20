@@ -3,11 +3,15 @@
 vector<int> mapTiles = vector<int>();
 vector<string> terrainName = vector<string>();
 
+using namespace std;
+
 Map::Map(){}
 
 Map::Map(string mapName)
 {
-   loadMapFromFile(mapName);
+    std::vector<CaseHighlight> vectorHighlight = std::vector<CaseHighlight>();
+    loadMapFromFile(mapName);
+    clearVectorHighlight();
 }
 
 Map::~Map(){}
@@ -44,6 +48,10 @@ bool Map::loadMapFromFile(string mapName)
         sscanf(buf, "%d\n", &idTerrain);
         mapTiles[cmp].setNameTerrain(terrainName[idTerrain]);
     }
+
+    vectorHighlight.resize(nmbTilesX*nmbTilesY);
+    clearVectorHighlight();
+
     return true;
 }
 
@@ -99,4 +107,25 @@ void Map::moveUnit(Rect _src, Rect _dst)
     unit->setPosition(_dst);
     tileSrc->setUnit(NULL);
     tileDst->setUnit(unit);
+}
+
+vector<CaseHighlight> Map::getVectorHighlight()
+{
+    return vectorHighlight;
+}
+void Map::updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val)
+{
+  cout << "Size of the Rect : " << _listPos.size() << endl;
+    for(int i = 0; i<_listPos.size(); i++)
+    {
+        vectorHighlight[_listPos[i].getY()*nmbTilesX + _listPos[i].getX()] = _val;
+    }
+}
+
+void Map::clearVectorHighlight()
+{
+    for(int i = 0; i<vectorHighlight.size(); i++)
+    {
+        vectorHighlight[i] = NONE;
+    }
 }

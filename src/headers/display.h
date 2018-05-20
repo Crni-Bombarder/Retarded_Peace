@@ -11,12 +11,8 @@
 #include "unit.h"
 #include "vector_image.h"
 
-#define CURSOR_IMAGE_ID 3
+#define CURSOR_IMAGE_ID 4
 #define BLUE_IMAGE_ID   3
-
-typedef enum caseHighlight {
-    NONE, BLUE
-} CaseHighlight;
 
 class Display{
 public:
@@ -31,9 +27,6 @@ public:
   bool getCursorStatut();
   void setCursorPosition(Rect _position);
   Rect getCursorPosition();
-
-  void updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val);
-  void clearVectorHighlight();
 
   bool startDisplay();
   bool stopDisplay();
@@ -50,8 +43,6 @@ private:
 
   Rect posCursor;
   bool dispCursor;
-
-  std::vector<CaseHighlight> vectorHighlight;
 
   Map* gameMap;
   Window* dispWindow;
