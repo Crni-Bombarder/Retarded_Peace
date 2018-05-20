@@ -113,9 +113,19 @@ vector<CaseHighlight> Map::getVectorHighlight()
 {
     return vectorHighlight;
 }
+
+CaseHighlight Map::getHighlight(Rect _position)
+{
+    return vectorHighlight[_position.getY()*nmbTilesX + _position.getX()];
+}
+
+CaseHighlight Map::getHighlight(int _x, int _y)
+{
+    return vectorHighlight[_y*nmbTilesX + _x];
+}
+
 void Map::updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val)
 {
-  cout << "Size of the Rect : " << _listPos.size() << endl;
     for(int i = 0; i<_listPos.size(); i++)
     {
         vectorHighlight[_listPos[i].getY()*nmbTilesX + _listPos[i].getX()] = _val;

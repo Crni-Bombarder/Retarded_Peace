@@ -38,6 +38,14 @@ Rect Rect::operator=(const Rect &other)
     return *this;
 }
 
+bool Rect::operator==(const Rect &other)
+{
+    return (this->x == other.getX()
+            && this->y == other.getY()
+            && this->w == other.getW()
+            && this->h == other.getH());
+}
+
 int Rect::getX() const
 {
     return x;

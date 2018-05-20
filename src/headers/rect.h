@@ -9,6 +9,7 @@ public:
     ~Rect();
 
     Rect operator=(const Rect &other);
+    bool operator==(const Rect &other);
 
     int getX() const;
     int getY() const;

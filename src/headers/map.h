@@ -37,6 +37,8 @@ public:
     void moveUnit(Rect src, Rect dst);
 
     vector<CaseHighlight> getVectorHighlight();
+    CaseHighlight getHighlight(Rect _position);
+    CaseHighlight getHighlight(int _x, int _y);
     void updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val);
     void clearVectorHighlight();
 
