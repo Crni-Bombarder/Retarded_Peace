@@ -9,10 +9,11 @@ Terrain::Terrain()
     idImage = 0;
     addTerrainToVector(this);
 }
-Terrain::Terrain(int _idImage, string _terrainName)
+Terrain::Terrain(int _idImage, string _terrainName, int _defenceValue)
 {
     nameTerrain = _terrainName;
     idImage = _idImage;
+    defenceValue = _defenceValue;
     addTerrainToVector(this);
 }
 Terrain::~Terrain() {}

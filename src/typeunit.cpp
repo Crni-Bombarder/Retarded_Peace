@@ -12,6 +12,9 @@ TypeUnit::TypeUnit(string _typeName)
 {
     moveMalus = std::map<string, int>();
     mapTypeUnit[_typeName] = this;
+    minRange = 0;
+    maxRange = 1;
+    moveAttack = true;
 }
 
 int TypeUnit::getIdImage()
@@ -22,6 +25,26 @@ int TypeUnit::getIdImage()
 int TypeUnit::getMoveMalus(string _terrainName)
 {
     return moveMalus[_terrainName];
+}
+
+int TypeUnit::getMinRange()
+{
+    return minRange;
+}
+
+int TypeUnit::getMaxRange()
+{
+    return maxRange;
+}
+
+bool TypeUnit::canMoveAttack()
+{
+    return moveAttack;
+}
+
+int TypeUnit::getAttackValue(string _target)
+{
+    return attackValue[_target];
 }
 
 int TypeUnit::getMovePoints()

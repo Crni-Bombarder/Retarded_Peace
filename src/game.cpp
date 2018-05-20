@@ -230,6 +230,7 @@ void Game::loop()
                             {
                                 currentPlayer += 1;
                             }
+                            movespeed = MOVE_SPEED_CURSOR;
                         }
                     }
 
