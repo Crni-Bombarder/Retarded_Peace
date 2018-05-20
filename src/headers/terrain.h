@@ -14,7 +14,7 @@ public:
 
     string getNameTerrain(void);
     int getIdImage(void);
-    int getDefenceValue(void);
+    int getDefenseValue(void);
     void setIdImage(int _idImage);
 
     static Terrain* getTerrainFromName(string _name);
@@ -22,7 +22,7 @@ private:
 
     string nameTerrain;
     int idImage;
-    int defenceValue;
+    int defenseValue;
 
     static map<string, Terrain*> vectorTerrain;
 

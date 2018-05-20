@@ -9,11 +9,11 @@ Terrain::Terrain()
     idImage = 0;
     addTerrainToVector(this);
 }
-Terrain::Terrain(int _idImage, string _terrainName, int _defenceValue)
+Terrain::Terrain(int _idImage, string _terrainName, int _defenseValue)
 {
     nameTerrain = _terrainName;
     idImage = _idImage;
-    defenceValue = _defenceValue;
+    defenseValue = _defenseValue;
     addTerrainToVector(this);
 }
 Terrain::~Terrain() {}
@@ -30,6 +30,11 @@ int Terrain::getIdImage(void)
 void Terrain::setIdImage(int _idImage)
 {
     idImage = _idImage;
+}
+
+int Terrain::getDefenseValue()
+{
+    return defenseValue;
 }
 
 Terrain* Terrain::getTerrainFromName(string _name)
