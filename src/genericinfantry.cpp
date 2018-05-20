@@ -11,4 +11,6 @@ GenericInfantry::GenericInfantry(string _typeName)
      movePoints = 4;
      moveMalus["plaine"] = 1;
      moveMalus["mer"] = -1;
+
+     attackValue["infanterie"] = 50;
  }
