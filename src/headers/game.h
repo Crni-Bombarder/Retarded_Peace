@@ -6,6 +6,7 @@
 #include <ctime>
 #include <iostream>
 #include <unistd.h>
+#include <math.h>
 
 #include "map.h"
 #include "unit.h"
@@ -47,6 +48,7 @@ public:
 
   void getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves);
   void printAllowedMoves(vector<Rect>* allowedMoves);
+  void getAllowedAttack(Unit* unit, vector<Rect>* allowedAttacks);
 
   void attack(Unit* aggressor, Unit* defender, bool counterattack);
 

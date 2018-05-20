@@ -114,6 +114,22 @@ void Game::printAllowedMoves(vector<Rect>* allowedMoves)
     }
 }
 
+void Game::getAllowedAttack(Unit* unit, vector<Rect>* allowedAttacks)
+{
+    int minRange = TypeUnit::getTypeUnit(unit->getStrType())->getMinRange();
+    int maxRange = TypeUnit::getTypeUnit(unit->getStrType())->getMaxRange();
+    Rect* unitPosition = unit->getPosition();
+    allowedAttacks->resize(0);
+    int tabSize = (maxRange*2 + 1);
+    for (i = 0; i < tabSize; i++)
+    {
+        for(j = 0; j < tabSize; j++)
+        {
+            if((unitPosition->getX() - (tabSize/2 - i) > 0) && (unitPosition->getX()))
+        }
+    }
+}
+
 void Game::attack(Unit* aggressor, Unit* defender, bool counterattack)
 {
     string aggressorType = aggressor->getStrType();
@@ -174,6 +190,7 @@ void Game::loop()
     int movespeed = MOVE_SPEED_CURSOR;
     unsigned int waitingTime;
     vector<Rect> moves = vector<Rect>();
+    vector<Rect> attacks = vector<Rect>();
 
     Unit* currentUnit;
     Rect cursorPosition = Rect(4, 4);
