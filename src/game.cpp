@@ -128,18 +128,18 @@ void Game::getAllowedAttack(Unit* unit, vector<Rect>* allowedAttacks)
     {
         for(int j = 0; j < tabSize; j++)
         {
-            delta_X = tabSize/2 - i;
-            delta_Y = tabSize/2 - j;
-            coord_X = unitPosition.getX() - delta_X;
-            coord_Y = unitPosition.getY() - delta_Y;
+            delta_X = abs(tabSize/2 - i);
+            delta_Y = abs(tabSize/2 - j);
+            coord_X = unitPosition.getX() - (tabSize/2 - i);
+            coord_Y = unitPosition.getY() - (tabSize/2 - j);
 
             if((coord_X >= 0)
                 && (coord_X < gameMap.getNmbTilesX())
                 && (coord_Y >= 0)
                 && (coord_Y < gameMap.getNmbTilesY())
-                && (abs(delta_X - delta_Y) <= maxRange)
-                && (abs(delta_X - delta_Y) >= minRange)
-                && (abs(delta_X - delta_Y) > 0))
+                && (delta_X + delta_Y <= maxRange)
+                && (delta_X + delta_Y >= minRange)
+                && (delta_X + delta_Y > 0))
             {
                 allowedAttacks->push_back(Rect(coord_X, coord_Y));
             }

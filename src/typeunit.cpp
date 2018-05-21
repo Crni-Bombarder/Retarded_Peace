@@ -12,8 +12,8 @@ TypeUnit::TypeUnit(string _typeName)
 {
     moveMalus = std::map<string, int>();
     mapTypeUnit[_typeName] = this;
-    minRange = 0;
-    maxRange = 1;
+    minRange = 3;
+    maxRange = 5;
     moveAttack = true;
 }
 
