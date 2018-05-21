@@ -117,16 +117,32 @@ void Game::printAllowedMoves(vector<Rect>* allowedMoves)
 
 void Game::getAllowedAttack(Unit* unit, vector<Rect>* allowedAttacks)
 {
+    int delta_X, delta_Y;
+    int coord_X, coord_Y;
     int minRange = TypeUnit::getTypeUnit(unit->getStrType())->getMinRange();
     int maxRange = TypeUnit::getTypeUnit(unit->getStrType())->getMaxRange();
-    Rect* unitPosition = unit->getPosition();
+    Rect unitPosition = unit->getPosition();
     allowedAttacks->resize(0);
     int tabSize = (maxRange*2 + 1);
-    for (i = 0; i < tabSize; i++)
+    for (int i = 0; i < tabSize; i++)
     {
-        for(j = 0; j < tabSize; j++)
+        for(int j = 0; j < tabSize; j++)
         {
-            if((unitPosition->getX() - (tabSize/2 - i) > 0) && (unitPosition->getX()))
+            delta_X = tabSize/2 - i;
+            delta_Y = tabSize/2 - j;
+            coord_X = unitPosition.getX() - delta_X;
+            coord_Y = unitPosition.getY() - delta_Y;
+
+            if((coord_X >= 0)
+                && (coord_X < gameMap.getNmbTilesX())
+                && (coord_Y >= 0)
+                && (coord_Y < gameMap.getNmbTilesY())
+                && (abs(delta_X - delta_Y) <= maxRange)
+                && (abs(delta_X - delta_Y) >= minRange)
+                && (abs(delta_X - delta_Y) > 0))
+            {
+                allowedAttacks->push_back(Rect(coord_X, coord_Y));
+            }
         }
     }
 }
@@ -267,7 +283,9 @@ void Game::loop()
                             && !currentUnit->hasMoved())
                         {
                             getAllowedMoves(currentUnit, &moves);
+                            //getAllowedAttack(currentUnit, &attacks);
                             gameMap.updateVectorHighlight(moves, BLUE);
+                            //gameMap.updateVectorHighlight(attacks, RED);
 
                             state = DESTINATION;
                             movespeed = MOVE_SPEED_CURSOR;

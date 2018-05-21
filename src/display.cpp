@@ -124,12 +124,12 @@ bool Display::updateDisplay()
             }
 
             //Highlight display
-            valHighlight = gameMap->getVectorHighlight()[y*nmbTilesX + x] == BLUE;
-            if (valHighlight)
+            valHighlight = gameMap->getVectorHighlight()[y*nmbTilesX + x];
+            if (valHighlight == BLUE)
             {
                 image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
                 dispWindow->blitImage(image, NULL, &dst);
-            } else if
+            } else if (valHighlight == RED)
             {
                 image = vectorImage->getImageFromIndex(RED_IMAGE_ID);
                 dispWindow->blitImage(image, NULL, &dst);
