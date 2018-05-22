@@ -52,6 +52,10 @@ void Game::initGame(void)
     Player* playerOne = new Player();
     Player* playerTwo = new Player();
 
+
+    GenericInfantry* genericinfantery  = new GenericInfantry("infanterie");
+    GenericArtillery* genericartillery = new GenericArtillery("artillery");
+
     gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infanterie"));
     gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infanterie"));
     gameMap.getTile(2, 3)->setUnit(playerOne->creatUnit(Rect(2, 3), "artillery"));
