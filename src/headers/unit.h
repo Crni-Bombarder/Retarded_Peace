@@ -5,6 +5,7 @@
 
 #include "rect.h"
 #include "typeunit.h"
+#include <iostream>
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
     bool hasMoved();
     void setMoved(bool _moved);
     void setPV(int _PV);
+    void printUnit();
 
 private:
 

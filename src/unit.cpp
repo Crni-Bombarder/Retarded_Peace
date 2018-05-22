@@ -79,3 +79,19 @@ void Unit::setPV(int _PV)
 {
     PV = _PV;
 }
+
+void Unit::printUnit()
+{
+    cout << endl;
+    cout << "INFORMATIONS SUR l'UNITE" << endl;
+    cout << "Type d'unite : " << strType << endl;
+    cout << "Position : [" << position.getX() << "; " << position.getY() << "]" << endl;
+    cout << "Proprietaire : Joueur " << owner << endl;
+    cout << "A deja joue : " << ((moved == true)?"Oui":"Non") << endl;
+    cout << endl;
+    cout << "Points de vie restants : " << PV << "/100" << endl;
+    cout << "Points de deplacements : " << TypeUnit::getTypeUnit(strType)->getMovePoints() << endl;
+    cout << "Portee minimale : " << TypeUnit::getTypeUnit(strType)->getMinRange() << endl;
+    cout << "Portee Maximale : " << TypeUnit::getTypeUnit(strType)->getMaxRange() << endl;
+
+}
