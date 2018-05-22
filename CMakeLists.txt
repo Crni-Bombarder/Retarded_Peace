@@ -77,6 +77,7 @@ add_executable(
 
 add_library(SOURCES src/color.cpp
                     src/image.cpp
+                    src/sprit.cpp
                     src/window.cpp
                     src/tile.cpp
                     src/map.cpp

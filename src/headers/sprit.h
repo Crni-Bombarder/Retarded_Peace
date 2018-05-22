@@ -2,6 +2,7 @@
 #define SPRIT_H
 
 #include <vector>
+#include <string>
 #include <map>
 
 #include "image.h"
@@ -18,7 +19,7 @@ public:
     static Image* getImageUnit(string _typeUnit, int _owner);
 private:
     string typeUnit;
-    std::vector<Image> listImage;
+    std::vector<Image*> listImage;
 
     static std::map<string, Sprit*> vectorSprit;
 };

@@ -21,7 +21,6 @@ public:
 
     int getPV();
     string getStrType();
-    int getIdImage();
     int getMoveMalus(string strTerrain);
     int getMovePoint();
     Rect getPosition();

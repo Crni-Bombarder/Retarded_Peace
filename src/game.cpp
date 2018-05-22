@@ -38,12 +38,13 @@ void Game::initGame(void)
     libImages.initVector();
     libImages.loadImage("data/textures/land.png");
     libImages.loadImage("data/textures/sea.png");
-    libImages.loadImage("data/units/infantery.png");
     libImages.loadImage("data/textures/highlight.png");
     libImages.loadImage("data/textures/cursor.png");
     libImages.loadImage("data/textures/grey.png");
     libImages.loadImage("data/textures/red.png");
-    libImages.loadImage("data/units/artillery.png");
+
+    new Sprit("infantery");
+    new Sprit("artillery");
 
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
@@ -53,11 +54,11 @@ void Game::initGame(void)
     Player* playerTwo = new Player();
 
 
-    GenericInfantry* genericinfantery  = new GenericInfantry("infanterie");
+    GenericInfantry* genericinfantery  = new GenericInfantry("infantery");
     GenericArtillery* genericartillery = new GenericArtillery("artillery");
 
-    gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infanterie"));
-    gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infanterie"));
+    gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infantery"));
+    gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infantery"));
     gameMap.getTile(2, 3)->setUnit(playerOne->creatUnit(Rect(2, 3), "artillery"));
 
 }

@@ -10,11 +10,12 @@
 #include "rect.h"
 #include "unit.h"
 #include "vector_image.h"
+#include "sprit.h"
 
-#define CURSOR_IMAGE_ID 4
-#define BLUE_IMAGE_ID   3
-#define GREY_IMAGE_ID   5
-#define RED_IMAGE_ID    6
+#define CURSOR_IMAGE_ID 3
+#define BLUE_IMAGE_ID   2
+#define GREY_IMAGE_ID   4
+#define RED_IMAGE_ID    5
 
 class Display{
 public:

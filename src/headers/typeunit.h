@@ -26,7 +26,6 @@ public:
     static TypeUnit* getTypeUnit(string _typeName);
 protected:
     string name;
-    int idImage;
 
     int movePoints;
     std::map<string, int> moveMalus;

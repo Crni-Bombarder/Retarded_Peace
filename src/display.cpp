@@ -115,7 +115,7 @@ bool Display::updateDisplay()
             //Unit display
             if (unit != nullptr)
             {
-                image = vectorImage->getImageFromIndex(unit->getIdImage());
+                image = Sprit::getImageUnit(unit->getStrType(), unit->getOwner());
                 dispWindow->blitImage(image, NULL, &dst);
                 if (unit->hasMoved())
                 {

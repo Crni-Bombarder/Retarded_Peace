@@ -18,11 +18,6 @@ TypeUnit::TypeUnit(string _typeName)
     attack = true;
 }
 
-int TypeUnit::getIdImage()
-{
-    return idImage;
-}
-
 int TypeUnit::getMoveMalus(string _terrainName)
 {
     return moveMalus[_terrainName];
