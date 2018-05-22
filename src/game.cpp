@@ -237,6 +237,7 @@ void Game::loop()
     Unit* currentUnit;
     Unit* targetUnit;
     Rect cursorPosition = Rect(4, 4);
+    Rect oldPosition = Rect();
 
     SDL_Event event;
     clock_t t;
@@ -418,6 +419,7 @@ void Game::loop()
             } else if (state == MOVE)
             {
                 gameMap.clearVectorHighlight();
+                oldPosition = currentUnit->getPosition();
                 gameMap.moveUnit(currentUnit->getPosition(), cursorPosition);
 
                 if (TypeUnit::getTypeUnit(currentUnit->getStrType())->canMoveAttack())
@@ -430,7 +432,6 @@ void Game::loop()
                     {
                         state = MOVE_ATTACK;
                     } else {
-                        currentUnit->setMoved(true);
                         gameMap.clearVectorHighlight();
                         state = SELECTION;
                     }
@@ -553,6 +554,13 @@ void Game::loop()
                             currentUnit->setMoved(true);
                             counterattack = false;
                         }
+                    }
+                    if (event.key.keysym.sym == SDLK_ESCAPE)
+                    {
+                        gameMap.clearVectorHighlight();
+                        gameMap.moveUnit(currentUnit->getPosition(), oldPosition);
+                        movespeed = MOVE_SPEED_CURSOR;
+                        state = SELECTION;
                     }
                 }
             }
