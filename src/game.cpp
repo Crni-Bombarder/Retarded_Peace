@@ -206,6 +206,7 @@ void Game::loop()
 {
     int movespeed = MOVE_SPEED_CURSOR;
     unsigned int waitingTime;
+    bool keydown = false;
     vector<Rect> moves = vector<Rect>();
     vector<Rect> attacks = vector<Rect>();
 
@@ -273,6 +274,34 @@ void Game::loop()
                             cout << "Turn of player" << currentPlayer << endl;
                             movespeed = MOVE_SPEED_CURSOR;
                         }
+                        if(keydown == true)
+                        {
+                            gameMap.clearVectorHighlight();
+                            movespeed = MOVE_SPEED_CURSOR;
+                            keydown = false;
+                        }
+                        if(event.key.keysym.sym == SDLK_a && movespeed == 0)
+                        {
+                            cursorPosition = gameDisplay.getCursorPosition();
+                            currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
+                            if(currentUnit != nullptr)
+                            {
+                                getAllowedAttack(currentUnit, &attacks);
+                                gameMap.updateVectorHighlight(attacks, RED);
+                                movespeed = MOVE_SPEED_CURSOR;
+                                keydown = true;
+                            }
+                        }
+                        if(event.key.keysym.sym == SDLK_i && movespeed == 0)
+                        {
+                            cursorPosition = gameDisplay.getCursorPosition();
+                            currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
+                            if(currentUnit != nullptr)
+                            {
+                                currentUnit->printUnit();
+                                movespeed = MOVE_SPEED_CURSOR;
+                            }
+                        }
                     }
 
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
@@ -285,9 +314,7 @@ void Game::loop()
                             && !currentUnit->hasMoved())
                         {
                             getAllowedMoves(currentUnit, &moves);
-                            //getAllowedAttack(currentUnit, &attacks);
                             gameMap.updateVectorHighlight(moves, BLUE);
-                            //gameMap.updateVectorHighlight(attacks, RED);
 
                             state = DESTINATION;
                             movespeed = MOVE_SPEED_CURSOR;
