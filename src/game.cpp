@@ -156,12 +156,34 @@ void Game::attack(Unit* aggressor, Unit* defender, bool counterattack)
     int basicAttackValue = aggressorTypeUnit->getAttackValue(defenderType);
     int defenseValue = gameMap.getTerrainFromTiles(defender->getPosition().getX(), defender->getPosition().getY())->getDefenseValue();
     int attackValue = basicAttackValue*(10 - defenseValue)*(aggressor->getPV())/1000;
+    cout << endl;
+    cout << "INFORMATIONS SUR l'ATTAQUE" << endl;
+    cout << "L'unite " << aggressorType << " aux coordonnees [" << aggressor->getPosition().getX() << "; " << aggressor->getPosition().getY() <<"] du Joueur " << aggressor->getOwner()
+    << " attaque l'unite " << defenderType << " aux coordonnees [" << defender->getPosition().getX() << "; " << defender->getPosition().getY() << "]" << endl;
+    cout << "Elle lui inflige " << attackValue << " points de degats" << endl;
     if(defender->getPV() - attackValue <= 0)
     {
+        cout << "L'unite attaquee a ete detruite" << endl;
         gameMap.getTile(defender->getPosition().getX(), defender->getPosition().getY())->setUnit(nullptr);
         Player::getPlayerFromId(defender->getOwner())->deleteUnit(defender);
     } else {
         defender->setPV(defender->getPV() - attackValue);
+        if(counterattack == true)
+        {
+            basicAttackValue = defenderTypeUnit->getAttackValue(aggressorType);
+            defenseValue = gameMap.getTerrainFromTiles(aggressor->getPosition().getX(), aggressor->getPosition().getX())->getDefenseValue();
+            attackValue = basicAttackValue*0.8*(10 - defenseValue)*(defender->getPV())/1000;
+            cout << "L'unite attaquee contre-attaque !" << endl;
+            cout << "Elle inflige " << attackValue << " points de degats a l'attaquant" << endl;
+            if(aggressor->getPV() - attackValue <= 0)
+            {
+                cout << "L'unite attaquante a ete detruite" << endl;
+                gameMap.getTile(aggressor->getPosition().getX(), aggressor->getPosition().getY())->setUnit(nullptr);
+                Player::getPlayerFromId(aggressor->getOwner())->deleteUnit(aggressor);
+            } else {
+                aggressor->setPV(aggressor->getPV() - attackValue);
+            }
+        }
     }
 }
 
@@ -205,7 +227,9 @@ void Game::cursorDown(void)
 void Game::loop()
 {
     int movespeed = MOVE_SPEED_CURSOR;
+    int delta_X, delta_Y;
     unsigned int waitingTime;
+    bool counterattack = false;
     bool keydown = false;
     vector<Rect> moves = vector<Rect>();
     vector<Rect> attacks = vector<Rect>();
@@ -221,6 +245,7 @@ void Game::loop()
     gameDisplay.updateDisplay();
 
     cout << "Game running !" << endl;
+    cout << "Turn of player " << currentPlayer << ((currentPlayer == 1)?" (Red)":" (Blue)") << endl;
 
     while (gameRunning == true)
     {
@@ -272,7 +297,7 @@ void Game::loop()
                                 currentPlayer += 1;
                             }
 
-                            cout << "Turn of player" << currentPlayer << endl;
+                            cout << "Turn of player " << currentPlayer << ((currentPlayer == 1)?" (Red)":" (Blue)") << endl;
                             movespeed = MOVE_SPEED_CURSOR;
                         }
                         if(keydown == true)
@@ -447,6 +472,12 @@ void Game::loop()
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
+                        delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
+                        delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
+                        if((delta_X + delta_Y) <= 1)
+                        {
+                            counterattack = true;
+                        }
                         if (cursorPosition == currentUnit->getPosition())
                         {
                             gameMap.clearVectorHighlight();
@@ -456,11 +487,12 @@ void Game::loop()
                             && (targetUnit != nullptr)
                             && (targetUnit->getOwner() != currentPlayer))
                         {
-                            attack(currentUnit, targetUnit, 0);
+                            attack(currentUnit, targetUnit, counterattack);
                             gameMap.clearVectorHighlight();
                             state = SELECTION;
                             movespeed = MOVE_SPEED_CURSOR;
                             currentUnit->setMoved(true);
+                            counterattack = false;
                         }
                     }
                 }
@@ -498,6 +530,12 @@ void Game::loop()
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
+                        delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
+                        delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
+                        if((delta_X + delta_Y) <= 1)
+                        {
+                            counterattack = true;
+                        }
                         if (cursorPosition == currentUnit->getPosition())
                         {
                             gameMap.clearVectorHighlight();
@@ -508,11 +546,12 @@ void Game::loop()
                             && (targetUnit != nullptr)
                             && (targetUnit->getOwner() != currentPlayer))
                         {
-                            attack(currentUnit, targetUnit, 0);
+                            attack(currentUnit, targetUnit, counterattack);
                             gameMap.clearVectorHighlight();
                             state = SELECTION;
                             movespeed = MOVE_SPEED_CURSOR;
                             currentUnit->setMoved(true);
+                            counterattack = false;
                         }
                     }
                 }
