@@ -292,7 +292,7 @@ void Game::loop()
                         if(event.key.keysym.sym == SDLK_ESCAPE)
                         {
                             Player::getPlayerFromId(currentPlayer)->refreshUnit();
-                            if (currentPlayer == 2)
+                            if (currentPlayer == Player::getNmbPlayer()-1)
                             {
                                 currentPlayer = 1;
                             } else
