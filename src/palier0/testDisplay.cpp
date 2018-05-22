@@ -5,8 +5,8 @@ int main (int argc, char* argv[])
 {
     VectorImage vectorImage = VectorImage();
     vectorImage.initVector();
-    Terrain plaine = Terrain(0);
-    Terrain eau = Terrain(1);
+    Terrain plaine = Terrain(0, "plaine");
+    Terrain eau = Terrain(1, "mer");
     Map map = Map("map0");
     Display display = Display(&map, &vectorImage, 48, 48);
     display.startDisplay();
@@ -17,4 +17,3 @@ int main (int argc, char* argv[])
     display.stopDisplay();
     return 0;
 }
-

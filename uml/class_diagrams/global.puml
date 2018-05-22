@@ -1,0 +1,150 @@
+@startuml
+
+class Game {
+
++ Game()
++ Game(string _mapFile)
++ ~Game()
+
++ void setMapFile(string _mapFile)
++ bool StartGame(void)
++ void initGame(void)
++ bool StopGame(void)
+
+- void loop(void)
+
+- string mapFile
+- VectorImage libImages
+- Map gameMap
+- Display gameDisplay
+- bool gameRunning
+}
+
+class Map {
+
++ Map()
++ Map(string nameMap)
++ ~Map()
+
++ bool loadMapFromFile(string mapName)
++ int getNmbTilesX(void)
++ int getNmbTilesY(void)
++ void printMap(void)
++ Terrain* getTerrainFromTiles(int _x, int _y)
+
+- int nmbTilesX
+- int nmbTilesY
+
+- vector<Tile> mapTiles
+}
+
+class Tile {
+
++ Tiles()
++ Tile(int _idTerrain)
++ ~Tile()
+
++ int getIdTerrain(void)
++ void setIdTerrain(int _idTerrain)
++ void printTile(void)
++ Unit* getUnit(void)
++ void setUnit(Unit* _unit)
+
+- int idTerrain
+- Unit* unit
+}
+note left : Tiles are contained in vector<Tile> mapTiles
+
+class Terrain {
+- int idImage
+
+- static vector<Terrain*> vectorTerrain
+
++ Terrain()
++ Terrain(int _idImage)
++ ~Terrain()
+
++ int getIdImage(void)
++ void setIdImage(int _idImage)
+
++ static Terrain* getTerrainFromId(int _id)
+
+- static void addTerrainToVector(Terrain* _pterrain)
+}
+note right : Terrain are contained in static vector<Terrain*> vectorTerrain
+
+class Display {
+
++ Display()
++ Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screenY, int _tileX, int _tileY)
++ Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY)
++ ~Display()
+
++ bool startDisplay()
++ bool stopDisplay()
++ bool updateDisplay()
++ bool resizeWindow()
+
+- int screenX
+- int screenY
+- int tileX
+- int tileY
+
+- Map* gameMap
+- Window* dispWindow
+- VectorImage* vectorImage
+}
+
+class VectorImage{
+
++ VectorImage()
++ ~VectorImage()
+
++ void initVector(void)
++ bool loadImage(string _imageName)
++ int getSize(void)
++ Image* getImageFromIndex(int _index)
+
+- vector<Image> vectorImage
+}
+
+class Window {
+
++ Window()
++ Window(unsigned int _screenX, unsigned int _screenY)
++ Window(unsigned int _screenX, unsigned int _screenY, string _windowName)
++ ~Window()
+
++ bool createWin()
++ bool destroyWin()
++ bool updateWin()
+
++ int getSizeX(void)
++ int getSizeY(void)
++ bool resizeWindow(int _x, int _y)
+
++ void blitImage(Image* _image, Rect* _src, Rect* _dst)
++ void clearWin(Color)
+
++ static void initVideoDriver(void)
++ static void quitVideoDriver(void)
+
+- int screenX
+- int screenY
+
+- string windowName
+- SDL_Window* window
+- SDL_Renderer* renderer
+}
+
+Map "1" *-- "nmbTilesX*nmbTilesY" Tile
+
+Game "1" *-- "1" Map
+
+Display "1" *.. "1" Map
+Game "1" *-- "1" Display
+Display "1" *.. "1" Window
+Display "1" *.. "1" VectorImage
+Map "1" *.. "many" Terrain
+
+@enduml

@@ -2,19 +2,26 @@
 
 using namespace std;
 
-vector<Terrain*> Terrain::vectorTerrain = vector<Terrain*>();
+map<string, Terrain*> Terrain::vectorTerrain = map<string, Terrain*>();
 
 Terrain::Terrain()
 {
-    idImage =0;
+    idImage = 0;
     addTerrainToVector(this);
 }
-Terrain::Terrain(int _idImage)
+Terrain::Terrain(int _idImage, string _terrainName, int _defenseValue)
 {
+    nameTerrain = _terrainName;
     idImage = _idImage;
+    defenseValue = _defenseValue;
     addTerrainToVector(this);
 }
 Terrain::~Terrain() {}
+
+string Terrain::getNameTerrain(void)
+{
+    return nameTerrain;
+}
 
 int Terrain::getIdImage(void)
 {
@@ -25,12 +32,17 @@ void Terrain::setIdImage(int _idImage)
     idImage = _idImage;
 }
 
-Terrain* Terrain::getTerrainFromId(int _id)
+int Terrain::getDefenseValue()
 {
-    return vectorTerrain[_id];
+    return defenseValue;
+}
+
+Terrain* Terrain::getTerrainFromName(string _name)
+{
+    return vectorTerrain[_name];
 }
 
 void Terrain::addTerrainToVector(Terrain * _pterrain)
 {
-    vectorTerrain.push_back(_pterrain);
+    vectorTerrain.emplace(_pterrain->getNameTerrain(), _pterrain);
 }

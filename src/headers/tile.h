@@ -3,6 +3,9 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
+
+#include "unit.h"
 
 using namespace std;
 
@@ -10,16 +13,19 @@ class Tile{
 public:
 
   Tile();
-  Tile(int _idTerrain);
+  Tile(string _nameTerrain);
   ~Tile();
 
-  int getIdTerrain(void);
-  void setIdTerrain(int _idTerrain);
+  string getNameTerrain(void);
+  void setNameTerrain(string _nameTerrain);
   void printTile(void);
+  Unit* getUnit();
+  void setUnit(Unit* _unit);
 
 private:
 
-  int idTerrain;
+  string nameTerrain;
+  Unit* unit;
 
 };
 

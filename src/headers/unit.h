@@ -1,33 +1,45 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#include <string>
+
 #include "rect.h"
-#include "map.h"
+#include "typeunit.h"
+#include <iostream>
+
+using namespace std;
 
 class Unit{
 public:
 
     Unit();
+    Unit(string _strType, int _owner=0);
+    Unit(Rect _pos, string _strType, int _owner=0);
     ~Unit();
 
-    bool move(Rect _dst);
-    static void setGameMap(Map* _map);
+    void move(Rect _dst);
 
     int getPV();
-    int getIdType();
+    string getStrType();
     int getIdImage();
+    int getMoveMalus(string strTerrain);
+    int getMovePoint();
+    Rect getPosition();
+    void setPosition(Rect dst);
+    int getOwner();
+    bool hasMoved();
+    void setMoved(bool _moved);
     void setPV(int _PV);
+    void printUnit();
 
 private:
 
     int PV;
-    int movePoints;
-    int idImage;
-    int idType;
-
     Rect position;
+    int owner;
 
-    static Map* gameMap;
+    bool moved;
+    string strType;
 
 };
 

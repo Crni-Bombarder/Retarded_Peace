@@ -70,7 +70,26 @@ add_executable(
         src/palier0/main.cpp
 )
 
-add_library(SOURCES src/color.cpp src/image.cpp src/window.cpp src/tile.cpp src/map.cpp src/vector_image.cpp src/rect.cpp src/terrain.cpp src/display.cpp src/game.cpp)
+add_executable(
+        test_unitPalier1
+        src/palier1/testunit.cpp
+)
+
+add_library(SOURCES src/color.cpp
+                    src/image.cpp
+                    src/window.cpp
+                    src/tile.cpp
+                    src/map.cpp
+                    src/vector_image.cpp
+                    src/rect.cpp
+                    src/terrain.cpp
+                    src/display.cpp
+                    src/game.cpp
+                    src/unit.cpp
+                    src/typeunit.cpp
+                    src/genericinfantry.cpp
+                    src/genericartillery.cpp
+                    src/player.cpp)
 
 target_link_libraries(SOURCES ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_link_libraries(test_opencv ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
@@ -82,3 +101,5 @@ target_link_libraries(test_vectorimagePalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIB
 target_link_libraries(test_windowPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
 target_link_libraries(test_displayPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
 target_link_libraries(palier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+
+target_link_libraries(test_unitPalier1 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)

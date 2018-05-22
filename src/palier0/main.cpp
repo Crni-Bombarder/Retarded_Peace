@@ -6,16 +6,15 @@
 
 int main(int argc, char* argv[])
 {
+    GenericInfantry genericinfantery  = GenericInfantry("infanterie");
+    GenericArtillery genericartillery = GenericArtillery("artillery");
+
   Game game("map0");
   game.initGame();
   game.StartGame();
-  sleep(10);
-  game.StopGame();
 
-  game.setMapFile("map1");
-  game.StartGame();
-  sleep(10);
-  game.StopGame();
+  // game.setMapFile("map1");
+  // game.StartGame();
 
   return EXIT_SUCCESS;
 }

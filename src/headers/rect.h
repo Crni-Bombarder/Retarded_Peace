@@ -8,10 +8,13 @@ public:
     Rect(int _x, int _y, int _w, int _h);
     ~Rect();
 
-    int getX();
-    int getY();
-    int getW();
-    int getH();
+    Rect operator=(const Rect &other);
+    bool operator==(const Rect &other);
+
+    int getX() const;
+    int getY() const;
+    int getW() const;
+    int getH() const;
 
     void setX(int _x);
     void setY(int _y);

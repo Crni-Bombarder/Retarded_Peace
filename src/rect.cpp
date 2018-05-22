@@ -26,19 +26,39 @@ Rect::Rect(int _x, int _y, int _w, int _h)
 
 Rect::~Rect() {}
 
-int Rect::getX()
+Rect Rect::operator=(const Rect &other)
+{
+    if (this != &other)
+    {
+        this->x = other.getX();
+        this->y = other.getY();
+        this->w = other.getW();
+        this->h = other.getH();
+    }
+    return *this;
+}
+
+bool Rect::operator==(const Rect &other)
+{
+    return (this->x == other.getX()
+            && this->y == other.getY()
+            && this->w == other.getW()
+            && this->h == other.getH());
+}
+
+int Rect::getX() const
 {
     return x;
 }
-int Rect::getY()
+int Rect::getY() const
 {
     return y;
 }
-int Rect::getW()
+int Rect::getW() const
 {
     return w;
 }
-int Rect::getH()
+int Rect::getH() const
 {
     return h;
 }

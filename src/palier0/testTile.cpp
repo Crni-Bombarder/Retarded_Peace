@@ -3,11 +3,11 @@
 int main(int argc, char* argv[])
 {
     Tile firstTile;
-    Tile secondTile(3);
-    Tile thirdTile(1);
+    Tile secondTile("mer");
+    Tile thirdTile("plaine");
     Tile fourthTile;
 
     firstTile.printTile();
+    secondTile.printTile();
     return 0;
 }
-
