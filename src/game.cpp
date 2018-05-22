@@ -211,6 +211,7 @@ void Game::loop()
     vector<Rect> attacks = vector<Rect>();
 
     Unit* currentUnit;
+    Unit* targetUnit;
     Rect cursorPosition = Rect(4, 4);
     Rect oldPosition = Rect();
 
@@ -446,11 +447,21 @@ void Game::loop()
 
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
+                        targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                         if (cursorPosition == currentUnit->getPosition())
                         {
                             gameMap.clearVectorHighlight();
                             movespeed = MOVE_SPEED_CURSOR;
                             state = SELECTION;
+                        } else if ((gameMap.getHighlight(cursorPosition) == RED)
+                            && (targetUnit != nullptr)
+                            && (targetUnit->getOwner() != currentPlayer))
+                        {
+                            attack(currentUnit, targetUnit, 0);
+                            gameMap.clearVectorHighlight();
+                            state = SELECTION;
+                            movespeed = MOVE_SPEED_CURSOR;
+                            currentUnit->setMoved(true);
                         }
                     }
                 }
@@ -487,12 +498,22 @@ void Game::loop()
 
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
+                        targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                         if (cursorPosition == currentUnit->getPosition())
                         {
                             gameMap.clearVectorHighlight();
                             movespeed = MOVE_SPEED_CURSOR;
                             currentUnit->setMoved(true);
                             state = SELECTION;
+                        } else if ((gameMap.getHighlight(cursorPosition) == RED)
+                            && (targetUnit != nullptr)
+                            && (targetUnit->getOwner() != currentPlayer))
+                        {
+                            attack(currentUnit, targetUnit, 0);
+                            gameMap.clearVectorHighlight();
+                            state = SELECTION;
+                            movespeed = MOVE_SPEED_CURSOR;
+                            currentUnit->setMoved(true);
                         }
                     }
                     if (event.key.keysym.sym == SDLK_ESCAPE)
