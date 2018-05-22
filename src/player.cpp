@@ -36,6 +36,11 @@ Unit* Player::creatUnit(Rect _pos, string _type)
     return newUnit;
 }
 
+int Player::getNumberUnit()
+{
+    return units.size();
+}
+
 void Player::deleteUnit(Unit* _unit)
 {
     int i = 0;

@@ -296,14 +296,16 @@ void Game::loop()
                         }
                         if(event.key.keysym.sym == SDLK_ESCAPE)
                         {
-                            Player::getPlayerFromId(currentPlayer)->refreshUnit();
-                            if (currentPlayer == Player::getNmbPlayer()-1)
-                            {
-                                currentPlayer = 1;
-                            } else
-                            {
-                                currentPlayer += 1;
-                            }
+                            do {
+                                Player::getPlayerFromId(currentPlayer)->refreshUnit();
+                                if (currentPlayer == Player::getNmbPlayer()-1)
+                                {
+                                    currentPlayer = 1;
+                                } else
+                                {
+                                    currentPlayer += 1;
+                                }
+                            } while(Player::getPlayerFromId(currentPlayer)->getNumberUnit() == 0);
 
                             cout << "Turn of player " << currentPlayer << ((currentPlayer == 1)?" (Red)":" (Blue)") << endl;
                             movespeed = MOVE_SPEED_CURSOR;

@@ -16,6 +16,7 @@ public:
     static int getNmbPlayer();
 
     Unit* creatUnit(Rect _pos, string _type);
+    int getNumberUnit();
     void deleteUnit(Unit* _unit);
     void refreshUnit();
 
