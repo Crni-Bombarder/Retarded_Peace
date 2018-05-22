@@ -496,9 +496,12 @@ void Game::loop()
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
+                        if(targetUnit != nullptr)
+                        {
                         delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
                         delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
-                        if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
+                        }
+                        if(((delta_X + delta_Y) <= 1) && (targetUnit != nullptr) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
                         {
                             counterattack = true;
                         }
@@ -554,9 +557,12 @@ void Game::loop()
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
+                        if(targetUnit != nullptr)
+                        {
                         delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
                         delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
-                        if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
+                        }
+                        if(((delta_X + delta_Y) <= 1) && (targetUnit != nullptr) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
                         {
                             counterattack = true;
                         }
