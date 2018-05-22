@@ -269,6 +269,8 @@ void Game::loop()
                             {
                                 currentPlayer += 1;
                             }
+
+                            cout << "Turn of player" << currentPlayer << endl;
                             movespeed = MOVE_SPEED_CURSOR;
                         }
                     }
@@ -356,8 +358,67 @@ void Game::loop()
             {
                 gameMap.clearVectorHighlight();
                 gameMap.moveUnit(currentUnit->getPosition(), cursorPosition);
-                currentUnit->setMoved(true);
-                state = SELECTION;
+
+                if (TypeUnit::getTypeUnit(currentUnit->getStrType())->canMoveAttack())
+                {
+
+                    getAllowedAttack(currentUnit, &attacks);
+                    gameMap.updateVectorHighlight(attacks, RED);
+
+                    if (attacks.size())
+                    {
+                        state = ATTACK;
+                    } else {
+                        currentUnit->setMoved(true);
+                        gameMap.clearVectorHighlight();
+                        state = SELECTION;
+                    }
+                } else {
+                    currentUnit->setMoved(true);
+                    state = SELECTION;
+                }
+            } else if (state == ATTACK)
+            {
+                if (event.type == SDL_KEYDOWN)
+                {
+                    cursorPosition = gameDisplay.getCursorPosition();
+
+                    if (movespeed == 0)
+                    {
+                        if (event.key.keysym.sym == SDLK_LEFT)
+                        {
+                            cursorLeft();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if (event.key.keysym.sym == SDLK_RIGHT)
+                        {
+                            cursorRight();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if (event.key.keysym.sym == SDLK_UP)
+                        {
+                            cursorUp();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if (event.key.keysym.sym == SDLK_DOWN)
+                        {
+                            cursorDown();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+
+                    }
+
+                    if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
+                    {
+                        if (cursorPosition == currentUnit->getPosition())
+                        {
+                            gameMap.clearVectorHighlight();
+                            movespeed = MOVE_SPEED_CURSOR;
+                            currentUnit->setMoved(true);
+                            state = SELECTION;
+                        }
+                    }
+                }
             }
         }
 

@@ -12,5 +12,7 @@ GenericInfantry::GenericInfantry(string _typeName)
      moveMalus["plaine"] = 1;
      moveMalus["mer"] = -1;
 
+     minRange = 0;
+     maxRange = 1;
      attackValue["infanterie"] = 50;
  }
