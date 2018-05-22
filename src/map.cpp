@@ -139,3 +139,14 @@ void Map::clearVectorHighlight()
         vectorHighlight[i] = NONE;
     }
 }
+
+void Map::clearVectorHighlight(CaseHighlight highlight)
+{
+    for(int i = 0; i<vectorHighlight.size(); i++)
+    {
+        if(vectorHighlight[i] == highlight)
+        {
+            vectorHighlight[i] = NONE;
+        }
+    }
+}

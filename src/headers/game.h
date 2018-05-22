@@ -50,6 +50,7 @@ public:
   void getAllowedMoves(Unit* unit, vector<Rect>* allowedMoves);
   void printAllowedMoves(vector<Rect>* allowedMoves);
   void getAllowedAttack(Unit* unit, vector<Rect>* allowedAttacks);
+  void getAllowedAttack(Unit* unit, Rect position, vector<Rect>* allowedAttacks);
 
   void attack(Unit* aggressor, Unit* defender, bool counterattack);
 
