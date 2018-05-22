@@ -17,6 +17,7 @@
 #include "player.h"
 
 #include "genericinfantry.h"
+#include "genericartillery.h"
 
 #define FRAMERATE 60
 #define MOVE_SPEED_CURSOR 2

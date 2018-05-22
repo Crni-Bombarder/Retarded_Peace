@@ -43,6 +43,7 @@ void Game::initGame(void)
     libImages.loadImage("data/textures/cursor.png");
     libImages.loadImage("data/textures/grey.png");
     libImages.loadImage("data/textures/red.png");
+    libImages.loadImage("data/units/artillery.png");
 
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
@@ -53,6 +54,7 @@ void Game::initGame(void)
 
     gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infanterie"));
     gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infanterie"));
+    gameMap.getTile(2, 3)->setUnit(playerOne->creatUnit(Rect(2, 3), "artillery"));
 
 }
 
@@ -386,6 +388,11 @@ void Game::loop()
                                 }
                             } else
                             {
+
+                                gameMap.clearVectorHighlight();
+                                oldPosition = currentUnit->getPosition();
+                                gameMap.moveUnit(currentUnit->getPosition(), cursorPosition);
+
                                 state = MOVE;
                             }
                         }
@@ -393,10 +400,6 @@ void Game::loop()
                 }
             } else if (state == MOVE)
             {
-                gameMap.clearVectorHighlight();
-                oldPosition = currentUnit->getPosition();
-                gameMap.moveUnit(currentUnit->getPosition(), cursorPosition);
-
                 if (TypeUnit::getTypeUnit(currentUnit->getStrType())->canMoveAttack())
                 {
 
@@ -411,8 +414,21 @@ void Game::loop()
                         state = SELECTION;
                     }
                 } else {
-                    currentUnit->setMoved(true);
-                    state = SELECTION;
+                    if (event.type == SDL_KEYDOWN && movespeed == 0)
+                    {
+                        if (event.key.keysym.sym == SDLK_SPACE)
+                        {
+                            currentUnit->setMoved(true);
+                            movespeed = MOVE_SPEED_CURSOR;
+                            state = SELECTION;
+                        }
+                        if (event.key.keysym.sym == SDLK_ESCAPE && movespeed == 0)
+                        {
+                            gameMap.moveUnit(currentUnit->getPosition(), oldPosition);
+                            movespeed = MOVE_SPEED_CURSOR;
+                            state = SELECTION;
+                        }
+                    }
                 }
             } else if (state == ATTACK)
             {

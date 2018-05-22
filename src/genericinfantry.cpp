@@ -15,4 +15,5 @@ GenericInfantry::GenericInfantry(string _typeName)
      minRange = 0;
      maxRange = 1;
      attackValue["infanterie"] = 50;
+     attackValue["artillery"] = 30;
  }

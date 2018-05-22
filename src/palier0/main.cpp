@@ -6,10 +6,8 @@
 
 int main(int argc, char* argv[])
 {
-    GenericInfantry genericinfantry0 =  GenericInfantry("infanterie");
-    GenericInfantry genericinfantry1 =  GenericInfantry("infanterie1");
-    GenericInfantry genericinfantry2 =  GenericInfantry("infanterie2");
-    GenericInfantry genericinfantry3 =  GenericInfantry("infanterie3");
+    GenericInfantry genericinfantery  = GenericInfantry("infanterie");
+    GenericArtillery genericartillery = GenericArtillery("artillery");
 
   Game game("map0");
   game.initGame();
