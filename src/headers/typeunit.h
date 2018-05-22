@@ -21,6 +21,7 @@ public:
     int getMovePoints();
 
     bool canMoveAttack();
+    bool canAttack();
 
     static TypeUnit* getTypeUnit(string _typeName);
 protected:
@@ -33,6 +34,7 @@ protected:
     int minRange;
     int maxRange;
     bool moveAttack;
+    bool attack;
     std::map<string, int> attackValue;
 
     static std::map<string, TypeUnit*> mapTypeUnit;

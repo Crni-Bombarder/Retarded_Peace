@@ -22,7 +22,7 @@
 #define MOVE_SPEED_CURSOR 2
 
 enum State {
-    SELECTION, DESTINATION, MOVE, ATTACK
+    SELECTION, DESTINATION, MOVE, MOVE_ATTACK, ATTACK
 };
 
 using namespace std;

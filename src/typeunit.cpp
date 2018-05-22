@@ -12,9 +12,10 @@ TypeUnit::TypeUnit(string _typeName)
 {
     moveMalus = std::map<string, int>();
     mapTypeUnit[_typeName] = this;
-    minRange = 3;
-    maxRange = 5;
+    minRange = 0;
+    maxRange = 1;
     moveAttack = true;
+    attack = true;
 }
 
 int TypeUnit::getIdImage()
@@ -40,6 +41,11 @@ int TypeUnit::getMaxRange()
 bool TypeUnit::canMoveAttack()
 {
     return moveAttack;
+}
+
+bool TypeUnit::canAttack()
+{
+    return attack;
 }
 
 int TypeUnit::getAttackValue(string _target)

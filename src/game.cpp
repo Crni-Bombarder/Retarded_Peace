@@ -339,14 +339,22 @@ void Game::loop()
                             movespeed = MOVE_SPEED_CURSOR;
                         }
 
-                        if(event.key.keysym.sym == SDLK_SPACE)
+                        if (event.key.keysym.sym == SDLK_SPACE)
                         {
 
                             movespeed = MOVE_SPEED_CURSOR;
-                            if(cursorPosition == currentUnit->getPosition())
+                            if (cursorPosition == currentUnit->getPosition())
                             {
                                 gameMap.clearVectorHighlight();
-                                state = SELECTION;
+                                getAllowedAttack(currentUnit, &attacks);
+                                if (TypeUnit::getTypeUnit(currentUnit->getStrType())->canAttack() && attacks.size())
+                                {
+                                    gameMap.updateVectorHighlight(attacks, RED);
+                                    state = ATTACK;
+                                } else
+                                {
+                                    state = SELECTION;
+                                }
                             } else
                             {
                                 state = MOVE;
@@ -367,7 +375,7 @@ void Game::loop()
 
                     if (attacks.size())
                     {
-                        state = ATTACK;
+                        state = MOVE_ATTACK;
                     } else {
                         currentUnit->setMoved(true);
                         gameMap.clearVectorHighlight();
@@ -378,6 +386,47 @@ void Game::loop()
                     state = SELECTION;
                 }
             } else if (state == ATTACK)
+            {
+                if (event.type == SDL_KEYDOWN)
+                {
+                    cursorPosition = gameDisplay.getCursorPosition();
+
+                    if (movespeed == 0)
+                    {
+                        if (event.key.keysym.sym == SDLK_LEFT)
+                        {
+                            cursorLeft();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if (event.key.keysym.sym == SDLK_RIGHT)
+                        {
+                            cursorRight();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if (event.key.keysym.sym == SDLK_UP)
+                        {
+                            cursorUp();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if (event.key.keysym.sym == SDLK_DOWN)
+                        {
+                            cursorDown();
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+
+                    }
+
+                    if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
+                    {
+                        if (cursorPosition == currentUnit->getPosition())
+                        {
+                            gameMap.clearVectorHighlight();
+                            movespeed = MOVE_SPEED_CURSOR;
+                            state = SELECTION;
+                        }
+                    }
+                }
+            } else if (state == MOVE_ATTACK)
             {
                 if (event.type == SDL_KEYDOWN)
                 {

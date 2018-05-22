@@ -10,7 +10,7 @@ Unit::Unit(string _strType, int _owner)
     position = Rect(0, 0);
     moved = false;
     owner = _owner;
-    PV = 10;
+    PV = 100;
 }
 
 Unit::Unit(Rect _pos, string _strType, int _owner)
@@ -19,7 +19,7 @@ Unit::Unit(Rect _pos, string _strType, int _owner)
     position = _pos;
     moved = false;
     owner = _owner;
-    PV = 10;
+    PV = 100;
 }
 
 Unit::~Unit(){}
