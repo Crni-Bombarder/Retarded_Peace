@@ -475,7 +475,7 @@ void Game::loop()
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                         delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
                         delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
-                        if((delta_X + delta_Y) <= 1)
+                        if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
                         {
                             counterattack = true;
                         }
@@ -533,7 +533,7 @@ void Game::loop()
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                         delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
                         delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
-                        if((delta_X + delta_Y) <= 1)
+                        if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
                         {
                             counterattack = true;
                         }
