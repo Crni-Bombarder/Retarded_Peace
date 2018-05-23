@@ -144,6 +144,11 @@ bool Display::updateDisplay()
     Rect dst = Rect(0, 0, sizeTileX, sizeTileY);
     dispWindow->clearWin(black);
 
+    if (tileScreenX >= nmbTilesX)
+        posScreen.setX((nmbTilesX - tileScreenX)/2);
+    if (tileScreenY >= nmbTilesY)
+        posScreen.setY((nmbTilesY - tileScreenY)/2);
+
     //Map display
     for (int y = posScreen.getY(); y < posScreen.getY() + tileScreenY; y++) {
         for (int x = posScreen.getX(); x < posScreen.getX() + tileScreenX; x++) {

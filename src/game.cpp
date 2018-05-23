@@ -12,7 +12,7 @@ Game::Game(string _mapFile)
     gameMap = Map(_mapFile);
     mapFile = _mapFile;
     libImages = VectorImage();
-    gameDisplay = Display(&gameMap, &libImages, 10, 10, 32, 32);
+    gameDisplay = Display(&gameMap, &libImages, 16, 16, 32, 32);
     gameRunning = false;
 
     state = SELECTION;
