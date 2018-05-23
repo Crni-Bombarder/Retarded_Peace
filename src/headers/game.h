@@ -16,8 +16,9 @@
 #include "SDL.h"
 #include "player.h"
 
-#include "genericinfantry.h"
-#include "genericartillery.h"
+#include "infantery.h"
+#include "artillery.h"
+#include "helicopter.h"
 
 #define FRAMERATE 60
 #define MOVE_SPEED_CURSOR 2

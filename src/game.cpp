@@ -51,12 +51,14 @@ void Game::initGame(void)
 
     new Sprit("infantery");
     new Sprit("artillery");
+    new Sprit("helicopter");
 
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
 
-    GenericInfantry* genericinfantery  = new GenericInfantry("infantery");
-    GenericArtillery* genericartillery = new GenericArtillery("artillery");
+    new Infantery("infantery");
+    new Artillery("artillery");
+    new Helicopter("helicopter");
 
     //gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infantery"));
     //gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infantery"));

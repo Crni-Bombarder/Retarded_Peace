@@ -16,6 +16,13 @@ TypeUnit::TypeUnit(string _typeName)
     maxRange = 1;
     moveAttack = true;
     attack = true;
+    attackValue["infanterie"] = 0;
+    attackValue["artillery"] = 0;
+    attackValue["helicopter"] = 0;
+    moveMalus["plaine"] = 0;
+    moveMalus["mer"] = 0;
+    moveMalus["foret"] = 0;
+    moveMalus["montagne"] = 0;
 }
 
 int TypeUnit::getMoveMalus(string _terrainName)
