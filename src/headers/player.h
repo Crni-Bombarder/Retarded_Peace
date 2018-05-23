@@ -20,11 +20,19 @@ public:
     void deleteUnit(Unit* _unit);
     void refreshUnit();
 
+    Rect getCursorPosition();
+    Rect getScreenPosition();
+    void setCursorPosition(Rect _position);
+    void setScreenPosition(Rect _position);
+
     static Player* getPlayerFromId(int _id);
 
 private:
     int id;
     vector<Unit*> units;
+
+    Rect posCursor;
+    Rect posScreen;
     static int nmbPlayer;
     static vector<Player*> vectPlayer;
 };

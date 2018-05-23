@@ -302,8 +302,13 @@ void Game::loop()
     while (gameRunning == true)
     {
         t = clock();
+
+        cursorPosition = gameDisplay.getCursorPosition();
+
         while(SDL_PollEvent(&event))
         {
+            cursorPosition = gameDisplay.getCursorPosition();
+
             if (event.type == SDL_WINDOWEVENT)
             {
                 if (event.window.event == SDL_WINDOWEVENT_CLOSE)
@@ -314,6 +319,9 @@ void Game::loop()
 
             if (state == SELECTION)
             {
+
+                currentUnit = gameMap.getTile(cursorPosition.getX(), cursorPosition.getY())->getUnit();
+
                 if (event.type == SDL_KEYDOWN)
                 {
                     if (movespeed == 0)
@@ -340,6 +348,8 @@ void Game::loop()
                         }
                         if(event.key.keysym.sym == SDLK_ESCAPE)
                         {
+                            Player::getPlayerFromId(currentPlayer)->setCursorPosition(cursorPosition);
+                            Player::getPlayerFromId(currentPlayer)->setScreenPosition(gameDisplay.getScreenPosition());
                             do {
                                 Player::getPlayerFromId(currentPlayer)->refreshUnit();
                                 if (currentPlayer == Player::getNmbPlayer()-1)
@@ -350,6 +360,9 @@ void Game::loop()
                                     currentPlayer += 1;
                                 }
                             } while(Player::getPlayerFromId(currentPlayer)->getNumberUnit() == 0);
+
+                            gameDisplay.setCursorPosition(Player::getPlayerFromId(currentPlayer)->getCursorPosition());
+                            gameDisplay.setScreenPosition(Player::getPlayerFromId(currentPlayer)->getScreenPosition());
 
                             cout << "Turn of player " << currentPlayer << ((currentPlayer == 1)?" (Red)":" (Blue)") << endl;
                             movespeed = MOVE_SPEED_CURSOR;
@@ -362,8 +375,6 @@ void Game::loop()
                         }
                         if(event.key.keysym.sym == SDLK_a)
                         {
-                            cursorPosition = gameDisplay.getCursorPosition();
-                            currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                             if(currentUnit != nullptr)
                             {
                                 getAllowedAttack(currentUnit, &attacks);
@@ -374,8 +385,6 @@ void Game::loop()
                         }
                         if(event.key.keysym.sym == SDLK_i)
                         {
-                            cursorPosition = gameDisplay.getCursorPosition();
-                            currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                             if(currentUnit != nullptr)
                             {
                                 currentUnit->printUnit();
@@ -386,9 +395,6 @@ void Game::loop()
 
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
-                        cursorPosition = gameDisplay.getCursorPosition();
-                        currentUnit = gameMap.getTile(cursorPosition.getX(), cursorPosition.getY())->getUnit();
-
                         if (currentUnit != nullptr
                             && currentUnit->getOwner() == currentPlayer
                             && !currentUnit->hasMoved())
@@ -405,8 +411,6 @@ void Game::loop()
             {
                 if (event.type == SDL_KEYDOWN)
                 {
-                    cursorPosition = gameDisplay.getCursorPosition();
-
                     if (movespeed == 0)
                     {
                         if (event.key.keysym.sym == SDLK_LEFT
@@ -453,7 +457,6 @@ void Game::loop()
                         }
                         if(event.key.keysym.sym == SDLK_a)
                         {
-                            cursorPosition = gameDisplay.getCursorPosition();
                             if(currentUnit != nullptr)
                             {
                                 getAllowedAttack(currentUnit, cursorPosition, &attacks);
@@ -526,8 +529,6 @@ void Game::loop()
             {
                 if (event.type == SDL_KEYDOWN)
                 {
-                    cursorPosition = gameDisplay.getCursorPosition();
-
                     if (movespeed == 0)
                     {
                         if (event.key.keysym.sym == SDLK_LEFT)
@@ -591,8 +592,6 @@ void Game::loop()
             {
                 if (event.type == SDL_KEYDOWN)
                 {
-                    cursorPosition = gameDisplay.getCursorPosition();
-
                     if (movespeed == 0)
                     {
                         if (event.key.keysym.sym == SDLK_LEFT)

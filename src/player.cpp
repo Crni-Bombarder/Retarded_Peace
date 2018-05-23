@@ -8,6 +8,8 @@ Player::Player()
     id = nmbPlayer;
     nmbPlayer++;
     units = vector<Unit*>();
+    posCursor = Rect(0,0);
+    posScreen = Rect(0,0);
     vectPlayer.push_back(this);
 }
 
@@ -60,6 +62,24 @@ void Player::refreshUnit()
     {
         units[i]->setMoved(false);
     }
+}
+
+Rect Player::getCursorPosition()
+{
+    return posCursor;
+}
+Rect Player::getScreenPosition()
+{
+    return posScreen;
+}
+
+void Player::setCursorPosition(Rect _position)
+{
+    posCursor = _position;
+}
+void Player::setScreenPosition(Rect _position)
+{
+    posScreen = _position;
 }
 
 Player* Player::getPlayerFromId(int _id)
