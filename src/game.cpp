@@ -13,6 +13,7 @@ Game::Game(string _mapFile)
     new Player();
     new Player();
     new Player();
+    new Player();
 
     gameMap = Map(_mapFile);
     mapFile = _mapFile;

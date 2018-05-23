@@ -64,3 +64,8 @@ TypeUnit* TypeUnit::getTypeUnit(string _typeName)
 {
     return mapTypeUnit[_typeName];
 }
+
+std::map<string, TypeUnit*> TypeUnit::getMapTypeUnit()
+{
+    return mapTypeUnit;
+}

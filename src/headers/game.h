@@ -55,7 +55,7 @@ public:
 
   void attack(Unit* aggressor, Unit* defender, bool counterattack);
 
-private:
+protected:
 
   string mapFile;
   VectorImage libImages;
@@ -67,7 +67,7 @@ private:
   State state;
   int currentPlayer;
 
-  void loop();
+  virtual void loop();
   int verifMoves(Rect src, int posTabX, int posTabY, int remainingMoves, Unit* unit, vector<vector<int>>* moves);
 
 };

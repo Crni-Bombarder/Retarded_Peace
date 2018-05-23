@@ -24,6 +24,7 @@ public:
 
     Map();
     Map(string nameMap);
+    Map(int _nmbTilesX, int _nmbTilesY, string _nameMap);
     ~Map();
 
     bool loadMapFromFile(string mapName);
@@ -33,6 +34,7 @@ public:
     int getNmbTilesY(void);
     void printMap(void);
     Tile* getTile(int _x, int _y);
+    Tile* getTile(Rect _position);
     Terrain* getTerrainFromTiles(int _x, int _y);
     Unit* getUnitFromTiles(int _x, int _y);
     void moveUnit(Rect src, Rect dst);
@@ -51,6 +53,8 @@ private:
 
     vector<string> terrainName;
     vector<Tile> mapTiles;
+
+    string nameMap;
     int nmbTilesX;
     int nmbTilesY;
 
