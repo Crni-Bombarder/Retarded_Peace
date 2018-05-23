@@ -1,259 +1,259 @@
 # plaine
 # mer
 $ 16 16
-0
-1
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-1
-1
-0
-0
-1
-0
-0
-0
-1
-0
-0
-1
-1
-1
-0
-0
-0
-0
-0
-0
-1
-1
-0
-0
-1
-0
-0
-1
-1
-0
-0
-0
-0
-0
-0
-0
-1
-1
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-1
-0
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-1
-1
-0
-0
-0
-0
-0
-0
-0
-1
-1
-0
-0
-0
-0
-0
-0
-1
-0
-0
-0
-0
-0
-0
-1
-1
-1
-0
-0
-0
-0
-0
-0
-1
-0
-0
-1
-1
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
-1
-1
-1
-1
-1
-1
-0
-0
-0
-0
-0
-0
-0
-0
-1
-0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 infantery 1
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 artillery 1
+0 infantery 1
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 artillery 1
+0 infantery 1
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 infantery 1
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 infantery 2
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 infantery 2
+0 artillery 2
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 infantery 2
+0 artillery 2
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 infantery 2
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+0 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0
+0 none 0
+1 none 0
+1 none 0
+1 none 0
+1 none 0
+1 none 0
+1 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+0 none 0
+1 none 0

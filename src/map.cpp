@@ -20,6 +20,9 @@ bool Map::loadMapFromFile(string mapName)
 {
     char buf[128];
     int idTerrain;
+    char strType[25];
+    int idPlayer;
+    int coord_X, coord_Y;
     char nameTerrain[256];
     ifstream mapFile;
     string mapPath = "data/maps/" + mapName + ".map";    //Be careful of mapPath (relative to Makefile)
@@ -39,14 +42,20 @@ bool Map::loadMapFromFile(string mapName)
     mapTiles.resize(nmbTilesX*nmbTilesY);
     for(int cmp = 0; cmp < nmbTilesY*nmbTilesX; cmp++)
     {
+        coord_X = cmp%nmbTilesX;
+        coord_Y = (cmp - coord_X)/nmbTilesX;
         if(mapFile.eof())
         {
             cout << "Erreur de chargement de la carte (fin de fichier atteint)" << endl;
             return false;
         }
         mapFile.getline(buf,128);
-        sscanf(buf, "%d\n", &idTerrain);
+        sscanf(buf, "%d %s %d\n", &idTerrain, strType, &idPlayer);
         mapTiles[cmp].setNameTerrain(terrainName[idTerrain]);
+        if(string(strType) != "none" && idPlayer != 0)
+        {
+        getTile(coord_X, coord_Y)->setUnit(Player::getPlayerFromId(idPlayer)->creatUnit(Rect(coord_X, coord_Y), strType));
+        }
     }
 
     vectorHighlight.resize(nmbTilesX*nmbTilesY);

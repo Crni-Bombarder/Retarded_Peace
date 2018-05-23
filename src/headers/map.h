@@ -10,6 +10,7 @@
 #include "terrain.h"
 #include "unit.h"
 #include "rect.h"
+#include "player.h"
 
 enum CaseHighlight {
     NONE, BLUE, RED

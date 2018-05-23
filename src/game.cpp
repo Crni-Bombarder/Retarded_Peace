@@ -9,14 +9,20 @@ Game::Game()
 
 Game::Game(string _mapFile)
 {
+    new Player();
+    new Player();
+    new Player();
+
     gameMap = Map(_mapFile);
     mapFile = _mapFile;
     libImages = VectorImage();
-    gameDisplay = Display(&gameMap, &libImages, 10, 10, 32, 32);
+    gameDisplay = Display(&gameMap, &libImages, 20, 20, 32, 32);
     gameRunning = false;
 
     state = SELECTION;
     currentPlayer = 1;
+
+
 }
 
 Game::~Game()
@@ -49,17 +55,12 @@ void Game::initGame(void)
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
 
-    Player* playerZero = new Player();
-    Player* playerOne = new Player();
-    Player* playerTwo = new Player();
-
-
     GenericInfantry* genericinfantery  = new GenericInfantry("infantery");
     GenericArtillery* genericartillery = new GenericArtillery("artillery");
 
-    gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infantery"));
-    gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infantery"));
-    gameMap.getTile(2, 3)->setUnit(playerOne->creatUnit(Rect(2, 3), "artillery"));
+    //gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infantery"));
+    //gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infantery"));
+    //gameMap.getTile(2, 3)->setUnit(playerOne->creatUnit(Rect(2, 3), "artillery"));
 
 }
 
@@ -413,38 +414,22 @@ void Game::loop()
                 {
                     if (movespeed == 0)
                     {
-                        if (event.key.keysym.sym == SDLK_LEFT
-                            && cursorPosition.getX() > 0
-                            && (gameMap.getHighlight(cursorPosition.getX() - 1, cursorPosition.getY()) == BLUE
-                            || (cursorPosition.getX() - 1 == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_LEFT)
                         {
                             cursorLeft();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-                        if (event.key.keysym.sym == SDLK_RIGHT
-                            && cursorPosition.getX() < gameMap.getNmbTilesX() - 1
-                            && (gameMap.getHighlight(cursorPosition.getX() + 1, cursorPosition.getY()) == BLUE
-                            || (cursorPosition.getX() + 1 == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_RIGHT)
                         {
                             cursorRight();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-                        if (event.key.keysym.sym == SDLK_UP
-                            && cursorPosition.getY() > 0
-                            && (gameMap.getHighlight(cursorPosition.getX(), cursorPosition.getY() - 1) == BLUE
-                            || (cursorPosition.getX() == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() - 1 == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_UP)
                         {
                             cursorUp();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-                        if (event.key.keysym.sym == SDLK_DOWN
-                            && cursorPosition.getY() < gameMap.getNmbTilesY() - 1
-                            && (gameMap.getHighlight(cursorPosition.getX(), cursorPosition.getY() + 1) == BLUE
-                            || (cursorPosition.getX() == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() + 1 == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_DOWN)
                         {
                             cursorDown();
                             movespeed = MOVE_SPEED_CURSOR;
@@ -481,7 +466,7 @@ void Game::loop()
                                 {
                                     state = SELECTION;
                                 }
-                            } else
+                            } else if(gameMap.getHighlight(cursorPosition) == BLUE)
                             {
 
                                 gameMap.clearVectorHighlight();
@@ -489,6 +474,10 @@ void Game::loop()
                                 gameMap.moveUnit(currentUnit->getPosition(), cursorPosition);
 
                                 state = MOVE;
+                            } else
+                            {
+                                gameMap.clearVectorHighlight();
+                                state = SELECTION;
                             }
                         }
                     }
