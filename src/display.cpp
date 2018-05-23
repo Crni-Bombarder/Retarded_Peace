@@ -4,10 +4,10 @@ Color black = Color(0, 0, 0);
 
 Display::Display()
 {
-    screenX = 0;
-    screenY = 0;
-    tileX = 0;
-    tileY = 0;
+    tileScreenX = 0;
+    tileScreenY = 0;
+    sizeTileX = 0;
+    sizeTileY = 0;
 
     posCursor = Rect(0,0);
     dispCursor = false;
@@ -17,14 +17,16 @@ Display::Display()
     vectorImage = nullptr;
 }
 
-Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screenY, int _tileX, int _tileY)
+Display::Display(Map* _map, VectorImage* _vectorImage, int _tileScreenX, int _tileScreenY,
+    int _sizeTileX, int _sizeTileY)
 {
-    screenX = _screenX;
-    screenY = _screenY;
-    tileX = _tileX;
-    tileY = _tileY;
+    tileScreenX = _tileScreenX;
+    tileScreenY = _tileScreenY;
+    sizeTileX = _sizeTileX;
+    sizeTileY = _sizeTileY;
 
     posCursor = Rect(0,0);
+    posScreen = Rect(0,0);
     dispCursor = false;
 
     gameMap = _map;
@@ -32,17 +34,19 @@ Display::Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screen
     vectorImage = _vectorImage;
 }
 
-Display::Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY)
+Display::Display(Map* _map, VectorImage* _vectorImage, int _sizeTileX, int _sizeTileY)
 {
-    gameMap = _map;
-    tileX = _tileX;
-    tileY = _tileY;
-    screenX = tileX*gameMap->getNmbTilesX();
-    screenY = tileY*gameMap->getNmbTilesY();
+    tileScreenX = _map->getNmbTilesX();
+    tileScreenY = _map->getNmbTilesY();
+    sizeTileX = _sizeTileX;
+    sizeTileY = _sizeTileY;
 
     posCursor = Rect(0,0);
+    posScreen = Rect(0,0);
     dispCursor = false;
 
+
+    gameMap = _map;
     dispWindow = nullptr;
     vectorImage = _vectorImage;
 }
@@ -71,15 +75,52 @@ void Display::setCursorPosition(Rect _position)
     posCursor = _position;
 }
 
+void Display::setScreenPosition(Rect _position)
+{
+    posScreen = _position;
+}
+
 Rect Display::getCursorPosition()
 {
     return posCursor;
 }
 
+
+Rect Display::getScreenPosition()
+{
+    return posScreen;
+}
+
+void Display::moveLeft()
+{
+    posScreen.setX(posScreen.getX() - 1);
+}
+void Display::moveRight()
+{
+    posScreen.setX(posScreen.getX() + 1);
+}
+void Display::moveUp()
+{
+    posScreen.setY(posScreen.getY() - 1);
+}
+void Display::moveDown()
+{
+    posScreen.setY(posScreen.getY() + 1);
+}
+
+int Display::getTileScreenX()
+{
+    return tileScreenX;
+}
+int Display::getTileScreenY()
+{
+    return tileScreenY;
+}
+
 bool Display::startDisplay()
 {
     Window::initVideoDriver();
-    dispWindow = new Window(screenX, screenY, "Retarded Peace");
+    dispWindow = new Window(tileScreenX*sizeTileX, tileScreenY*sizeTileY, "Retarded Peace");
     dispWindow->createWin();
 }
 
@@ -100,53 +141,56 @@ bool Display::updateDisplay()
     CaseHighlight valHighlight;
     int nmbTilesX = gameMap->getNmbTilesX();
     int nmbTilesY = gameMap->getNmbTilesY();
-    Rect dst = Rect(0, 0, tileX, tileY);
+    Rect dst = Rect(0, 0, sizeTileX, sizeTileY);
     dispWindow->clearWin(black);
 
     //Map display
-    for (int y = 0; y < nmbTilesY; y++) {
-        for (int x = 0; x < nmbTilesX; x++) {
-
-            //Terrain display
-            image = vectorImage->getImageFromIndex(gameMap->getTerrainFromTiles(x, y)->getIdImage());
-            dispWindow->blitImage(image, NULL, &dst);
-            unit = gameMap->getUnitFromTiles(x, y);
-
-            //Unit display
-            if (unit != nullptr)
+    for (int y = posScreen.getY(); y < posScreen.getY() + tileScreenY; y++) {
+        for (int x = posScreen.getX(); x < posScreen.getX() + tileScreenX; x++) {
+            if (x >= 0 && y >= 0 && x < nmbTilesX && y < nmbTilesY)
             {
-                image = Sprit::getImageUnit(unit->getStrType(), unit->getOwner());
+
+                //Terrain display
+                image = vectorImage->getImageFromIndex(gameMap->getTerrainFromTiles(x, y)->getIdImage());
                 dispWindow->blitImage(image, NULL, &dst);
-                if (unit->hasMoved())
+                unit = gameMap->getUnitFromTiles(x, y);
+
+                //Unit display
+                if (unit != nullptr)
                 {
-                    dispWindow->blitImage(vectorImage->getImageFromIndex(GREY_IMAGE_ID), NULL, &dst);
+                    image = Sprit::getImageUnit(unit->getStrType(), unit->getOwner());
+                    dispWindow->blitImage(image, NULL, &dst);
+                    if (unit->hasMoved())
+                    {
+                        dispWindow->blitImage(vectorImage->getImageFromIndex(GREY_IMAGE_ID), NULL, &dst);
+                    }
+                }
+
+                //Highlight display
+                valHighlight = gameMap->getVectorHighlight()[y*nmbTilesX + x];
+                if (valHighlight == BLUE)
+                {
+                    image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
+                    dispWindow->blitImage(image, NULL, &dst);
+                } else if (valHighlight == RED)
+                {
+                    image = vectorImage->getImageFromIndex(RED_IMAGE_ID);
+                    dispWindow->blitImage(image, NULL, &dst);
                 }
             }
 
-            //Highlight display
-            valHighlight = gameMap->getVectorHighlight()[y*nmbTilesX + x];
-            if (valHighlight == BLUE)
-            {
-                image = vectorImage->getImageFromIndex(BLUE_IMAGE_ID);
-                dispWindow->blitImage(image, NULL, &dst);
-            } else if (valHighlight == RED)
-            {
-                image = vectorImage->getImageFromIndex(RED_IMAGE_ID);
-                dispWindow->blitImage(image, NULL, &dst);
-            }
-
-            dst.setX(dst.getX() + tileX);
+            dst.setX(dst.getX() + sizeTileX);
         }
         dst.setX(0);
-        dst.setY(dst.getY() + tileY);
+        dst.setY(dst.getY() + sizeTileY);
     }
 
     //Cursor display
     if (dispCursor)
     {
         image = vectorImage->getImageFromIndex(CURSOR_IMAGE_ID);
-        dst.setX(posCursor.getX()*tileX);
-        dst.setY(posCursor.getY()*tileY);
+        dst.setX((posCursor.getX()-posScreen.getX())*sizeTileX);
+        dst.setY((posCursor.getY()-posScreen.getY())*sizeTileY);
     }
 
     dispWindow->blitImage(image, NULL, &dst);
@@ -155,5 +199,5 @@ bool Display::updateDisplay()
 
 bool Display::resizeWindow()
 {
-    return dispWindow->resizeWindow(tileX*gameMap->getNmbTilesX(), tileY*gameMap->getNmbTilesY());
+    return dispWindow->resizeWindow(sizeTileX*gameMap->getNmbTilesX(), sizeTileY*gameMap->getNmbTilesY());
 }
