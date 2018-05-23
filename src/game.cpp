@@ -16,7 +16,11 @@ Game::Game(string _mapFile)
     gameMap = Map(_mapFile);
     mapFile = _mapFile;
     libImages = VectorImage();
+<<<<<<< HEAD
     gameDisplay = Display(&gameMap, &libImages, 20, 20, 32, 32);
+=======
+    gameDisplay = Display(&gameMap, &libImages, 16, 16, 32, 32);
+>>>>>>> 7672e269549fefd6263338c906e27233b0836763
     gameRunning = false;
 
     state = SELECTION;
