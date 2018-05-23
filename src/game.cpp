@@ -154,6 +154,38 @@ void Game::getAllowedAttack(Unit* unit, vector<Rect>* allowedAttacks)
     }
 }
 
+void Game::getAllowedAttack(Unit* unit, Rect position, vector<Rect>* allowedAttacks)
+{
+    int delta_X, delta_Y;
+    int coord_X, coord_Y;
+    int minRange = TypeUnit::getTypeUnit(unit->getStrType())->getMinRange();
+    int maxRange = TypeUnit::getTypeUnit(unit->getStrType())->getMaxRange();
+    Rect unitPosition = unit->getPosition();
+    allowedAttacks->resize(0);
+    int tabSize = (maxRange*2 + 1);
+    for (int i = 0; i < tabSize; i++)
+    {
+        for(int j = 0; j < tabSize; j++)
+        {
+            delta_X = abs(tabSize/2 - i);
+            delta_Y = abs(tabSize/2 - j);
+            coord_X = position.getX() - (tabSize/2 - i);
+            coord_Y = position.getY() - (tabSize/2 - j);
+
+            if((coord_X >= 0)
+                && (coord_X < gameMap.getNmbTilesX())
+                && (coord_Y >= 0)
+                && (coord_Y < gameMap.getNmbTilesY())
+                && (delta_X + delta_Y <= maxRange)
+                && (delta_X + delta_Y >= minRange)
+                && (delta_X + delta_Y > 0))
+            {
+                allowedAttacks->push_back(Rect(coord_X, coord_Y));
+            }
+        }
+    }
+}
+
 void Game::attack(Unit* aggressor, Unit* defender, bool counterattack)
 {
     string aggressorType = aggressor->getStrType();
@@ -316,7 +348,7 @@ void Game::loop()
                             movespeed = MOVE_SPEED_CURSOR;
                             keydown = false;
                         }
-                        if(event.key.keysym.sym == SDLK_a && movespeed == 0)
+                        if(event.key.keysym.sym == SDLK_a)
                         {
                             cursorPosition = gameDisplay.getCursorPosition();
                             currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
@@ -328,7 +360,7 @@ void Game::loop()
                                 keydown = true;
                             }
                         }
-                        if(event.key.keysym.sym == SDLK_i && movespeed == 0)
+                        if(event.key.keysym.sym == SDLK_i)
                         {
                             cursorPosition = gameDisplay.getCursorPosition();
                             currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
@@ -401,7 +433,23 @@ void Game::loop()
                             cursorDown();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-
+                        if(keydown == true)
+                        {
+                            gameMap.clearVectorHighlight(RED);
+                            gameMap.updateVectorHighlight(moves, BLUE);
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if(event.key.keysym.sym == SDLK_a)
+                        {
+                            cursorPosition = gameDisplay.getCursorPosition();
+                            if(currentUnit != nullptr)
+                            {
+                                getAllowedAttack(currentUnit, cursorPosition, &attacks);
+                                gameMap.updateVectorHighlight(attacks, RED);
+                                movespeed = MOVE_SPEED_CURSOR;
+                                keydown = true;
+                            }
+                        }
                         if (event.key.keysym.sym == SDLK_SPACE)
                         {
 
