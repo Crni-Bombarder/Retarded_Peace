@@ -9,10 +9,14 @@ Game::Game()
 
 Game::Game(string _mapFile)
 {
+    new Player();
+    new Player();
+    new Player();
+
     gameMap = Map(_mapFile);
     mapFile = _mapFile;
     libImages = VectorImage();
-    gameDisplay = Display(&gameMap, &libImages, 32, 32);
+    gameDisplay = Display(&gameMap, &libImages, 20, 20, 32, 32);
     gameRunning = false;
 
     state = SELECTION;
@@ -38,27 +42,23 @@ void Game::initGame(void)
     libImages.initVector();
     libImages.loadImage("data/textures/land.png");
     libImages.loadImage("data/textures/sea.png");
-    libImages.loadImage("data/units/infantery.png");
     libImages.loadImage("data/textures/highlight.png");
     libImages.loadImage("data/textures/cursor.png");
     libImages.loadImage("data/textures/grey.png");
     libImages.loadImage("data/textures/red.png");
-    libImages.loadImage("data/units/artillery.png");
+
+    new Sprit("infantery");
+    new Sprit("artillery");
 
     new Terrain(0, "plaine");
     new Terrain(1, "mer");
 
-    Player* playerZero = new Player();
-    Player* playerOne = new Player();
-    Player* playerTwo = new Player();
-
-
-    GenericInfantry* genericinfantery  = new GenericInfantry("infanterie");
+    GenericInfantry* genericinfantery  = new GenericInfantry("infantery");
     GenericArtillery* genericartillery = new GenericArtillery("artillery");
 
-    gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infanterie"));
-    gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infanterie"));
-    gameMap.getTile(2, 3)->setUnit(playerOne->creatUnit(Rect(2, 3), "artillery"));
+    //gameMap.getTile(4, 4)->setUnit(playerOne->creatUnit(Rect(4, 4), "infantery"));
+    //gameMap.getTile(2, 2)->setUnit(playerTwo->creatUnit(Rect(2, 2), "infantery"));
+    //gameMap.getTile(2, 3)->setUnit(playerOne->creatUnit(Rect(2, 3), "artillery"));
 
 }
 
@@ -153,6 +153,38 @@ void Game::getAllowedAttack(Unit* unit, vector<Rect>* allowedAttacks)
     }
 }
 
+void Game::getAllowedAttack(Unit* unit, Rect position, vector<Rect>* allowedAttacks)
+{
+    int delta_X, delta_Y;
+    int coord_X, coord_Y;
+    int minRange = TypeUnit::getTypeUnit(unit->getStrType())->getMinRange();
+    int maxRange = TypeUnit::getTypeUnit(unit->getStrType())->getMaxRange();
+    Rect unitPosition = unit->getPosition();
+    allowedAttacks->resize(0);
+    int tabSize = (maxRange*2 + 1);
+    for (int i = 0; i < tabSize; i++)
+    {
+        for(int j = 0; j < tabSize; j++)
+        {
+            delta_X = abs(tabSize/2 - i);
+            delta_Y = abs(tabSize/2 - j);
+            coord_X = position.getX() - (tabSize/2 - i);
+            coord_Y = position.getY() - (tabSize/2 - j);
+
+            if((coord_X >= 0)
+                && (coord_X < gameMap.getNmbTilesX())
+                && (coord_Y >= 0)
+                && (coord_Y < gameMap.getNmbTilesY())
+                && (delta_X + delta_Y <= maxRange)
+                && (delta_X + delta_Y >= minRange)
+                && (delta_X + delta_Y > 0))
+            {
+                allowedAttacks->push_back(Rect(coord_X, coord_Y));
+            }
+        }
+    }
+}
+
 void Game::attack(Unit* aggressor, Unit* defender, bool counterattack)
 {
     string aggressorType = aggressor->getStrType();
@@ -200,6 +232,9 @@ void Game::cursorLeft(void)
     {
         position.setX(position.getX() - 1);
         gameDisplay.setCursorPosition(position);
+
+        if (gameDisplay.getScreenPosition().getX() == position.getX())
+            gameDisplay.moveLeft();
     }
 }
 void Game::cursorRight(void)
@@ -209,6 +244,9 @@ void Game::cursorRight(void)
     {
         position.setX(position.getX() + 1);
         gameDisplay.setCursorPosition(position);
+
+        if (gameDisplay.getScreenPosition().getX() + gameDisplay.getTileScreenX() - 1 == position.getX())
+            gameDisplay.moveRight();
     }
 }
 void Game::cursorUp(void)
@@ -218,6 +256,9 @@ void Game::cursorUp(void)
     {
         position.setY(position.getY() - 1);
         gameDisplay.setCursorPosition(position);
+
+        if (gameDisplay.getScreenPosition().getY() == position.getY())
+            gameDisplay.moveUp();
     }
 }
 void Game::cursorDown(void)
@@ -227,6 +268,9 @@ void Game::cursorDown(void)
     {
         position.setY(position.getY() + 1);
         gameDisplay.setCursorPosition(position);
+
+        if (gameDisplay.getScreenPosition().getY() + gameDisplay.getTileScreenY() - 1 == position.getY())
+            gameDisplay.moveDown();
     }
 }
 
@@ -242,7 +286,7 @@ void Game::loop()
 
     Unit* currentUnit;
     Unit* targetUnit;
-    Rect cursorPosition = Rect(4, 4);
+    Rect cursorPosition = Rect(0, 0);
     Rect oldPosition = Rect();
 
     SDL_Event event;
@@ -257,8 +301,13 @@ void Game::loop()
     while (gameRunning == true)
     {
         t = clock();
+
+        cursorPosition = gameDisplay.getCursorPosition();
+
         while(SDL_PollEvent(&event))
         {
+            cursorPosition = gameDisplay.getCursorPosition();
+
             if (event.type == SDL_WINDOWEVENT)
             {
                 if (event.window.event == SDL_WINDOWEVENT_CLOSE)
@@ -269,6 +318,9 @@ void Game::loop()
 
             if (state == SELECTION)
             {
+
+                currentUnit = gameMap.getTile(cursorPosition.getX(), cursorPosition.getY())->getUnit();
+
                 if (event.type == SDL_KEYDOWN)
                 {
                     if (movespeed == 0)
@@ -295,14 +347,21 @@ void Game::loop()
                         }
                         if(event.key.keysym.sym == SDLK_ESCAPE)
                         {
-                            Player::getPlayerFromId(currentPlayer)->refreshUnit();
-                            if (currentPlayer == Player::getNmbPlayer()-1)
-                            {
-                                currentPlayer = 1;
-                            } else
-                            {
-                                currentPlayer += 1;
-                            }
+                            Player::getPlayerFromId(currentPlayer)->setCursorPosition(cursorPosition);
+                            Player::getPlayerFromId(currentPlayer)->setScreenPosition(gameDisplay.getScreenPosition());
+                            do {
+                                Player::getPlayerFromId(currentPlayer)->refreshUnit();
+                                if (currentPlayer == Player::getNmbPlayer()-1)
+                                {
+                                    currentPlayer = 1;
+                                } else
+                                {
+                                    currentPlayer += 1;
+                                }
+                            } while(Player::getPlayerFromId(currentPlayer)->getNumberUnit() == 0);
+
+                            gameDisplay.setCursorPosition(Player::getPlayerFromId(currentPlayer)->getCursorPosition());
+                            gameDisplay.setScreenPosition(Player::getPlayerFromId(currentPlayer)->getScreenPosition());
 
                             cout << "Turn of player " << currentPlayer << ((currentPlayer == 1)?" (Red)":" (Blue)") << endl;
                             movespeed = MOVE_SPEED_CURSOR;
@@ -313,10 +372,8 @@ void Game::loop()
                             movespeed = MOVE_SPEED_CURSOR;
                             keydown = false;
                         }
-                        if(event.key.keysym.sym == SDLK_a && movespeed == 0)
+                        if(event.key.keysym.sym == SDLK_a)
                         {
-                            cursorPosition = gameDisplay.getCursorPosition();
-                            currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                             if(currentUnit != nullptr)
                             {
                                 getAllowedAttack(currentUnit, &attacks);
@@ -325,10 +382,8 @@ void Game::loop()
                                 keydown = true;
                             }
                         }
-                        if(event.key.keysym.sym == SDLK_i && movespeed == 0)
+                        if(event.key.keysym.sym == SDLK_i)
                         {
-                            cursorPosition = gameDisplay.getCursorPosition();
-                            currentUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
                             if(currentUnit != nullptr)
                             {
                                 currentUnit->printUnit();
@@ -339,9 +394,6 @@ void Game::loop()
 
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
-                        cursorPosition = gameDisplay.getCursorPosition();
-                        currentUnit = gameMap.getTile(cursorPosition.getX(), cursorPosition.getY())->getUnit();
-
                         if (currentUnit != nullptr
                             && currentUnit->getOwner() == currentPlayer
                             && !currentUnit->hasMoved())
@@ -358,47 +410,44 @@ void Game::loop()
             {
                 if (event.type == SDL_KEYDOWN)
                 {
-                    cursorPosition = gameDisplay.getCursorPosition();
-
                     if (movespeed == 0)
                     {
-                        if (event.key.keysym.sym == SDLK_LEFT
-                            && cursorPosition.getX() > 0
-                            && (gameMap.getHighlight(cursorPosition.getX() - 1, cursorPosition.getY()) == BLUE
-                            || (cursorPosition.getX() - 1 == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_LEFT)
                         {
                             cursorLeft();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-                        if (event.key.keysym.sym == SDLK_RIGHT
-                            && cursorPosition.getX() < gameMap.getNmbTilesX() - 1
-                            && (gameMap.getHighlight(cursorPosition.getX() + 1, cursorPosition.getY()) == BLUE
-                            || (cursorPosition.getX() + 1 == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_RIGHT)
                         {
                             cursorRight();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-                        if (event.key.keysym.sym == SDLK_UP
-                            && cursorPosition.getY() > 0
-                            && (gameMap.getHighlight(cursorPosition.getX(), cursorPosition.getY() - 1) == BLUE
-                            || (cursorPosition.getX() == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() - 1 == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_UP)
                         {
                             cursorUp();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-                        if (event.key.keysym.sym == SDLK_DOWN
-                            && cursorPosition.getY() < gameMap.getNmbTilesY() - 1
-                            && (gameMap.getHighlight(cursorPosition.getX(), cursorPosition.getY() + 1) == BLUE
-                            || (cursorPosition.getX() == currentUnit->getPosition().getX()
-                            && cursorPosition.getY() + 1 == currentUnit->getPosition().getY())))
+                        if (event.key.keysym.sym == SDLK_DOWN)
                         {
                             cursorDown();
                             movespeed = MOVE_SPEED_CURSOR;
                         }
-
+                        if(keydown == true)
+                        {
+                            gameMap.clearVectorHighlight(RED);
+                            gameMap.updateVectorHighlight(moves, BLUE);
+                            movespeed = MOVE_SPEED_CURSOR;
+                        }
+                        if(event.key.keysym.sym == SDLK_a)
+                        {
+                            if(currentUnit != nullptr)
+                            {
+                                getAllowedAttack(currentUnit, cursorPosition, &attacks);
+                                gameMap.updateVectorHighlight(attacks, RED);
+                                movespeed = MOVE_SPEED_CURSOR;
+                                keydown = true;
+                            }
+                        }
                         if (event.key.keysym.sym == SDLK_SPACE)
                         {
 
@@ -415,7 +464,7 @@ void Game::loop()
                                 {
                                     state = SELECTION;
                                 }
-                            } else
+                            } else if(gameMap.getHighlight(cursorPosition) == BLUE)
                             {
 
                                 gameMap.clearVectorHighlight();
@@ -423,6 +472,10 @@ void Game::loop()
                                 gameMap.moveUnit(currentUnit->getPosition(), cursorPosition);
 
                                 state = MOVE;
+                            } else
+                            {
+                                gameMap.clearVectorHighlight();
+                                state = SELECTION;
                             }
                         }
                     }
@@ -463,8 +516,6 @@ void Game::loop()
             {
                 if (event.type == SDL_KEYDOWN)
                 {
-                    cursorPosition = gameDisplay.getCursorPosition();
-
                     if (movespeed == 0)
                     {
                         if (event.key.keysym.sym == SDLK_LEFT)
@@ -493,27 +544,34 @@ void Game::loop()
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
-                        delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
-                        delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
-                        if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
+
+                        if(targetUnit != nullptr)
                         {
-                            counterattack = true;
-                        }
-                        if (cursorPosition == currentUnit->getPosition())
-                        {
-                            gameMap.clearVectorHighlight();
-                            movespeed = MOVE_SPEED_CURSOR;
-                            state = SELECTION;
-                        } else if ((gameMap.getHighlight(cursorPosition) == RED)
-                            && (targetUnit != nullptr)
-                            && (targetUnit->getOwner() != currentPlayer))
-                        {
-                            attack(currentUnit, targetUnit, counterattack);
-                            gameMap.clearVectorHighlight();
-                            state = SELECTION;
-                            movespeed = MOVE_SPEED_CURSOR;
-                            currentUnit->setMoved(true);
-                            counterattack = false;
+                            delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
+                            delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
+                            if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
+                            {
+                                counterattack = true;
+                            } else {
+                                counterattack = false;
+                            }
+
+                            if (cursorPosition == currentUnit->getPosition())
+                            {
+                                gameMap.clearVectorHighlight();
+                                movespeed = MOVE_SPEED_CURSOR;
+                                state = SELECTION;
+                            } else if ((gameMap.getHighlight(cursorPosition) == RED)
+                                && (targetUnit != nullptr)
+                                && (targetUnit->getOwner() != currentPlayer))
+                            {
+                                attack(currentUnit, targetUnit, counterattack);
+                                gameMap.clearVectorHighlight();
+                                state = SELECTION;
+                                movespeed = MOVE_SPEED_CURSOR;
+                                currentUnit->setMoved(true);
+                                counterattack = false;
+                            }
                         }
                     }
                 }
@@ -521,8 +579,6 @@ void Game::loop()
             {
                 if (event.type == SDL_KEYDOWN)
                 {
-                    cursorPosition = gameDisplay.getCursorPosition();
-
                     if (movespeed == 0)
                     {
                         if (event.key.keysym.sym == SDLK_LEFT)
@@ -551,28 +607,34 @@ void Game::loop()
                     if (event.key.keysym.sym == SDLK_SPACE && movespeed == 0)
                     {
                         targetUnit = gameMap.getUnitFromTiles(cursorPosition.getX(), cursorPosition.getY());
-                        delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
-                        delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
-                        if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
+
+                        if(targetUnit != nullptr)
                         {
-                            counterattack = true;
-                        }
-                        if (cursorPosition == currentUnit->getPosition())
-                        {
-                            gameMap.clearVectorHighlight();
-                            movespeed = MOVE_SPEED_CURSOR;
-                            currentUnit->setMoved(true);
-                            state = SELECTION;
-                        } else if ((gameMap.getHighlight(cursorPosition) == RED)
-                            && (targetUnit != nullptr)
-                            && (targetUnit->getOwner() != currentPlayer))
-                        {
-                            attack(currentUnit, targetUnit, counterattack);
-                            gameMap.clearVectorHighlight();
-                            state = SELECTION;
-                            movespeed = MOVE_SPEED_CURSOR;
-                            currentUnit->setMoved(true);
-                            counterattack = false;
+                            delta_X = abs(currentUnit->getPosition().getX() - targetUnit->getPosition().getX());
+                            delta_Y = abs(currentUnit->getPosition().getY() - targetUnit->getPosition().getY());
+                            if(((delta_X + delta_Y) <= 1) && (TypeUnit::getTypeUnit(targetUnit->getStrType())->getMinRange() <= 1))
+                            {
+                                counterattack = true;
+                            } else {
+                                counterattack = false;
+                            }
+                            if (cursorPosition == currentUnit->getPosition())
+                            {
+                                gameMap.clearVectorHighlight();
+                                movespeed = MOVE_SPEED_CURSOR;
+                                currentUnit->setMoved(true);
+                                state = SELECTION;
+                            } else if ((gameMap.getHighlight(cursorPosition) == RED)
+                                && (targetUnit != nullptr)
+                                && (targetUnit->getOwner() != currentPlayer))
+                            {
+                                attack(currentUnit, targetUnit, counterattack);
+                                gameMap.clearVectorHighlight();
+                                state = SELECTION;
+                                movespeed = MOVE_SPEED_CURSOR;
+                                currentUnit->setMoved(true);
+                                counterattack = false;
+                            }
                         }
                     }
                     if (event.key.keysym.sym == SDLK_ESCAPE)

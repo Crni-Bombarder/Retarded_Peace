@@ -10,25 +10,37 @@
 #include "rect.h"
 #include "unit.h"
 #include "vector_image.h"
+#include "sprit.h"
 
-#define CURSOR_IMAGE_ID 4
-#define BLUE_IMAGE_ID   3
-#define GREY_IMAGE_ID   5
-#define RED_IMAGE_ID    6
+#define CURSOR_IMAGE_ID 3
+#define BLUE_IMAGE_ID   2
+#define GREY_IMAGE_ID   4
+#define RED_IMAGE_ID    5
 
 class Display{
 public:
 
   Display();
-  Display(Map* _map, VectorImage* _vectorImage, int _screenX, int _screenY, int _tileX, int _tileY);
-  Display(Map* _map, VectorImage* _vectorImage, int _tileX, int _tileY);
+  Display(Map* _map, VectorImage* _vectorImage, int _tileScreenX, int _tileScreenY,
+                                                int _sizeTileX, int _sizeTileY);
+  Display(Map* _map, VectorImage* _vectorImage, int _sizeTileX, int _sizeTileY);
   ~Display();
 
   void enableCursor();
   void disableCursor();
   bool getCursorStatut();
   void setCursorPosition(Rect _position);
+  void setScreenPosition(Rect _position);
   Rect getCursorPosition();
+  Rect getScreenPosition();
+
+  int getTileScreenX();
+  int getTileScreenY();
+
+  void moveLeft();
+  void moveRight();
+  void moveUp();
+  void moveDown();
 
   bool startDisplay();
   bool stopDisplay();
@@ -38,12 +50,14 @@ public:
 
 private:
 
-  int screenX;
-  int screenY;
-  int tileX;
-  int tileY;
+  int tileScreenX;
+  int tileScreenY;
+  int sizeTileX;
+  int sizeTileY;
 
   Rect posCursor;
+  Rect posScreen;
+
   bool dispCursor;
 
   Map* gameMap;

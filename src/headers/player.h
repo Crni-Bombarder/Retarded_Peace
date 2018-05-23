@@ -16,14 +16,23 @@ public:
     static int getNmbPlayer();
 
     Unit* creatUnit(Rect _pos, string _type);
+    int getNumberUnit();
     void deleteUnit(Unit* _unit);
     void refreshUnit();
+
+    Rect getCursorPosition();
+    Rect getScreenPosition();
+    void setCursorPosition(Rect _position);
+    void setScreenPosition(Rect _position);
 
     static Player* getPlayerFromId(int _id);
 
 private:
     int id;
     vector<Unit*> units;
+
+    Rect posCursor;
+    Rect posScreen;
     static int nmbPlayer;
     static vector<Player*> vectPlayer;
 };

@@ -10,6 +10,7 @@
 #include "terrain.h"
 #include "unit.h"
 #include "rect.h"
+#include "player.h"
 
 enum CaseHighlight {
     NONE, BLUE, RED
@@ -41,6 +42,7 @@ public:
     CaseHighlight getHighlight(int _x, int _y);
     void updateVectorHighlight(std::vector<Rect> _listPos, CaseHighlight _val);
     void clearVectorHighlight();
+    void clearVectorHighlight(CaseHighlight highlight);
 
 private:
 

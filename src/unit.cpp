@@ -40,11 +40,6 @@ string Unit::getStrType()
     return strType;
 }
 
-int Unit::getIdImage()
-{
-    return TypeUnit::getTypeUnit(strType)->getIdImage();
-}
-
 int Unit::getMoveMalus(string _strTerrain)
 {
     return TypeUnit::getTypeUnit(strType)->getMoveMalus(_strTerrain);

@@ -1,0 +1,7 @@
+@startuml
+package "static map < string, Terrain* >" #DDDDDD {
+  class Terrain
+}
+
+note top of Terrain: static method <b>getTerrainFromName(string _name)</b> allows to access to the Terrain
+@enduml
