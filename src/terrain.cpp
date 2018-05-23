@@ -42,6 +42,11 @@ Terrain* Terrain::getTerrainFromName(string _name)
     return vectorTerrain[_name];
 }
 
+map<string, Terrain*> Terrain::getMapTerrain()
+{
+    return vectorTerrain;
+}
+
 void Terrain::addTerrainToVector(Terrain * _pterrain)
 {
     vectorTerrain.emplace(_pterrain->getNameTerrain(), _pterrain);

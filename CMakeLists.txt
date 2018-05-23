@@ -75,6 +75,11 @@ add_executable(
         src/palier1/testunit.cpp
 )
 
+add_executable(
+    editor
+    src/editor/main.cpp
+)
+
 add_library(SOURCES src/color.cpp
                     src/image.cpp
                     src/sprit.cpp
@@ -86,6 +91,7 @@ add_library(SOURCES src/color.cpp
                     src/terrain.cpp
                     src/display.cpp
                     src/game.cpp
+                    src/editor.cpp
                     src/unit.cpp
                     src/typeunit.cpp
                     src/genericinfantry.cpp
@@ -102,5 +108,6 @@ target_link_libraries(test_vectorimagePalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIB
 target_link_libraries(test_windowPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
 target_link_libraries(test_displayPalier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
 target_link_libraries(palier0 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
+target_link_libraries(editor ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)
 
 target_link_libraries(test_unitPalier1 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} SOURCES)

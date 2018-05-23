@@ -18,6 +18,7 @@ public:
     void setIdImage(int _idImage);
 
     static Terrain* getTerrainFromName(string _name);
+    static map<string, Terrain*> getMapTerrain();
 private:
 
     string nameTerrain;
