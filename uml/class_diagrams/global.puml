@@ -62,12 +62,4 @@ package "static map < string, Terrain* >" #DDDDDD {
 
 note top of Terrain: static method <b>getTerrainFromName(string _name)</b> allows to access to the Terrain
 
-package "static map < string, TypeUnit* > mapTypeUnit" #DDDDDD {
-   TypeUnit <-- GenericInfantery
-   TypeUnit <-- GenericArtillery
-}
-
-note top of TypeUnit : static method <b> getTypeUnit(string _typeName) allow to access to the TypeUnit"
-
-
 @enduml
