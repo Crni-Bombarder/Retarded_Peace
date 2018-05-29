@@ -14,6 +14,20 @@ Map::Map(string mapName)
     clearVectorHighlight();
 }
 
+Map::Map(int _nmbTilesX, int _nmbTilesY, string _nameMap)
+{
+    nameMap = _nameMap;
+    nmbTilesX = _nmbTilesX;
+    nmbTilesY = _nmbTilesY;
+
+    mapTiles.resize(_nmbTilesX*_nmbTilesY);
+    vectorHighlight.resize(_nmbTilesX*_nmbTilesY);
+    for (int i = 0; i<mapTiles.size(); i++)
+    {
+        mapTiles[i].setNameTerrain("mer");
+    }
+}
+
 Map::~Map(){}
 
 bool Map::loadMapFromFile(string mapName)
@@ -90,6 +104,10 @@ void Map::printMap()
 Tile* Map::getTile(int _x, int _y)
 {
   return &mapTiles[_y*nmbTilesX + _x];
+}
+Tile* Map::getTile(Rect _position)
+{
+    return getTile(_position.getX(), _position.getY());
 }
 
 Terrain* Map::getTerrainFromTiles(int _x, int _y)

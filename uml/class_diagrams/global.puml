@@ -51,7 +51,7 @@ Game "1" *-- "1" Display
 Display "1" *.. "1" Window
 Display "1" *.. "1" VectorImage
 Game "1" *-- "1" VectorImage
-Tile "1" *.. "1" Unit
+Tile "1" *.. "0...1" Unit
 Sprit "1" *-- "0...N" Image
 VectorImage "1" *-- "0...N" Image
 Game "1" *-- "0...N" Player
@@ -60,14 +60,7 @@ package "static map < string, Terrain* >" #DDDDDD {
   class Terrain
 }
 
+note right of Unit : member <b>string StrType</b> is used as argument in <b>Terrain::getTerrainFromName(string _name)</b>
 note top of Terrain: static method <b>getTerrainFromName(string _name)</b> allows to access to the Terrain
-
-package "static map < string, TypeUnit* > mapTypeUnit" #DDDDDD {
-   TypeUnit <-- GenericInfantery
-   TypeUnit <-- GenericArtillery
-}
-
-note top of TypeUnit : static method <b> getTypeUnit(string _typeName) allow to access to the TypeUnit"
-
 
 @enduml

@@ -16,8 +16,9 @@
 #include "SDL.h"
 #include "player.h"
 
-#include "genericinfantry.h"
-#include "genericartillery.h"
+#include "infantery.h"
+#include "artillery.h"
+#include "helicopter.h"
 
 #define FRAMERATE 60
 #define MOVE_SPEED_CURSOR 2
@@ -54,7 +55,7 @@ public:
 
   void attack(Unit* aggressor, Unit* defender, bool counterattack);
 
-private:
+protected:
 
   string mapFile;
   VectorImage libImages;
@@ -66,7 +67,7 @@ private:
   State state;
   int currentPlayer;
 
-  void loop();
+  virtual void loop();
   int verifMoves(Rect src, int posTabX, int posTabY, int remainingMoves, Unit* unit, vector<vector<int>>* moves);
 
 };

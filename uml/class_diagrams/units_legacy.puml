@@ -1,0 +1,52 @@
+@startuml
+
+class TypeUnit {
+}
+
+class LandUnit {
+<b>moveMalus["mer"] = -1</b>
+}
+
+class AirUnit {
+<b>moveMalus["plaine"] = 1</b>
+<b>moveMalus["mer"] = 1</b>
+<b>moveMalus["foret"] = 1</b>
+<b>moveMalus["montagne"] = 1</b>
+}
+
+class SeaUnit{
+<b>moveMalus["plaine"] = -1</b>
+<b>moveMalus["mer"] = 1</b>
+<b>moveMalus["foret"] = -1</b>
+<b>moveMalus["montagne"]  -1</b>
+}
+
+class Vehicules {
+<b>moveMalus["montagne"] = -1</b>
+}
+
+class Infantery {
+}
+
+class Artillery {
+}
+
+class Helicopter {
+}
+
+TypeUnit <|-- LandUnit
+TypeUnit <|-- AirUnit
+TypeUnit <|-- SeaUnit
+LandUnit <|-- Vehicules
+LandUnit <|-- Infantery
+Vehicules <|-- Artillery
+AirUnit <|-- Helicopter
+
+note as reminder
+    - moveMalus = -1 : l'unité ne peut pas se déplacer sur le terrain
+    - moveMalus = 1 : l'unité n'a aucun malus de déplacement sur le terrain
+    - moveMalus = [2..n..N] = le déplacement coûtera n points de mouvements
+                                          à l'unité pour traverser le terrain
+end note
+
+@enduml

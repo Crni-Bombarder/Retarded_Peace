@@ -24,6 +24,7 @@ public:
     bool canAttack();
 
     static TypeUnit* getTypeUnit(string _typeName);
+    static std::map<string, TypeUnit*> getMapTypeUnit();
 protected:
     string name;
 
